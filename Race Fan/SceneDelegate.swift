@@ -29,6 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [homepageNC, scheduleNC]
+        tabBarController.tabBar.tintColor = .red
             
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
