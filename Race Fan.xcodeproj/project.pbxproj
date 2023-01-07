@@ -16,6 +16,10 @@
 		D91EE6E1295FCD1D00AB463F /* Race_FanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6E0295FCD1D00AB463F /* Race_FanTests.swift */; };
 		D91EE6EB295FCD1D00AB463F /* Race_FanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6EA295FCD1D00AB463F /* Race_FanUITests.swift */; };
 		D91EE6ED295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6EC295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift */; };
+		D95F8AE42967B1E8008DEBA6 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AE32967B1E8008DEBA6 /* HomePageView.swift */; };
+		D95F8AE82968C8B9008DEBA6 /* RaceCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AE72968C8B9008DEBA6 /* RaceCountdown.swift */; };
+		D95F8AEA296901DA008DEBA6 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AE9296901DA008DEBA6 /* ProgressCircle.swift */; };
+		D95F8AEC296A0128008DEBA6 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AEB296A0128008DEBA6 /* Countdown.swift */; };
 		D9D5B6802967487D00A196BC /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D5B67F2967487D00A196BC /* ScheduleVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +54,10 @@
 		D91EE6E6295FCD1D00AB463F /* Race FanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Race FanUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D91EE6EA295FCD1D00AB463F /* Race_FanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_FanUITests.swift; sourceTree = "<group>"; };
 		D91EE6EC295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_FanUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D95F8AE32967B1E8008DEBA6 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
+		D95F8AE72968C8B9008DEBA6 /* RaceCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceCountdown.swift; sourceTree = "<group>"; };
+		D95F8AE9296901DA008DEBA6 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
+		D95F8AEB296A0128008DEBA6 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
 		D9D5B67F2967487D00A196BC /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,8 +111,9 @@
 			children = (
 				D91EE6C6295FCD1B00AB463F /* AppDelegate.swift */,
 				D91EE6C8295FCD1B00AB463F /* SceneDelegate.swift */,
-				D91EE6CA295FCD1B00AB463F /* HomePageVC.swift */,
-				D9D5B67F2967487D00A196BC /* ScheduleVC.swift */,
+				D95F8AE22967B1B7008DEBA6 /* ViewModel */,
+				D95F8AE12967B1B3008DEBA6 /* View */,
+				D95F8AE02967B1AE008DEBA6 /* Model */,
 				D91EE6D2295FCD1D00AB463F /* Assets.xcassets */,
 				D91EE6D4295FCD1D00AB463F /* LaunchScreen.storyboard */,
 				D91EE6D7295FCD1D00AB463F /* Info.plist */,
@@ -128,6 +137,49 @@
 				D91EE6EC295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift */,
 			);
 			path = "Race FanUITests";
+			sourceTree = "<group>";
+		};
+		D95F8AE02967B1AE008DEBA6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D95F8AE12967B1B3008DEBA6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D95F8AE62967B252008DEBA6 /* Schedule */,
+				D95F8AE52967B235008DEBA6 /* HomePage */,
+				D95F8AEB296A0128008DEBA6 /* Countdown.swift */,
+				D95F8AE9296901DA008DEBA6 /* ProgressCircle.swift */,
+				D95F8AE72968C8B9008DEBA6 /* RaceCountdown.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D95F8AE22967B1B7008DEBA6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D95F8AE52967B235008DEBA6 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				D91EE6CA295FCD1B00AB463F /* HomePageVC.swift */,
+				D95F8AE32967B1E8008DEBA6 /* HomePageView.swift */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		D95F8AE62967B252008DEBA6 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				D9D5B67F2967487D00A196BC /* ScheduleVC.swift */,
+			);
+			path = Schedule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,7 +316,11 @@
 				D91EE6D1295FCD1B00AB463F /* Race_Fan.xcdatamodeld in Sources */,
 				D91EE6CB295FCD1B00AB463F /* HomePageVC.swift in Sources */,
 				D91EE6C7295FCD1B00AB463F /* AppDelegate.swift in Sources */,
+				D95F8AE42967B1E8008DEBA6 /* HomePageView.swift in Sources */,
+				D95F8AEC296A0128008DEBA6 /* Countdown.swift in Sources */,
 				D91EE6C9295FCD1B00AB463F /* SceneDelegate.swift in Sources */,
+				D95F8AEA296901DA008DEBA6 /* ProgressCircle.swift in Sources */,
+				D95F8AE82968C8B9008DEBA6 /* RaceCountdown.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +489,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JM53A4WWCH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Race Fan/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -458,6 +515,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JM53A4WWCH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Race Fan/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
