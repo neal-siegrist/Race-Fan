@@ -23,6 +23,7 @@ class Countdown: UIView {
         let label = UILabel()
         
         label.font = UIFont.systemFont(ofSize: 20)
+        label.text = "0"
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -41,10 +42,8 @@ class Countdown: UIView {
     
     //MARK: - Initializers
 
-    init(progress: CGFloat) {
+    init() {
         super.init(frame: .zero)
-        
-        countdownCircle.progress = progress
         
         self.addSubview(circleCountdownvalue)
         setupCountdownCircleConstraints()

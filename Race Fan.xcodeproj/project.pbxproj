@@ -21,6 +21,7 @@
 		D95F8AEA296901DA008DEBA6 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AE9296901DA008DEBA6 /* ProgressCircle.swift */; };
 		D95F8AEC296A0128008DEBA6 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AEB296A0128008DEBA6 /* Countdown.swift */; };
 		D9D5B6802967487D00A196BC /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D5B67F2967487D00A196BC /* ScheduleVC.swift */; };
+		D9FFACBF296A49BD009B8869 /* HomePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FFACBE296A49BD009B8869 /* HomePageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		D95F8AE9296901DA008DEBA6 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
 		D95F8AEB296A0128008DEBA6 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
 		D9D5B67F2967487D00A196BC /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
+		D9FFACBE296A49BD009B8869 /* HomePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 		D95F8AE22967B1B7008DEBA6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D9FFACBE296A49BD009B8869 /* HomePageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				D91EE6D1295FCD1B00AB463F /* Race_Fan.xcdatamodeld in Sources */,
 				D91EE6CB295FCD1B00AB463F /* HomePageVC.swift in Sources */,
 				D91EE6C7295FCD1B00AB463F /* AppDelegate.swift in Sources */,
+				D9FFACBF296A49BD009B8869 /* HomePageViewModel.swift in Sources */,
 				D95F8AE42967B1E8008DEBA6 /* HomePageView.swift in Sources */,
 				D95F8AEC296A0128008DEBA6 /* Countdown.swift in Sources */,
 				D91EE6C9295FCD1B00AB463F /* SceneDelegate.swift in Sources */,

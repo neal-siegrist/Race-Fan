@@ -9,6 +9,9 @@ import UIKit
 
 class HomePageVC: UIViewController {
     
+    let homepageView = HomePageView()
+    let viewModel = HomePageViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -16,11 +19,11 @@ class HomePageVC: UIViewController {
     
     override func loadView() {
         
-        let homepageView = HomePageView()
-        
         self.view = homepageView
         
         setupNavigationController()
+        
+        homepageView.raceCountdown.startTimer(withSecondsRemaining: 3605)
     }
     
     private func setupNavigationController() {

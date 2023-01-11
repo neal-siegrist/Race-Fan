@@ -12,13 +12,13 @@ class ProgressCircle: UIView {
     //MARK: - Variables
     
     private let OUTER_CIRCLE_PADDING = 5.0
-    var progress: CGFloat = 1.0
+    var progress: CGFloat = 0
     
     private var circleLayer: CAShapeLayer = CAShapeLayer()
     var progressLayer: CAShapeLayer = CAShapeLayer()
 
-    private var startRadianValue: CGFloat = CGFloat(3 * Double.pi / 2)
-    private var endRadianValue: CGFloat = CGFloat(-Double.pi / 2)
+    private var startRadianValue: CGFloat = CGFloat(-Double.pi / 2) 
+    private var endRadianValue: CGFloat = CGFloat(3 * Double.pi / 2)
     
 
     //MARK: - Initializers
@@ -45,7 +45,7 @@ class ProgressCircle: UIView {
         let viewCenterPoint = CGPoint(x: bounds.width / 2.0, y: bounds.height / 2.0)
         let radius: CGFloat = (min(bounds.height, bounds.width) / 2.0) - OUTER_CIRCLE_PADDING
         
-        let circularPath = UIBezierPath(arcCenter: viewCenterPoint, radius: radius, startAngle: startRadianValue, endAngle: endRadianValue, clockwise: false)
+        let circularPath = UIBezierPath(arcCenter: viewCenterPoint, radius: radius, startAngle: startRadianValue, endAngle: endRadianValue, clockwise: true)
 
         circleLayer.path = circularPath.cgPath
         progressLayer.path = circularPath.cgPath
@@ -71,5 +71,9 @@ class ProgressCircle: UIView {
         progressLayer.lineWidth = 5.0
         progressLayer.strokeEnd = self.progress
         progressLayer.strokeColor = UIColor.red.cgColor
+    }
+    
+    func setProgressRemaining(progress: CGFloat) {
+        progressLayer.strokeEnd = progress
     }
 }
