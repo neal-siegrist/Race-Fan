@@ -20,14 +20,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //Load core data.
         print(CoreDataManager.shared)
-
-        let context = CoreDataManager.shared.getContext()
+    
+        let coreDataManager = CoreDataManager.shared
+        
+        //dataManager.getSchedule()
         
         
-        CoreDataManager.shared.saveContext()
+//        if let raceSchedule = coreDataManager.getSchedule() {
+//            print(raceSchedule.count)
+//
+//            for race in raceSchedule {
+//                print("Race: \(race.round) - \(race.raceName) - \(race.dateCreated) - \(race.dateModified)")
+//
+//            }
+//        }
         
-        let dataManager = DataManager()
-        dataManager.getSchedule()
+        
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)

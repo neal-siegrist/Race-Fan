@@ -7,24 +7,48 @@
 
 import UIKit
 
+protocol DataChangeDelegate {
+    func didUpdate(with state: State)
+}
+
 class HomePageVC: UIViewController {
     
-    let homepageView = HomePageView()
-    let viewModel = HomePageViewModel()
+    //MARK: - Variables
+    
+    let homepageView: HomePageView
+    let viewModel: HomePageViewModel
+    
+    
+    //MARK: Initializers
+    
+    init() {
+        self.viewModel = HomePageViewModel()
+        self.homepageView = HomePageView()
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        self.viewModel.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.fetchUpcomingRace()
     }
     
     override func loadView() {
+        super.loadView()
         
         self.view = homepageView
         
         setupNavigationController()
-        
-        homepageView.raceCountdown.startTimer(withSecondsRemaining: 3605)
     }
+    
+    //MARK: - Functions
     
     private func setupNavigationController() {
         
@@ -33,6 +57,43 @@ class HomePageVC: UIViewController {
     
     @objc private func profileClicked() {
         print("profile clicked")
+    }
+    
+    func updateUI() {
+        let secondsUntilNextRace = viewModel.getSecondsUntilNextRace()
+        
+        homepageView.raceCountdown.startTimer(withSecondsRemaining: secondsUntilNextRace)
+        
+        homepageView.nextRaceDate.text = viewModel.getNextRaceDate()
+        homepageView.nextRaceTitle.text = viewModel.getNextRaceName()
+        homepageView.locationLabel.text = viewModel.getNextRaceLocation()
+        
+        if secondsUntilNextRace == 0 {
+            homepageView.nextRaceBackground.isHidden = true
+        } else {
+            homepageView.nextRaceBackground.isHidden = false
+        }
+    }
+}
+
+extension HomePageVC: DataChangeDelegate {
+    func didUpdate(with state: State) {
+        switch state {
+        case .success:
+            print("In success state")
+            
+            DispatchQueue.main.async {
+                self.updateUI()
+            }
+   
+        case .error(let error):
+            print("Error state occured: \(error)")
+        case .idle:
+            print("In idle state")
+        case .loading:
+            print("In loading state")
+            //Show loading wheel
+        }
     }
 }
 

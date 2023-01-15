@@ -7,22 +7,86 @@
 
 import Foundation
 
+protocol DataFetchDelegate {
+    func fetchUpcomingRace()
+}
+
 class HomePageViewModel {
     
-    func getSecondsUntilNextRace() -> Int {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd HH:mm"
-        
-        let xmas = formatter.date(from: "2023/12/25 00:00")
-        
-        let now = Date()
-        let diffSeconds = xmas!.timeIntervalSinceReferenceDate - now.timeIntervalSinceReferenceDate
-        print(diffSeconds)
-        
-        print("Days: \(Int(diffSeconds / (60*60*24)))")
-        print("Leftover after days: \(diffSeconds.remainder(dividingBy: 60*60*24))")
-        
-        return Int(diffSeconds)
+    //MARK: - Variables
+    
+    var delegate: DataChangeDelegate?
+    private let coreDataManager: CoreDataManager
+    private let dataManager: DataManager
+    
+    private var state: State {
+        didSet {
+            self.delegate?.didUpdate(with: state)
+        }
     }
     
+    private var nextRace: Race?
+    
+    
+    //MARK: - Initializers
+    
+    init() {
+        self.state = .idle
+        coreDataManager = CoreDataManager.shared
+        dataManager = DataManager()
+    }
+    
+    
+    //MARK: - Functions
+    
+    func getSecondsUntilNextRace() -> Int {
+        
+        if let nextRace = nextRace, let raceDate = nextRace.date {
+            return Int(raceDate.timeIntervalSinceNow)
+        }
+    
+        return 3600
+    }
+    
+    func getNextRaceDate() -> String? {
+        
+        guard let nextRaceDate = nextRace?.date else { return nil }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        
+        return dateFormatter.string(from: nextRaceDate)
+    }
+    
+    func getNextRaceName() -> String? {
+        
+        if let nextRace = self.nextRace, let raceName = nextRace.raceName {
+            return raceName
+        }
+        
+        return nil
+    }
+    
+    func getNextRaceLocation() -> String? {
+        
+        if let nextRace = self.nextRace, let locality = nextRace.circuit?.location?.locality, let country = nextRace.circuit?.location?.country {
+            return "\(locality), \(country)"
+        }
+        
+        return nil
+    }
+}
+
+extension HomePageViewModel: DataFetchDelegate {
+    func fetchUpcomingRace() {
+        dataManager.getUpcomingRace() { [weak self] race in
+            if let race = race {
+                self?.nextRace = race
+                self?.state = .success
+            } else {
+                print("no race available")
+                //error occured
+            }
+        }
+    }
 }

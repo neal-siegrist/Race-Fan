@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-public class WeekendEvent: NSManagedObject, Codable {
+public class WeekendEvent: TimeStamp, Codable {
 
     enum CodingKeys: CodingKey {
         case date

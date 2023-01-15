@@ -16,8 +16,8 @@ class HomePageView: UIView {
         
         view.backgroundColor = .red
         view.layer.cornerRadius = 20.0
-        
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
         
         return view
     }()
@@ -37,9 +37,6 @@ class HomePageView: UIView {
     let nextRaceDate: UILabel = {
         let label = UILabel()
         
-        //Temporary placeholder. Delete when populating with data.
-        label.text = "3/25/2023"
-        
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 14)
         
@@ -50,9 +47,6 @@ class HomePageView: UIView {
 
     let nextRaceTitle: UILabel = {
         let label = UILabel()
-        
-        //Temporary placeholder. Delete when populating with data.
-        label.text = "Australian Grand Prix"
         
         label.textAlignment = .center
         label.textColor = .white
@@ -87,8 +81,6 @@ class HomePageView: UIView {
     
     let locationLabel: UILabel = {
         let label = UILabel()
-        
-        label.text = "Melbourne, Australia"
         
         label.translatesAutoresizingMaskIntoConstraints = false
         

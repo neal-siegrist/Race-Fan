@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-public class Race: NSManagedObject, Codable {
+public class Race: TimeStamp, Codable {
     
     enum CodingKeys: String, CodingKey {
         case date
@@ -75,7 +75,6 @@ public class Race: NSManagedObject, Codable {
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         
         let date = dateFormatter.date(from: dateString)
-        print(date)
         
         return date
     }

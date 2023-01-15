@@ -11,7 +11,7 @@ extension CodingUserInfoKey {
   static let managedObjectContext = CodingUserInfoKey(rawValue: "managedObjectContext")!
 }
 
-class Networking {
+class NetworkingManager {
     
     static func generateUrlRequest(url: URL, httpMethod: HttpMethodType = .GET) -> URLRequest? {
         var request = URLRequest(url: url)
@@ -27,10 +27,10 @@ class Networking {
             let decoder = JSONDecoder()
             let context = CoreDataManager.shared.getContext()
             decoder.userInfo[CodingUserInfoKey.managedObjectContext] = context
-            
-            
+
+
             let result: Result<T, NetworkingError> = try .success(decoder.decode(T.self, from: jsonResponse.data(using: .utf8)!))
-            
+
             completion(result)
         } catch {
             print("Error thrown: \(error)")

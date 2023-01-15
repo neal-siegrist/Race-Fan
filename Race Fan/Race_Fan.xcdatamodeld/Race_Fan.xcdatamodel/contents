@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Circuit" representedClassName=".Circuit" syncable="YES" codeGenerationType="category">
+    <entity name="Circuit" representedClassName=".Circuit" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
         <attribute name="circuitId" optional="YES" attributeType="String"/>
         <attribute name="circuitName" optional="YES" attributeType="String"/>
         <attribute name="wikipediaURL" optional="YES" attributeType="String"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location"/>
     </entity>
-    <entity name="Location" representedClassName=".Location" syncable="YES" codeGenerationType="category">
+    <entity name="Location" representedClassName=".Location" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
         <attribute name="country" optional="YES" attributeType="String"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="locality" optional="YES" attributeType="String"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="Race" representedClassName=".Race" syncable="YES" codeGenerationType="category">
+    <entity name="Race" representedClassName=".Race" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="raceName" optional="YES" attributeType="String"/>
         <attribute name="round" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -25,11 +25,11 @@
         <relationship name="sprint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeekendEvent"/>
         <relationship name="thirdPractice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeekendEvent"/>
     </entity>
-    <entity name="TimeStamp" representedClassName="TimeStamp" syncable="YES" codeGenerationType="class">
+    <entity name="TimeStamp" representedClassName=".TimeStamp" syncable="YES" codeGenerationType="category">
         <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
-    <entity name="WeekendEvent" representedClassName=".WeekendEvent" syncable="YES" codeGenerationType="category">
+    <entity name="WeekendEvent" representedClassName=".WeekendEvent" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
 </model>

@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-public class Circuit: NSManagedObject, Codable {
+public class Circuit: TimeStamp, Codable {
     
     enum CodingKeys: String, CodingKey {
         case circuitName
