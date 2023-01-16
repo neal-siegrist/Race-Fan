@@ -18,25 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        //Load core data.
-        print(CoreDataManager.shared)
-    
-        let coreDataManager = CoreDataManager.shared
-        
-        //dataManager.getSchedule()
-        
-        
-//        if let raceSchedule = coreDataManager.getSchedule() {
-//            print(raceSchedule.count)
-//
-//            for race in raceSchedule {
-//                print("Race: \(race.round) - \(race.raceName) - \(race.dateCreated) - \(race.dateModified)")
-//
-//            }
-//        }
-        
-        
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
@@ -48,8 +29,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let scheduleNC = UINavigationController(rootViewController: scheduleVC)
         scheduleNC.tabBarItem.image = UIImage(systemName: "calendar")
         
+        let standingsVC = StandingsVC()
+        let standingsNC = UINavigationController(rootViewController: standingsVC)
+        standingsNC.tabBarItem.image = UIImage(systemName: "list.number")
+        
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [homepageNC, scheduleNC]
+        tabBarController.viewControllers = [homepageNC, scheduleNC, standingsNC]
         tabBarController.tabBar.tintColor = .red
             
         window.rootViewController = tabBarController

@@ -23,46 +23,44 @@ class NetworkingManager {
 
     static func loadData<T: Decodable>(request: URLRequest, type: T.Type, completion: @escaping (Result<T, NetworkingError>) -> Void) {
         
+        
+        
+        let decoder = JSONDecoder()
+        let context = CoreDataManager.shared.getContext()
+        decoder.userInfo[CodingUserInfoKey.managedObjectContext] = context
+
         do {
-            let decoder = JSONDecoder()
-            let context = CoreDataManager.shared.getContext()
-            decoder.userInfo[CodingUserInfoKey.managedObjectContext] = context
-
-
             let result: Result<T, NetworkingError> = try .success(decoder.decode(T.self, from: jsonResponse.data(using: .utf8)!))
-
+            
             completion(result)
         } catch {
-            print("Error thrown: \(error)")
+            completion(.failure(.parsingError))
         }
         
-        
+        //------
 //        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+//
 //            if let receivedError = error {
-//                print("Error received: \(receivedError)")
-//                print("Response received: \(response)")
-//                completion(Result<T, NetworkingError>.failure(.responseError))
+//                completion(.failure(.responseError(receivedError)))
 //            }
 //
 //            guard let validData = data else {
-//                completion(Result<T, NetworkingError>.failure(.responseError))
+//                completion(.failure(.noData))
 //                return
 //            }
 //
+//            let decoder = JSONDecoder()
+//
+//            //set context in decoder
+//            let context = CoreDataManager.shared.getContext()
+//            decoder.userInfo[CodingUserInfoKey.managedObjectContext] = context
+//
 //            do {
-//                let decoder = JSONDecoder()
-//
-//                //set context in decoder
-//                let context = CoreDataManager.shared.getContext()
-//                decoder.userInfo[CodingUserInfoKey.managedObjectContext] = context
-//
 //                let result: Result<T, NetworkingError> = try .success(decoder.decode(T.self, from: validData))
 //
 //                completion(result)
 //            } catch {
-//                let decodingError = error as? DecodingError
-//                print(decodingError.debugDescription)
-//                completion(Result<T, NetworkingError>.failure(.parsingError))
+//                completion(.failure(.parsingError))
 //            }
 //        }
 //

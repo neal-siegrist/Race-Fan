@@ -68,11 +68,20 @@ class HomePageVC: UIViewController {
         homepageView.nextRaceTitle.text = viewModel.getNextRaceName()
         homepageView.locationLabel.text = viewModel.getNextRaceLocation()
         
-        if secondsUntilNextRace == 0 {
+        if secondsUntilNextRace <= 0 {
             homepageView.nextRaceBackground.isHidden = true
         } else {
             homepageView.nextRaceBackground.isHidden = false
         }
+    }
+    
+    func displayErrorAlert() {
+        homepageView.nextRaceBackground.isHidden = true
+        let alertController = UIAlertController(title: nil, message: "Error retrieving schedule data. Please try again.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        
+        present(alertController, animated: true)
     }
 }
 
@@ -85,9 +94,12 @@ extension HomePageVC: DataChangeDelegate {
             DispatchQueue.main.async {
                 self.updateUI()
             }
-   
+            
         case .error(let error):
             print("Error state occured: \(error)")
+            
+            //Show error message
+            displayErrorAlert()
         case .idle:
             print("In idle state")
         case .loading:
@@ -96,4 +108,3 @@ extension HomePageVC: DataChangeDelegate {
         }
     }
 }
-

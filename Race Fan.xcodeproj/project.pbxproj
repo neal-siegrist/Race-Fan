@@ -28,6 +28,8 @@
 		D96830562971F45D00060BA3 /* Race+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968304E2971F45D00060BA3 /* Race+CoreDataClass.swift */; };
 		D96830592971F90A00060BA3 /* DecoderConfigurationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96830582971F90A00060BA3 /* DecoderConfigurationError.swift */; };
 		D968305C2972331A00060BA3 /* TimeStamp+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968305A2972331A00060BA3 /* TimeStamp+CoreDataClass.swift */; };
+		D9A190C12975F99900FEC58E /* StandingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A190C02975F99900FEC58E /* StandingsVC.swift */; };
+		D9C7F2892974F3FC009CE1DE /* CoreDateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C7F2882974F3FC009CE1DE /* CoreDateError.swift */; };
 		D9D5B6802967487D00A196BC /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D5B67F2967487D00A196BC /* ScheduleVC.swift */; };
 		D9DE1876297102A3006C6541 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE1875297102A3006C6541 /* CoreDataManager.swift */; };
 		D9DE187A2971EA71006C6541 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE18792971EA71006C6541 /* NetworkingManager.swift */; };
@@ -83,6 +85,8 @@
 		D968304E2971F45D00060BA3 /* Race+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Race+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D96830582971F90A00060BA3 /* DecoderConfigurationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderConfigurationError.swift; sourceTree = "<group>"; };
 		D968305A2972331A00060BA3 /* TimeStamp+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeStamp+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D9A190C02975F99900FEC58E /* StandingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsVC.swift; sourceTree = "<group>"; };
+		D9C7F2882974F3FC009CE1DE /* CoreDateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDateError.swift; sourceTree = "<group>"; };
 		D9D5B67F2967487D00A196BC /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
 		D9DE1875297102A3006C6541 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D9DE18792971EA71006C6541 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
@@ -178,9 +182,9 @@
 		D934C7EF29730F1E00A08E13 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D9DE1875297102A3006C6541 /* CoreDataManager.swift */,
-				D9DE187B2971EADB006C6541 /* Networking */,
 				D934C7F32973408900A08E13 /* DataManager.swift */,
+				D9A190C22975FA6200FEC58E /* Core Data */,
+				D9DE187B2971EADB006C6541 /* Networking */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -205,6 +209,7 @@
 		D95F8AE12967B1B3008DEBA6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D9A190BF2975F98C00FEC58E /* Standings */,
 				D95F8AE62967B252008DEBA6 /* Schedule */,
 				D95F8AE52967B235008DEBA6 /* HomePage */,
 				D95F8AEB296A0128008DEBA6 /* Countdown.swift */,
@@ -239,10 +244,27 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
+		D9A190BF2975F98C00FEC58E /* Standings */ = {
+			isa = PBXGroup;
+			children = (
+				D9A190C02975F99900FEC58E /* StandingsVC.swift */,
+			);
+			path = Standings;
+			sourceTree = "<group>";
+		};
+		D9A190C22975FA6200FEC58E /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				D9DE1875297102A3006C6541 /* CoreDataManager.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		D9DE1873297101F0006C6541 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
 				D9DE18742971024A006C6541 /* Managed Objects */,
+				D9C7F2882974F3FC009CE1DE /* CoreDateError.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -427,9 +449,11 @@
 				D9DE1876297102A3006C6541 /* CoreDataManager.swift in Sources */,
 				D91EE6C7295FCD1B00AB463F /* AppDelegate.swift in Sources */,
 				D9DE187F2971EB0C006C6541 /* NetworkingError.swift in Sources */,
+				D9C7F2892974F3FC009CE1DE /* CoreDateError.swift in Sources */,
 				D9FFACBF296A49BD009B8869 /* HomePageViewModel.swift in Sources */,
 				D9DE18882971F033006C6541 /* Races.swift in Sources */,
 				D95F8AE42967B1E8008DEBA6 /* HomePageView.swift in Sources */,
+				D9A190C12975F99900FEC58E /* StandingsVC.swift in Sources */,
 				D95F8AEC296A0128008DEBA6 /* Countdown.swift in Sources */,
 				D96830592971F90A00060BA3 /* DecoderConfigurationError.swift in Sources */,
 				D96830522971F45D00060BA3 /* Circuit+CoreDataClass.swift in Sources */,

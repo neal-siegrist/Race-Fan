@@ -79,13 +79,15 @@ class HomePageViewModel {
 
 extension HomePageViewModel: DataFetchDelegate {
     func fetchUpcomingRace() {
-        dataManager.getUpcomingRace() { [weak self] race in
-            if let race = race {
+        dataManager.getUpcomingRace() { [weak self] result in
+            
+            switch result {
+            case .success(let race):
                 self?.nextRace = race
                 self?.state = .success
-            } else {
-                print("no race available")
-                //error occured
+            
+            case .failure(let networkingError):
+                self?.state = .error(networkingError)
             }
         }
     }

@@ -9,33 +9,47 @@ import Foundation
 
 class DataManager {
     
+    //MARK: - Variables
     private static let DAYS_UNTIL_SCHEDULE_REFRESH: Double = 21
     
     let coreDataManager: CoreDataManager
+    
+    
+    //MARK: - Initializers
     
     init() {
         self.coreDataManager = CoreDataManager.shared
     }
     
-    func getUpcomingRace(completion: @escaping (Race?) -> Void) {
+    
+    //MARK: - Functions
+    
+    func getUpcomingRace(completion: @escaping (Result<Race, NetworkingError>) -> Void) {
         
         let year = getCurrentRacingSeasonYear()
         
         if let coreDataSchedule = getCoreDataRaceSchedule(year: year), !coreDataSchedule.isEmpty, !isRefreshNeeded(item: coreDataSchedule.first) {
             
-            let firstUpcomingRace = extractFirstUpcomingRaceFromSchedule(schedule: coreDataSchedule)
-            
-            completion(firstUpcomingRace)
-            return
+            if let firstUpcomingRace = extractFirstUpcomingRaceFromSchedule(schedule: coreDataSchedule) {
+                completion(.success(firstUpcomingRace))
+                return
+            }
         }
         
         coreDataManager.deleteSchedule(forYear: year)
         
-        self.getApiRaceSchedule(year: year) { [weak self] schedule in
-            if let schedule = schedule {
-                let firstUpcomingRace = self?.extractFirstUpcomingRaceFromSchedule(schedule: schedule)
+        self.getApiRaceSchedule(year: year) { [weak self] result in
+            switch result {
+            case .success(let schedule):
+                if let firstUpcomingRace = self?.extractFirstUpcomingRaceFromSchedule(schedule: schedule) {
+                    completion(.success(firstUpcomingRace))
+                    return
+                }
                 
-                completion(firstUpcomingRace)
+                completion(.failure(.noData))
+                
+            case .failure(let networkingError):
+                completion(.failure(networkingError))
             }
         }
     }
@@ -44,7 +58,7 @@ class DataManager {
         return coreDataManager.getSchedule(forYear: year)
     }
     
-    private func getApiRaceSchedule(year: Int, completion: @escaping ([Race]?) -> Void ) {
+    private func getApiRaceSchedule(year: Int, completion: @escaping (Result<[Race], NetworkingError>) -> Void ) {
         
         guard let url = URL(string: "http://ergast.com/api/f1/\(year).json") else { return }
         guard let urlRequest = NetworkingManager.generateUrlRequest(url: url) else { return }
@@ -55,13 +69,12 @@ class DataManager {
                 self?.coreDataManager.saveContext()
                 
                 if let coreDataSchedule = self?.getCoreDataRaceSchedule(year: year), !coreDataSchedule.isEmpty {
-                    completion(coreDataSchedule)
+                    completion(.success(coreDataSchedule))
                 } else {
-                    completion(nil)
+                    completion(.failure(.noData))
                 }
-            case .failure(let error):
-                print(error)
-                completion(nil)
+            case .failure(let networkingError):
+                completion(.failure(networkingError))
             }
         }
     }
