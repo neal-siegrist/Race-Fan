@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol DataChangeDelegate {
-    func didUpdate(with state: State)
-}
-
 class HomePageVC: UIViewController {
     
     //MARK: - Variables
@@ -84,6 +80,9 @@ class HomePageVC: UIViewController {
         present(alertController, animated: true)
     }
 }
+
+
+//MARK: - DataChangeDelegate Conformance
 
 extension HomePageVC: DataChangeDelegate {
     func didUpdate(with state: State) {

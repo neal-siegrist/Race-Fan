@@ -54,6 +54,33 @@ class DataManager {
         }
     }
     
+    func getSchedule(completion: @escaping (Result<[Race], NetworkingError>) -> Void) {
+        
+        let year = getCurrentRacingSeasonYear()
+        
+        if let coreDataSchedule = getCoreDataRaceSchedule(year: year), !coreDataSchedule.isEmpty, !isRefreshNeeded(item: coreDataSchedule.first) {
+            
+            completion(.success(coreDataSchedule))
+            return
+        }
+        
+        coreDataManager.deleteSchedule(forYear: year)
+        
+        self.getApiRaceSchedule(year: year) { result in
+            switch result {
+            case .success(let schedule):
+                if !schedule.isEmpty {
+                    completion(.success(schedule))
+                } else {
+                    completion(.failure(.noData))
+                }
+                
+            case .failure(let networkingError):
+                completion(.failure(networkingError))
+            }
+        }
+    }
+    
     private func getCoreDataRaceSchedule(year: Int) -> [Race]? {
         return coreDataManager.getSchedule(forYear: year)
     }

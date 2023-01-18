@@ -7,16 +7,11 @@
 
 import Foundation
 
-protocol DataFetchDelegate {
-    func fetchUpcomingRace()
-}
-
 class HomePageViewModel {
     
     //MARK: - Variables
     
     var delegate: DataChangeDelegate?
-    private let coreDataManager: CoreDataManager
     private let dataManager: DataManager
     
     private var state: State {
@@ -32,7 +27,6 @@ class HomePageViewModel {
     
     init() {
         self.state = .idle
-        coreDataManager = CoreDataManager.shared
         dataManager = DataManager()
     }
     
@@ -77,7 +71,7 @@ class HomePageViewModel {
     }
 }
 
-extension HomePageViewModel: DataFetchDelegate {
+extension HomePageViewModel: HomePageViewModelDelegate {
     func fetchUpcomingRace() {
         dataManager.getUpcomingRace() { [weak self] result in
             

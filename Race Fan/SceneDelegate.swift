@@ -23,19 +23,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let homepageVC = HomePageVC()
         let homepageNC = UINavigationController(rootViewController: homepageVC)
-        homepageNC.tabBarItem.image = UIImage(systemName: "house")
+        homepageNC.tabBarItem.image = UIImage(systemName: "house")?.imageWithoutBaseline()
+        homepageNC.tabBarItem.imageInsets = UIEdgeInsets(top: 5.0, left: 0, bottom: -5.0, right: 0)
         
         let scheduleVC = ScheduleVC()
         let scheduleNC = UINavigationController(rootViewController: scheduleVC)
-        scheduleNC.tabBarItem.image = UIImage(systemName: "calendar")
+        scheduleNC.tabBarItem.image = UIImage(systemName: "calendar")?.imageWithoutBaseline()
+        scheduleNC.tabBarItem.imageInsets = UIEdgeInsets(top: 5.0, left: 0, bottom: -5.0, right: 0)
         
         let standingsVC = StandingsVC()
         let standingsNC = UINavigationController(rootViewController: standingsVC)
-        standingsNC.tabBarItem.image = UIImage(systemName: "list.number")
+        standingsNC.tabBarItem.image = UIImage(systemName: "list.number")?.imageWithoutBaseline()
+        standingsNC.tabBarItem.imageInsets = UIEdgeInsets(top: 5.0, left: 0, bottom: -5.0, right: 0)
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [homepageNC, scheduleNC, standingsNC]
         tabBarController.tabBar.tintColor = .red
+        tabBarController.tabBar.backgroundColor = .white
             
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()

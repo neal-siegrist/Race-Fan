@@ -87,7 +87,9 @@ class HomePageView: UIView {
         return label
     }()
     
+    
     //MARK: - Initializers
+    
     init() {
         super.init(frame: .zero)
         
