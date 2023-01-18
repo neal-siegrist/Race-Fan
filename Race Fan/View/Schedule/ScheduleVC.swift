@@ -99,40 +99,23 @@ extension ScheduleVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let scheduleCell = ScheduleCell(style: .default, reuseIdentifier: ScheduleCell.CELL_ID)
+        let race: Race? = currentSchedule == .upcoming ? viewModel.upcomingRaces?[indexPath.section] : viewModel.pastRaces?[indexPath.section]
         
-        switch currentSchedule {
-            case .upcoming:
-                if let schedule = viewModel.upcomingRaces {
-                    let race = schedule[indexPath.section]
-                    scheduleCell.roundLabel.text = "Round \(String(race.round))"
-                    
-                    if let date = race.date {
-                        let raceDateFormatter = DateFormatter()
-                        raceDateFormatter.dateFormat = "MM/dd/yyyy"
-                        let raceDate = raceDateFormatter.string(from: date)
-                        
-                        scheduleCell.raceDateLabel.text = raceDate
-                    }
-                    
-                    scheduleCell.grandPrixNameLabel.text = race.raceName
-                    scheduleCell.locationLabel.text = "\(race.circuit!.location!.locality!), \(race.circuit!.location!.country!)"
-                }
-            case .past:
-            if let schedule = viewModel.pastRaces {
-                let race = schedule[indexPath.section]
-                scheduleCell.roundLabel.text = "Round \(String(race.round))"
+        
+        if let race = race {
+            scheduleCell.roundLabel.text = "Round \(String(race.round))"
+            
+            if let date = race.date {
+                let raceDateFormatter = DateFormatter()
+                raceDateFormatter.dateFormat = "MM/dd/yyyy"
+                let raceDate = raceDateFormatter.string(from: date)
                 
-                if let date = race.date {
-                    let raceDateFormatter = DateFormatter()
-                    raceDateFormatter.dateFormat = "MM/dd/yyyy"
-                    let raceDate = raceDateFormatter.string(from: date)
-                    
-                    scheduleCell.raceDateLabel.text = raceDate
-                }
-                
-                scheduleCell.grandPrixNameLabel.text = race.raceName
-                scheduleCell.locationLabel.text = "\(race.circuit!.location!.locality!), \(race.circuit!.location!.country!)"
+                scheduleCell.raceDateLabel.text = raceDate
             }
+            
+            scheduleCell.grandPrixNameLabel.text = race.raceName
+            scheduleCell.locationLabel.text = "\(race.circuit!.location!.locality!), \(race.circuit!.location!.country!)"
+            
         }
         
         return scheduleCell
