@@ -10,7 +10,9 @@ import Foundation
 class DataManager {
     
     //MARK: - Variables
-    private static let DAYS_UNTIL_SCHEDULE_REFRESH: Double = 21
+    public static let DAYS_UNTIL_SCHEDULE_REFRESH: Double = 21
+    public static let RACE_ENTITY_NAME: String = "Race"
+    public static let DRIVER_STANDINGS_ENTITY_NAME: String = "DriverStandings"
     
     let coreDataManager: CoreDataManager
     
@@ -24,6 +26,49 @@ class DataManager {
     
     //MARK: - Functions
     
+    //func getConstructorStandings
+    
+    
+    //func getDriverStandings
+    
+    func getDriverStandings(completion: @escaping (Result<DriverStandings, NetworkingError>) -> Void) {
+        //let year = getCurrentRacingSeasonYear()
+        let year = 2022
+        
+        if let coreDataDriverStandings = getCoreDataDriverStandings(year: year) {
+            
+//            print(coreDataDriverStandings)
+            print("Successfully retrieved data from core data for driver standings")
+            
+            completion(.success(coreDataDriverStandings))
+            
+            return
+        }
+        
+        coreDataManager.performDeletion(forYear: year, entityName: DataManager.DRIVER_STANDINGS_ENTITY_NAME)
+        
+        self.getApiDriverStandings(year: year) { result in
+            switch result {
+            case .success(let driverStandings):
+                
+                if let standingsArray = driverStandings.standings {
+                    print("standingsArray is not nil and calling with success")
+                    completion(.success(driverStandings))
+                    return
+                }
+
+                print("standingsArray is nil and calling with failure and .noData error")
+                completion(.failure(.noData))
+
+            case .failure(let networkingError):
+                print("In failure of getDriverStandings with error:\(networkingError)")
+                completion(.failure(networkingError))
+            }
+        }
+    }
+    
+    
+    
     func getUpcomingRace(completion: @escaping (Result<Race, NetworkingError>) -> Void) {
         
         let year = getCurrentRacingSeasonYear()
@@ -36,7 +81,7 @@ class DataManager {
             }
         }
         
-        coreDataManager.deleteSchedule(forYear: year)
+        coreDataManager.performDeletion(forYear: year, entityName: DataManager.RACE_ENTITY_NAME)
         
         self.getApiRaceSchedule(year: year) { [weak self] result in
             switch result {
@@ -64,7 +109,7 @@ class DataManager {
             return
         }
         
-        coreDataManager.deleteSchedule(forYear: year)
+        coreDataManager.performDeletion(forYear: year, entityName: DataManager.RACE_ENTITY_NAME)
         
         self.getApiRaceSchedule(year: year) { result in
             switch result {
@@ -81,13 +126,17 @@ class DataManager {
         }
     }
     
+    private func getCoreDataDriverStandings(year: Int) -> DriverStandings? {
+        return coreDataManager.getDriverStandings(forYear: year)
+    }
+    
     private func getCoreDataRaceSchedule(year: Int) -> [Race]? {
         return coreDataManager.getSchedule(forYear: year)
     }
     
     private func getApiRaceSchedule(year: Int, completion: @escaping (Result<[Race], NetworkingError>) -> Void ) {
         
-        guard let url = URL(string: "http://ergast.com/api/f1/\(year).json") else { return }
+        guard let url = URL(string: "\(Constants.ApiEndPoints.baseURL)/\(year).json") else { return }
         guard let urlRequest = NetworkingManager.generateUrlRequest(url: url) else { return }
 
         NetworkingManager.loadData(request: urlRequest, type: JSONTopLevelKey.self) { [weak self] result in
@@ -101,6 +150,29 @@ class DataManager {
                     completion(.failure(.noData))
                 }
             case .failure(let networkingError):
+                completion(.failure(networkingError))
+            }
+        }
+    }
+    
+    private func getApiDriverStandings(year: Int, completion: @escaping (Result<DriverStandings, NetworkingError>) -> Void) {
+        
+        guard let url = URL(string: "\(Constants.ApiEndPoints.baseURL)/\(year)\(Constants.ApiEndPoints.driverStandingsURL)") else { return }
+        guard let urlRequest = NetworkingManager.generateUrlRequest(url: url) else { return }
+
+        NetworkingManager.loadData(request: urlRequest, type: DriverStandingsParsing.self) { [weak self] result in
+            switch result {
+            case .success(_):
+                self?.coreDataManager.saveContext()
+                
+                if let coreDataSchedule = self?.getCoreDataDriverStandings(year: year) {
+                    completion(.success(coreDataSchedule))
+                } else {
+                    print("In getApiDriverStandings error occured: saved context but error fetching fresh data from core data")
+                    completion(.failure(.noData))
+                }
+            case .failure(let networkingError):
+                print("In getApiDriverStandings error occured: \(networkingError)")
                 completion(.failure(networkingError))
             }
         }

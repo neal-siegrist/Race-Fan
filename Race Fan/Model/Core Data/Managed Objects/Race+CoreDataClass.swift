@@ -68,14 +68,4 @@ public class Race: TimeStamp, Codable {
         try container.encode(self.qualifying, forKey: .qualifying)
         try container.encode(self.sprint, forKey: .sprint)
     }
-    
-    private func structureDate(dateString: String) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
-        
-        let date = dateFormatter.date(from: dateString)
-        
-        return date
-    }
 }

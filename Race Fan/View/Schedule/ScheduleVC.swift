@@ -10,7 +10,7 @@ import UIKit
 class ScheduleVC: UIViewController {
 
     //MARK: - Variables
-    let scheduleView: ScheduleView
+    let scheduleView: ToggleListView
     let tableView: UITableView
     let viewModel: ScheduleViewModel
     var currentSchedule: DisplayedSchedule = .upcoming
@@ -19,10 +19,12 @@ class ScheduleVC: UIViewController {
     
     init() {
         self.viewModel = ScheduleViewModel()
-        self.scheduleView = ScheduleView()
+        self.scheduleView = ToggleListView()
         self.tableView = self.scheduleView.tableView
         
         super.init(nibName: nil, bundle: nil)
+        
+        setupSegmentedControl()
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -43,7 +45,7 @@ class ScheduleVC: UIViewController {
         super.loadView()
         
         setupNavigationController()
-        setupScheduleSegmentedControl()
+        //setupSegmentedControl()
         
         self.view = scheduleView
     }
@@ -52,6 +54,14 @@ class ScheduleVC: UIViewController {
     
     
     //MARK: - Functions
+    
+    private func setupSegmentedControl() {
+        scheduleView.segmentedControl.insertSegment(withTitle: "Upcoming", at: 0, animated: false)
+        scheduleView.segmentedControl.insertSegment(withTitle: "Past", at: 1, animated: false)
+        scheduleView.segmentedControl.selectedSegmentIndex = 0
+        
+        scheduleView.segmentedControl.addTarget(self, action: #selector(segmentedControlDidChange), for: .valueChanged)
+    }
 
     private func setupNavigationController() {
         
@@ -59,10 +69,6 @@ class ScheduleVC: UIViewController {
         
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.red, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25.0)]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-    }
-    
-    private func setupScheduleSegmentedControl() {
-        scheduleView.scheduleTypeSegmentedControl.addTarget(self, action: #selector(segmentedControlDidChange), for: .valueChanged)
     }
     
     @objc private func segmentedControlDidChange(_ segmentedControl: UISegmentedControl) {
@@ -141,7 +147,7 @@ extension ScheduleVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)! as! ScheduleCell
+        //let cell = tableView.cellForRow(at: indexPath)! as! ScheduleCell
         
         
     }

@@ -4,13 +4,46 @@
         <attribute name="circuitId" optional="YES" attributeType="String"/>
         <attribute name="circuitName" optional="YES" attributeType="String"/>
         <attribute name="wikipediaURL" optional="YES" attributeType="String"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="circuit" inverseEntity="Location"/>
+        <relationship name="race" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Race" inverseName="circuit" inverseEntity="Race"/>
+    </entity>
+    <entity name="Constructor" representedClassName=".Constructor" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="nationality" optional="YES" attributeType="String"/>
+        <attribute name="wikipediaURL" optional="YES" attributeType="String"/>
+        <relationship name="driverStandingItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DriverStandingItem" inverseName="constructors" inverseEntity="DriverStandingItem"/>
+    </entity>
+    <entity name="Driver" representedClassName=".Driver" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
+        <attribute name="code" optional="YES" attributeType="String"/>
+        <attribute name="dateOfBirth" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="familyName" optional="YES" attributeType="String"/>
+        <attribute name="givenName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="nationality" optional="YES" attributeType="String"/>
+        <attribute name="permanentNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="wikipediaURL" optional="YES" attributeType="String"/>
+        <relationship name="standingItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DriverStandingItem" inverseName="driver" inverseEntity="DriverStandingItem"/>
+    </entity>
+    <entity name="DriverStandingItem" representedClassName=".DriverStandingItem" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
+        <attribute name="points" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="wins" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="constructors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Constructor" inverseName="driverStandingItem" inverseEntity="Constructor"/>
+        <relationship name="driver" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Driver" inverseName="standingItem" inverseEntity="Driver"/>
+        <relationship name="driverStandings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DriverStandings" inverseName="standings" inverseEntity="DriverStandings"/>
+    </entity>
+    <entity name="DriverStandings" representedClassName=".DriverStandings" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
+        <attribute name="round" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="season" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="standings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DriverStandingItem" inverseName="driverStandings" inverseEntity="DriverStandingItem"/>
     </entity>
     <entity name="Location" representedClassName=".Location" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
         <attribute name="country" optional="YES" attributeType="String"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="locality" optional="YES" attributeType="String"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="circuit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Circuit" inverseName="location" inverseEntity="Circuit"/>
     </entity>
     <entity name="Race" representedClassName=".Race" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -18,12 +51,12 @@
         <attribute name="round" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="season" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="wikipediaURL" optional="YES" attributeType="String"/>
-        <relationship name="circuit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Circuit"/>
-        <relationship name="firstPractice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeekendEvent"/>
-        <relationship name="qualifying" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeekendEvent"/>
-        <relationship name="secondPractice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeekendEvent"/>
-        <relationship name="sprint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeekendEvent"/>
-        <relationship name="thirdPractice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeekendEvent"/>
+        <relationship name="circuit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Circuit" inverseName="race" inverseEntity="Circuit"/>
+        <relationship name="firstPractice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeekendEvent" inverseName="firstPractice" inverseEntity="WeekendEvent"/>
+        <relationship name="qualifying" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeekendEvent" inverseName="qualifying" inverseEntity="WeekendEvent"/>
+        <relationship name="secondPractice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeekendEvent" inverseName="secondPractice" inverseEntity="WeekendEvent"/>
+        <relationship name="sprint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeekendEvent" inverseName="sprint" inverseEntity="WeekendEvent"/>
+        <relationship name="thirdPractice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeekendEvent" inverseName="thirdPractice" inverseEntity="WeekendEvent"/>
     </entity>
     <entity name="TimeStamp" representedClassName=".TimeStamp" syncable="YES" codeGenerationType="category">
         <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -31,5 +64,10 @@
     </entity>
     <entity name="WeekendEvent" representedClassName=".WeekendEvent" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="firstPractice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="firstPractice" inverseEntity="Race"/>
+        <relationship name="qualifying" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="qualifying" inverseEntity="Race"/>
+        <relationship name="secondPractice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="secondPractice" inverseEntity="Race"/>
+        <relationship name="sprint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="sprint" inverseEntity="Race"/>
+        <relationship name="thirdPractice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="thirdPractice" inverseEntity="Race"/>
     </entity>
 </model>

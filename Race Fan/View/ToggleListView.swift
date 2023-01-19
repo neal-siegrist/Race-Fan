@@ -7,14 +7,13 @@
 
 import UIKit
 
-class ScheduleView: UIView {
+class ToggleListView: UIView {
 
     //MARK: - Variables
     
-    let scheduleTypeSegmentedControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: ["Upcoming", "Past"])
+    let segmentedControl: UISegmentedControl = {
+        let control = UISegmentedControl()
         
-        control.selectedSegmentIndex = 0
         control.selectedSegmentTintColor = .red
         control.translatesAutoresizingMaskIntoConstraints = false
         
@@ -38,7 +37,7 @@ class ScheduleView: UIView {
         super.init(frame: .zero)
         self.backgroundColor = .white
         
-        setupScheduleTypeSegmentedControl()
+        setupSegmentedControl()
         setupTableView()
     }
     
@@ -49,13 +48,13 @@ class ScheduleView: UIView {
     
     //MARK: - Functions
     
-    private func setupScheduleTypeSegmentedControl() {
-        self.addSubview(scheduleTypeSegmentedControl)
+    private func setupSegmentedControl() {
+        self.addSubview(segmentedControl)
         
         NSLayoutConstraint.activate([
-            scheduleTypeSegmentedControl.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            scheduleTypeSegmentedControl.leftAnchor.constraint(equalTo: self.leftAnchor),
-            scheduleTypeSegmentedControl.rightAnchor.constraint(equalTo: self.rightAnchor)
+            segmentedControl.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            segmentedControl.leftAnchor.constraint(equalTo: self.leftAnchor),
+            segmentedControl.rightAnchor.constraint(equalTo: self.rightAnchor)
         ])
     }
     
@@ -63,7 +62,7 @@ class ScheduleView: UIView {
         self.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: scheduleTypeSegmentedControl.bottomAnchor, constant: 5),
+            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 5),
             tableView.leftAnchor.constraint(equalTo: self.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: self.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -5)

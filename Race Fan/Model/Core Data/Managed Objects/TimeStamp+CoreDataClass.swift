@@ -22,4 +22,22 @@ public class TimeStamp: NSManagedObject {
         self.dateModified = now
     }
     
+    func structureDate(dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        
+        let date = dateFormatter.date(from: dateString)
+        print(date)
+        return date
+    }
+    
+    func structureDateWithNoTime(dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let date = dateFormatter.date(from: dateString)
+        print(date)
+        return date
+    }
 }

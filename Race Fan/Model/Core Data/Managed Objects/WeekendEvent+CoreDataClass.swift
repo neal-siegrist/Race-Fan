@@ -38,16 +38,4 @@ public class WeekendEvent: TimeStamp, Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.date, forKey: .date)
     }
-    
-    private func structureDate(dateString: String) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
-        
-        let date = dateFormatter.date(from: dateString)
-        print(date)
-        
-        return date
-    }
-    
 }

@@ -20,6 +20,7 @@ class CoreDataManager {
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
+                //TODO: - Maybe throw error here
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
@@ -64,6 +65,7 @@ class CoreDataManager {
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                //TODO: - Maybe throw error here
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
@@ -84,14 +86,15 @@ class CoreDataManager {
             let races = try persistentContainer.viewContext.fetch(fetchRequest)
             return races
         } catch let error {
+            //TODO: - Maybe throw error here
             print("Failed to fetch races: \(error)")
         }
         
         return nil
     }
     
-    func deleteSchedule(forYear: Int) {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Race")
+    func performDeletion(forYear: Int, entityName: String) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entityName)
         
         fetchRequest.predicate = NSPredicate(format: "season == %i", forYear)
         
@@ -100,13 +103,29 @@ class CoreDataManager {
         do {
             try persistentContainer.viewContext.execute(deleteRequest)
         } catch let error as NSError {
+            //TODO: - Maybe throw error here
             print("Error deleting schedule for given year: \(error)")
         }
     }
     
-//    func getDriverStandings() {
-//
-//    }
+    func getDriverStandings(forYear: Int) -> DriverStandings? {
+        
+        let fetchRequest = NSFetchRequest<DriverStandings>(entityName: "DriverStandings")
+        
+        fetchRequest.predicate = NSPredicate(format: "season == %i", forYear)
+        
+        do {
+            let driverStandings = try persistentContainer.viewContext.fetch(fetchRequest)
+            return driverStandings.first
+        } catch let error {
+            //TODO: - Maybe throw error here
+            print("Failed to fetch races: \(error)")
+        }
+        
+        return nil
+    }
+    
+    
 //
 //    func getConstructorStandings() {
 //
