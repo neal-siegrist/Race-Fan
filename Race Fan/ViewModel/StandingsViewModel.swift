@@ -12,7 +12,7 @@ class StandingsViewModel {
     //MARK: - Variables
     
     var driverStandings: [DriverStandingItem]?
-    //var constructorStandings: [ConstructorStandingItem]?
+    var constructorStandings: [ConstructorStandingItem]?
     
     var delegate: DataChangeDelegate?
     
@@ -40,24 +40,44 @@ class StandingsViewModel {
 extension StandingsViewModel: StandingsViewModelDelegate {
     func fetchStandings() {
         
-        dataManager.getDriverStandings { result in
+        dataManager.getDriverStandings { [weak self] result in
             switch result {
-            case .success(let driverStandings):
-                print("Success case: \(driverStandings.standings!.allObjects.count)")
+            case .success(let driverStanding):
+                print("Success case for driver standings: \(driverStanding.standings!.allObjects.count)")
                 
+                if let standings = driverStanding.standings?.allObjects as? [DriverStandingItem], !standings.isEmpty {
+                    self?.driverStandings = standings.sorted(by: { driver1, driver2 in
+                        return driver1.position < driver2.position
+                    })
+                    self?.state = .success
+                    
+                    return
+                }
+                
+                self?.state = .error(NetworkingError.noData)
             case .failure(let networkingError):
-                print("Error occured: \(networkingError)")
+                print("Error occured in driver standings: \(networkingError)")
             }
         }
         
-//        dataManager.getConstructorStandings { result in
-//            switch result {
-//            case .success(let constructorStandings):
-//                print("Success case: \(constructorStandings)")
-//
-//            case .failure(let networkingError):
-//                print("Error occured: \(networkingError)")
-//            }
-//        }
+        dataManager.getConstructorStandings { [weak self] result in
+            switch result {
+            case .success(let constructorStanding):
+                print("Success case for constructor standings: \(constructorStanding.standings!.allObjects.count)")
+                
+                if let standings = constructorStanding.standings?.allObjects as? [ConstructorStandingItem], !standings.isEmpty {
+                    self?.constructorStandings = standings.sorted(by: { constructor1, constructor2 in
+                        return constructor1.position < constructor2.position
+                    })
+                    self?.state = .success
+                    
+                    return
+                }
+                
+                self?.state = .error(NetworkingError.noData)
+            case .failure(let networkingError):
+                print("Error occured in contructor standings: \(networkingError)")
+            }
+        }
     }
 }

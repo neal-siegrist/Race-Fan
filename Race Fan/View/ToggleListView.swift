@@ -16,7 +16,7 @@ class ToggleListView: UIView {
         
         control.selectedSegmentTintColor = .red
         control.translatesAutoresizingMaskIntoConstraints = false
-        
+         
         return control
     }()
     

@@ -125,9 +125,20 @@ class CoreDataManager {
         return nil
     }
     
-    
-//
-//    func getConstructorStandings() {
-//
-//    }
+    func getConstructorStandings(forYear: Int) -> ConstructorStandings? {
+        
+        let fetchRequest = NSFetchRequest<ConstructorStandings>(entityName: "ConstructorStandings")
+        
+        fetchRequest.predicate = NSPredicate(format: "season == %i", forYear)
+        
+        do {
+            let constructorStandings = try persistentContainer.viewContext.fetch(fetchRequest)
+            return constructorStandings.first
+        } catch let error {
+            //TODO: - Maybe throw error here
+            print("Failed to fetch races: \(error)")
+        }
+        
+        return nil
+    }
 }

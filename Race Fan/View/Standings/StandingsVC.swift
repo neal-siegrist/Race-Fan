@@ -100,38 +100,41 @@ extension StandingsVC: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-//        let scheduleCell = ScheduleCell(style: .default, reuseIdentifier: ScheduleCell.CELL_ID)
-//        let race: Race? = currentSchedule == .upcoming ? viewModel.upcomingRaces?[indexPath.section] : viewModel.pastRaces?[indexPath.section]
-//
-//
-//        if let race = race {
-//            scheduleCell.roundLabel.text = "Round \(String(race.round))"
-//
-//            if let date = race.date {
-//                let raceDateFormatter = DateFormatter()
-//                raceDateFormatter.dateFormat = "MM/dd/yyyy"
-//                let raceDate = raceDateFormatter.string(from: date)
-//
-//                scheduleCell.raceDateLabel.text = raceDate
-//            }
-//
-//            scheduleCell.grandPrixNameLabel.text = race.raceName
-//            scheduleCell.locationLabel.text = "\(race.circuit!.location!.locality!), \(race.circuit!.location!.country!)"
-//
-//        }
-//
-//        return scheduleCell
+        
+        let standingsCell = StandingsCell(style: .default, reuseIdentifier: StandingsCell.CELL_ID)
+        
+        switch currentStandings {
+            case .drivers:
+                if let driver = viewModel.driverStandings?[indexPath.section], let driverFirstName = driver.driver?.givenName, let driverLastName = driver.driver?.familyName {
+                    standingsCell.positionLabel.text = String(driver.position)
+                    standingsCell.nameLabel.text = "\(driverFirstName) \(driverLastName)"
+                    standingsCell.pointsLabel.text = "\(String(driver.points)) pts"
+                    
+                    if let constructor = viewModel.driverStandings?[indexPath.section].constructors?.allObjects as? [Constructor], let id = constructor.first?.id {
+                        standingsCell.teamColorView.backgroundColor = Constants.Colors.teamColors[id]
+                    }
+                }
+            case .constructors:
+            if let constructor = viewModel.constructorStandings?[indexPath.section], let constructorName = constructor.constructor?.name {
+                    standingsCell.positionLabel.text = String(constructor.position)
+                    standingsCell.nameLabel.text = constructorName
+                    standingsCell.pointsLabel.text = "\(String(constructor.points)) pts"
+                    
+                if let id = constructor.constructor?.id {
+                        standingsCell.teamColorView.backgroundColor = Constants.Colors.teamColors[id]
+                    }
+                }
+        }
+        
+        return standingsCell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         switch currentStandings {
         case .drivers:
-            //return viewModel.upcomingRaces?.count ?? 0
-            return 0
+            return viewModel.driverStandings?.count ?? 0
         case .constructors:
-            //return viewModel.pastRaces?.count ?? 0
-            return 0
+            return viewModel.constructorStandings?.count ?? 0
         }
     }
     
@@ -146,9 +149,37 @@ extension StandingsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let cell = tableView.cellForRow(at: indexPath)! as! ScheduleCell
         
+        let selectedRow = indexPath.section
         
+        switch currentStandings {
+            case .drivers:
+                
+                //TODO: Maybe handle with error message
+                guard let driverStandingItem = viewModel.driverStandings?[selectedRow] else { return }
+                
+                let driverDetailVC = DriverDetailVC(withDriver: driverStandingItem)
+                
+                if let sheet = driverDetailVC.sheetPresentationController {
+                    sheet.detents = [.medium(), .large()]
+                    sheet.selectedDetentIdentifier = .medium
+                    sheet.prefersGrabberVisible = true
+                }
+                present(driverDetailVC, animated: true, completion: nil)
+            
+            case .constructors:
+                //TODO: Maybe handle with error message
+                guard let constructorStandingItem = viewModel.constructorStandings?[selectedRow] else { return }
+                
+            let constructorDetailVC = ConstructorDetailVC(withConstructor: constructorStandingItem)
+                
+                if let sheet = constructorDetailVC.sheetPresentationController {
+                    sheet.detents = [.medium(), .large()]
+                    sheet.selectedDetentIdentifier = .medium
+                    sheet.prefersGrabberVisible = true
+                }
+                present(constructorDetailVC, animated: true, completion: nil)
+        }
     }
 }
 
@@ -162,7 +193,6 @@ extension StandingsVC: DataChangeDelegate {
             print("In success state")
             
             tableView.reloadData()
-            
         case .error(let error):
             print("Error state occured: \(error)")
             

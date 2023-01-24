@@ -22,6 +22,10 @@
 		D95F8AE82968C8B9008DEBA6 /* RaceCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AE72968C8B9008DEBA6 /* RaceCountdown.swift */; };
 		D95F8AEA296901DA008DEBA6 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AE9296901DA008DEBA6 /* ProgressCircle.swift */; };
 		D95F8AEC296A0128008DEBA6 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AEB296A0128008DEBA6 /* Countdown.swift */; };
+		D96654DD297F614700442687 /* DriverDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96654DC297F614700442687 /* DriverDetailVC.swift */; };
+		D96654DF297F615C00442687 /* ConstructorDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96654DE297F615C00442687 /* ConstructorDetailVC.swift */; };
+		D96654E1297F617900442687 /* DriverDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96654E0297F617900442687 /* DriverDetailView.swift */; };
+		D96654E3297F618800442687 /* ConstructorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96654E2297F618800442687 /* ConstructorDetailView.swift */; };
 		D96830502971F45D00060BA3 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96830482971F45D00060BA3 /* Location+CoreDataClass.swift */; };
 		D96830522971F45D00060BA3 /* Circuit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968304A2971F45D00060BA3 /* Circuit+CoreDataClass.swift */; };
 		D96830542971F45D00060BA3 /* WeekendEvent+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968304C2971F45D00060BA3 /* WeekendEvent+CoreDataClass.swift */; };
@@ -35,7 +39,11 @@
 		D9947A772979C68800AC93CC /* DriverStandingItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9947A6F2979C68800AC93CC /* DriverStandingItem+CoreDataClass.swift */; };
 		D9947A7A2979DCC000AC93CC /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9947A792979DCC000AC93CC /* StandingsViewModel.swift */; };
 		D9947A7C2979DD8200AC93CC /* StandingsViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9947A7B2979DD8200AC93CC /* StandingsViewModelDelegate.swift */; };
-		D9947A812979E12A00AC93CC /* DriverStandingsParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9947A802979E12A00AC93CC /* DriverStandingsParsing.swift */; };
+		D9947A83297A2B9D00AC93CC /* StandingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9947A82297A2B9D00AC93CC /* StandingsCell.swift */; };
+		D9947A88297B4A7C00AC93CC /* ConstructorStandings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9947A84297B4A7C00AC93CC /* ConstructorStandings+CoreDataClass.swift */; };
+		D9947A8A297B4A7C00AC93CC /* ConstructorStandingItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9947A86297B4A7C00AC93CC /* ConstructorStandingItem+CoreDataClass.swift */; };
+		D9947A8F297B4BD100AC93CC /* DriverStandingsParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9947A8E297B4BD100AC93CC /* DriverStandingsParsing.swift */; };
+		D9947A91297B4C7900AC93CC /* ConstructorStandingsParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9947A90297B4C7900AC93CC /* ConstructorStandingsParsing.swift */; };
 		D9A190C12975F99900FEC58E /* StandingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A190C02975F99900FEC58E /* StandingsVC.swift */; };
 		D9A190C42975FE5800FEC58E /* ToggleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A190C32975FE5800FEC58E /* ToggleListView.swift */; };
 		D9A190C6297600E500FEC58E /* DisplayedSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A190C5297600E500FEC58E /* DisplayedSchedule.swift */; };
@@ -94,6 +102,10 @@
 		D95F8AE72968C8B9008DEBA6 /* RaceCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceCountdown.swift; sourceTree = "<group>"; };
 		D95F8AE9296901DA008DEBA6 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
 		D95F8AEB296A0128008DEBA6 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
+		D96654DC297F614700442687 /* DriverDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverDetailVC.swift; sourceTree = "<group>"; };
+		D96654DE297F615C00442687 /* ConstructorDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorDetailVC.swift; sourceTree = "<group>"; };
+		D96654E0297F617900442687 /* DriverDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverDetailView.swift; sourceTree = "<group>"; };
+		D96654E2297F618800442687 /* ConstructorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorDetailView.swift; sourceTree = "<group>"; };
 		D96830482971F45D00060BA3 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D968304A2971F45D00060BA3 /* Circuit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Circuit+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D968304C2971F45D00060BA3 /* WeekendEvent+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeekendEvent+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -107,7 +119,11 @@
 		D9947A6F2979C68800AC93CC /* DriverStandingItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverStandingItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D9947A792979DCC000AC93CC /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
 		D9947A7B2979DD8200AC93CC /* StandingsViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModelDelegate.swift; sourceTree = "<group>"; };
-		D9947A802979E12A00AC93CC /* DriverStandingsParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverStandingsParsing.swift; sourceTree = "<group>"; };
+		D9947A82297A2B9D00AC93CC /* StandingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsCell.swift; sourceTree = "<group>"; };
+		D9947A84297B4A7C00AC93CC /* ConstructorStandings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConstructorStandings+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D9947A86297B4A7C00AC93CC /* ConstructorStandingItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConstructorStandingItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D9947A8E297B4BD100AC93CC /* DriverStandingsParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverStandingsParsing.swift; sourceTree = "<group>"; };
+		D9947A90297B4C7900AC93CC /* ConstructorStandingsParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorStandingsParsing.swift; sourceTree = "<group>"; };
 		D9A190C02975F99900FEC58E /* StandingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsVC.swift; sourceTree = "<group>"; };
 		D9A190C32975FE5800FEC58E /* ToggleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleListView.swift; sourceTree = "<group>"; };
 		D9A190C5297600E500FEC58E /* DisplayedSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedSchedule.swift; sourceTree = "<group>"; };
@@ -250,6 +266,8 @@
 				D95F8AE9296901DA008DEBA6 /* ProgressCircle.swift */,
 				D95F8AE72968C8B9008DEBA6 /* RaceCountdown.swift */,
 				D9A190C32975FE5800FEC58E /* ToggleListView.swift */,
+				D96654DB297F611900442687 /* Constructor Detail */,
+				D96654DA297F610B00442687 /* Driver Detail */,
 				D9A190BF2975F98C00FEC58E /* Standings */,
 				D95F8AE62967B252008DEBA6 /* Schedule */,
 				D95F8AE52967B235008DEBA6 /* HomePage */,
@@ -285,6 +303,24 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
+		D96654DA297F610B00442687 /* Driver Detail */ = {
+			isa = PBXGroup;
+			children = (
+				D96654DC297F614700442687 /* DriverDetailVC.swift */,
+				D96654E0297F617900442687 /* DriverDetailView.swift */,
+			);
+			path = "Driver Detail";
+			sourceTree = "<group>";
+		};
+		D96654DB297F611900442687 /* Constructor Detail */ = {
+			isa = PBXGroup;
+			children = (
+				D96654DE297F615C00442687 /* ConstructorDetailVC.swift */,
+				D96654E2297F618800442687 /* ConstructorDetailView.swift */,
+			);
+			path = "Constructor Detail";
+			sourceTree = "<group>";
+		};
 		D9947A7D2979E0F000AC93CC /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,25 +331,20 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
-		D9947A7E2979E10400AC93CC /* Driver Standings */ = {
+		D9947A7F2979E10B00AC93CC /* Standings */ = {
 			isa = PBXGroup;
 			children = (
-				D9947A802979E12A00AC93CC /* DriverStandingsParsing.swift */,
+				D9947A8E297B4BD100AC93CC /* DriverStandingsParsing.swift */,
+				D9947A90297B4C7900AC93CC /* ConstructorStandingsParsing.swift */,
 			);
-			path = "Driver Standings";
-			sourceTree = "<group>";
-		};
-		D9947A7F2979E10B00AC93CC /* Constructor Standings */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Constructor Standings";
+			path = Standings;
 			sourceTree = "<group>";
 		};
 		D9A190BF2975F98C00FEC58E /* Standings */ = {
 			isa = PBXGroup;
 			children = (
 				D9A190C02975F99900FEC58E /* StandingsVC.swift */,
+				D9947A82297A2B9D00AC93CC /* StandingsCell.swift */,
 			);
 			path = Standings;
 			sourceTree = "<group>";
@@ -329,8 +360,9 @@
 		D9DE1873297101F0006C6541 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				D9DE18742971024A006C6541 /* Managed Objects */,
 				D9C7F2882974F3FC009CE1DE /* CoreDateError.swift */,
+				D96830582971F90A00060BA3 /* DecoderConfigurationError.swift */,
+				D9DE18742971024A006C6541 /* Managed Objects */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -340,6 +372,8 @@
 			children = (
 				D968304A2971F45D00060BA3 /* Circuit+CoreDataClass.swift */,
 				D9947A6B2979C68800AC93CC /* Constructor+CoreDataClass.swift */,
+				D9947A84297B4A7C00AC93CC /* ConstructorStandings+CoreDataClass.swift */,
+				D9947A86297B4A7C00AC93CC /* ConstructorStandingItem+CoreDataClass.swift */,
 				D9947A6D2979C68800AC93CC /* Driver+CoreDataClass.swift */,
 				D9947A692979C68800AC93CC /* DriverStandings+CoreDataClass.swift */,
 				D9947A6F2979C68800AC93CC /* DriverStandingItem+CoreDataClass.swift */,
@@ -347,7 +381,6 @@
 				D968304E2971F45D00060BA3 /* Race+CoreDataClass.swift */,
 				D968305A2972331A00060BA3 /* TimeStamp+CoreDataClass.swift */,
 				D968304C2971F45D00060BA3 /* WeekendEvent+CoreDataClass.swift */,
-				D96830582971F90A00060BA3 /* DecoderConfigurationError.swift */,
 			);
 			path = "Managed Objects";
 			sourceTree = "<group>";
@@ -365,8 +398,7 @@
 		D9DE18822971EECF006C6541 /* JSON Decoding */ = {
 			isa = PBXGroup;
 			children = (
-				D9947A7F2979E10B00AC93CC /* Constructor Standings */,
-				D9947A7E2979E10400AC93CC /* Driver Standings */,
+				D9947A7F2979E10B00AC93CC /* Standings */,
 				D9947A7D2979E0F000AC93CC /* Schedule */,
 			);
 			path = "JSON Decoding";
@@ -509,11 +541,15 @@
 				D9947A712979C68800AC93CC /* DriverStandings+CoreDataClass.swift in Sources */,
 				D9C83CB2297788900030DA09 /* ScheduleViewModelDelegate.swift in Sources */,
 				D9947A7A2979DCC000AC93CC /* StandingsViewModel.swift in Sources */,
+				D96654DD297F614700442687 /* DriverDetailVC.swift in Sources */,
 				D9DE18812971EBAD006C6541 /* Constants.swift in Sources */,
+				D96654E1297F617900442687 /* DriverDetailView.swift in Sources */,
 				D9DE187D2971EAF3006C6541 /* HttpMethodType.swift in Sources */,
 				D9DE187A2971EA71006C6541 /* NetworkingManager.swift in Sources */,
 				D91EE6D1295FCD1B00AB463F /* Race_Fan.xcdatamodeld in Sources */,
 				D934C7F22973190800A08E13 /* State.swift in Sources */,
+				D9947A91297B4C7900AC93CC /* ConstructorStandingsParsing.swift in Sources */,
+				D9947A8A297B4A7C00AC93CC /* ConstructorStandingItem+CoreDataClass.swift in Sources */,
 				D91EE6CB295FCD1B00AB463F /* HomePageVC.swift in Sources */,
 				D9947A772979C68800AC93CC /* DriverStandingItem+CoreDataClass.swift in Sources */,
 				D96830562971F45D00060BA3 /* Race+CoreDataClass.swift in Sources */,
@@ -522,8 +558,9 @@
 				D934C7F42973408900A08E13 /* DataManager.swift in Sources */,
 				D96830502971F45D00060BA3 /* Location+CoreDataClass.swift in Sources */,
 				D9DE1876297102A3006C6541 /* CoreDataManager.swift in Sources */,
+				D96654E3297F618800442687 /* ConstructorDetailView.swift in Sources */,
 				D91EE6C7295FCD1B00AB463F /* AppDelegate.swift in Sources */,
-				D9947A812979E12A00AC93CC /* DriverStandingsParsing.swift in Sources */,
+				D9947A83297A2B9D00AC93CC /* StandingsCell.swift in Sources */,
 				D9DE187F2971EB0C006C6541 /* NetworkingError.swift in Sources */,
 				D9C83CAE297787110030DA09 /* DateChangeDelegate.swift in Sources */,
 				D9C7F2892974F3FC009CE1DE /* CoreDateError.swift in Sources */,
@@ -531,6 +568,7 @@
 				D9A190C42975FE5800FEC58E /* ToggleListView.swift in Sources */,
 				D9DE18882971F033006C6541 /* Races.swift in Sources */,
 				D9A190C6297600E500FEC58E /* DisplayedSchedule.swift in Sources */,
+				D9947A8F297B4BD100AC93CC /* DriverStandingsParsing.swift in Sources */,
 				D95F8AE42967B1E8008DEBA6 /* HomePageView.swift in Sources */,
 				D9A190C12975F99900FEC58E /* StandingsVC.swift in Sources */,
 				D9947A732979C68800AC93CC /* Constructor+CoreDataClass.swift in Sources */,
@@ -538,7 +576,9 @@
 				D96830592971F90A00060BA3 /* DecoderConfigurationError.swift in Sources */,
 				D96830522971F45D00060BA3 /* Circuit+CoreDataClass.swift in Sources */,
 				D9947A7C2979DD8200AC93CC /* StandingsViewModelDelegate.swift in Sources */,
+				D9947A88297B4A7C00AC93CC /* ConstructorStandings+CoreDataClass.swift in Sources */,
 				D9A190C829760CF200FEC58E /* ScheduleCell.swift in Sources */,
+				D96654DF297F615C00442687 /* ConstructorDetailVC.swift in Sources */,
 				D91EE6C9295FCD1B00AB463F /* SceneDelegate.swift in Sources */,
 				D95F8AEA296901DA008DEBA6 /* ProgressCircle.swift in Sources */,
 				D9947A682978673A00AC93CC /* DisplayedStandings.swift in Sources */,

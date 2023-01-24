@@ -11,7 +11,8 @@ class ScheduleCell: UITableViewCell {
 
     //MARK: - Variables
     
-    static let PADDING = 10.0
+    static let CONTENT_CONTAINER_PADDING = 10.0
+    static let CONTENT_PADDING = 10.0
     static let CELL_ID = "ScheduleCellIdentifier"
     
     let contentContainer: UIView = {
@@ -139,17 +140,17 @@ class ScheduleCell: UITableViewCell {
     private func setupContentContainer() {
         
         NSLayoutConstraint.activate([
-            self.contentContainer.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: ScheduleCell.PADDING),
-            self.contentContainer.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: ScheduleCell.PADDING),
-            self.contentContainer.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -ScheduleCell.PADDING),
-            self.contentContainer.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -ScheduleCell.PADDING)
+            self.contentContainer.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: ScheduleCell.CONTENT_CONTAINER_PADDING),
+            self.contentContainer.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: ScheduleCell.CONTENT_CONTAINER_PADDING),
+            self.contentContainer.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -ScheduleCell.CONTENT_CONTAINER_PADDING),
+            self.contentContainer.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -ScheduleCell.CONTENT_CONTAINER_PADDING)
         ])
     }
     
     private func setupRoundLabel() {
         NSLayoutConstraint.activate([
-            roundLabel.topAnchor.constraint(equalTo: self.contentContainer.topAnchor, constant: ScheduleCell.PADDING),
-            roundLabel.leftAnchor.constraint(equalTo: self.contentContainer.leftAnchor, constant: ScheduleCell.PADDING),
+            roundLabel.topAnchor.constraint(equalTo: self.contentContainer.topAnchor, constant: ScheduleCell.CONTENT_PADDING),
+            roundLabel.leftAnchor.constraint(equalTo: self.contentContainer.leftAnchor, constant: ScheduleCell.CONTENT_PADDING),
             roundLabel.rightAnchor.constraint(lessThanOrEqualTo: raceDateLabel.leftAnchor, constant: -5),
         ])
     }
@@ -157,7 +158,7 @@ class ScheduleCell: UITableViewCell {
     private func setupGrandPrixNameLabel() {
         NSLayoutConstraint.activate([
             grandPrixNameLabel.topAnchor.constraint(equalTo: roundLabel.bottomAnchor, constant: 5),
-            grandPrixNameLabel.leftAnchor.constraint(equalTo: self.contentContainer.leftAnchor, constant: ScheduleCell.PADDING),
+            grandPrixNameLabel.leftAnchor.constraint(equalTo: self.contentContainer.leftAnchor, constant: ScheduleCell.CONTENT_PADDING),
             grandPrixNameLabel.rightAnchor.constraint(lessThanOrEqualTo: raceDateLabel.leftAnchor, constant: -5)
         ])
     }
@@ -165,17 +166,17 @@ class ScheduleCell: UITableViewCell {
     private func setupLocation() {
         NSLayoutConstraint.activate([
             locationStack.topAnchor.constraint(equalTo: grandPrixNameLabel.bottomAnchor, constant: 5),
-            locationStack.leftAnchor.constraint(equalTo: self.contentContainer.leftAnchor, constant: ScheduleCell.PADDING),
+            locationStack.leftAnchor.constraint(equalTo: self.contentContainer.leftAnchor, constant: ScheduleCell.CONTENT_PADDING),
             locationStack.rightAnchor.constraint(lessThanOrEqualTo: raceDateLabel.leftAnchor, constant: -5),
-            locationStack.bottomAnchor.constraint(equalTo: self.contentContainer.bottomAnchor, constant: -ScheduleCell.PADDING)
+            locationStack.bottomAnchor.constraint(equalTo: self.contentContainer.bottomAnchor, constant: -ScheduleCell.CONTENT_PADDING)
         ])
     }
     
     private func setupRaceDateLabel() {
         NSLayoutConstraint.activate([
-            raceDateLabel.topAnchor.constraint(equalTo: self.contentContainer.topAnchor, constant: ScheduleCell.PADDING),
-            raceDateLabel.rightAnchor.constraint(equalTo: self.contentContainer.rightAnchor, constant: -ScheduleCell.PADDING),
-            raceDateLabel.bottomAnchor.constraint(equalTo: self.contentContainer.bottomAnchor, constant: -ScheduleCell.PADDING)
+            raceDateLabel.topAnchor.constraint(equalTo: self.contentContainer.topAnchor, constant: ScheduleCell.CONTENT_PADDING),
+            raceDateLabel.rightAnchor.constraint(equalTo: self.contentContainer.rightAnchor, constant: -ScheduleCell.CONTENT_PADDING),
+            raceDateLabel.bottomAnchor.constraint(equalTo: self.contentContainer.bottomAnchor, constant: -ScheduleCell.CONTENT_PADDING)
         ])
     }
 }

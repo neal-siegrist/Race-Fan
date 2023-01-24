@@ -12,7 +12,20 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="nationality" optional="YES" attributeType="String"/>
         <attribute name="wikipediaURL" optional="YES" attributeType="String"/>
+        <relationship name="constructorStandingItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConstructorStandingItem" inverseName="constructor" inverseEntity="ConstructorStandingItem"/>
         <relationship name="driverStandingItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DriverStandingItem" inverseName="constructors" inverseEntity="DriverStandingItem"/>
+    </entity>
+    <entity name="ConstructorStandingItem" representedClassName=".ConstructorStandingItem" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
+        <attribute name="points" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="wins" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="constructor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Constructor" inverseName="constructorStandingItem" inverseEntity="Constructor"/>
+        <relationship name="constructorStandings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConstructorStandings" inverseName="standings" inverseEntity="ConstructorStandings"/>
+    </entity>
+    <entity name="ConstructorStandings" representedClassName=".ConstructorStandings" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
+        <attribute name="round" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="season" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="standings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ConstructorStandingItem" inverseName="constructorStandings" inverseEntity="ConstructorStandingItem"/>
     </entity>
     <entity name="Driver" representedClassName=".Driver" parentEntity="TimeStamp" syncable="YES" codeGenerationType="category">
         <attribute name="code" optional="YES" attributeType="String"/>
