@@ -11,13 +11,10 @@ class Countdown: UIView {
 
     //MARK: - Variables
     
-    let countdownCircle: ProgressCircle = {
-        let circle = ProgressCircle()
-        
-        circle.translatesAutoresizingMaskIntoConstraints = false
-        
-        return circle
-    }()
+    let backgroundCircleColor: UIColor
+    let progressCircleColor: UIColor
+    
+    var countdownCircle: ProgressCircle!
     
     let circleCountdownvalue: UILabel = {
         let label = UILabel()
@@ -42,8 +39,14 @@ class Countdown: UIView {
     
     //MARK: - Initializers
 
-    init() {
+    init(backgroundCircleColor: UIColor, progressCircleColor: UIColor) {
+        
+        self.backgroundCircleColor = backgroundCircleColor
+        self.progressCircleColor = progressCircleColor
+        
         super.init(frame: .zero)
+        
+        self.countdownCircle = initializeCircle()
         
         self.addSubview(circleCountdownvalue)
         setupCountdownCircleConstraints()
@@ -63,6 +66,14 @@ class Countdown: UIView {
         
         //Adding Y constraint due to waiting for frame availability after circle radius/size is adjusted.
         circleCountdownvalue.centerYAnchor.constraint(equalTo: self.topAnchor, constant: (frame.height - unitOfCountdown.bounds.height) / 2.0).isActive = true
+    }
+    
+    private func initializeCircle() -> ProgressCircle {
+        let circle = ProgressCircle(backgroundCircleColor: self.backgroundCircleColor, progressCircleColor: self.progressCircleColor)
+        
+        circle.translatesAutoresizingMaskIntoConstraints = false
+        
+        return circle
     }
     
     private func setupCountdownCircleConstraints() {

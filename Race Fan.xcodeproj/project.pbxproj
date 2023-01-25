@@ -26,6 +26,9 @@
 		D96654DF297F615C00442687 /* ConstructorDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96654DE297F615C00442687 /* ConstructorDetailVC.swift */; };
 		D96654E1297F617900442687 /* DriverDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96654E0297F617900442687 /* DriverDetailView.swift */; };
 		D96654E3297F618800442687 /* ConstructorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96654E2297F618800442687 /* ConstructorDetailView.swift */; };
+		D96654E629804B5200442687 /* RaceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96654E529804B5200442687 /* RaceDetailView.swift */; };
+		D96654E829804B6700442687 /* RaceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96654E729804B6700442687 /* RaceDetailVC.swift */; };
+		D96654EA2980A3D100442687 /* WeekendScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96654E92980A3D100442687 /* WeekendScheduleCell.swift */; };
 		D96830502971F45D00060BA3 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96830482971F45D00060BA3 /* Location+CoreDataClass.swift */; };
 		D96830522971F45D00060BA3 /* Circuit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968304A2971F45D00060BA3 /* Circuit+CoreDataClass.swift */; };
 		D96830542971F45D00060BA3 /* WeekendEvent+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968304C2971F45D00060BA3 /* WeekendEvent+CoreDataClass.swift */; };
@@ -53,6 +56,12 @@
 		D9C83CAE297787110030DA09 /* DateChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C83CAD297787110030DA09 /* DateChangeDelegate.swift */; };
 		D9C83CB0297787BA0030DA09 /* HomePageViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C83CAF297787BA0030DA09 /* HomePageViewModelDelegate.swift */; };
 		D9C83CB2297788900030DA09 /* ScheduleViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C83CB1297788900030DA09 /* ScheduleViewModelDelegate.swift */; };
+		D9CE2C66298195370025B6B0 /* RaceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CE2C65298195370025B6B0 /* RaceDetailViewModel.swift */; };
+		D9CE2C6829819CEA0025B6B0 /* RaceDetailViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CE2C6729819CEA0025B6B0 /* RaceDetailViewModelDelegate.swift */; };
+		D9CE2C6A2981A0910025B6B0 /* TimeSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CE2C692981A0910025B6B0 /* TimeSelection.swift */; };
+		D9CE2C6C2981A4710025B6B0 /* WeekendEventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CE2C6B2981A4710025B6B0 /* WeekendEventItem.swift */; };
+		D9CE2C6E2981A56E0025B6B0 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CE2C6D2981A56E0025B6B0 /* Time.swift */; };
+		D9CE2C722981B1EE0025B6B0 /* GeocodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CE2C712981B1EE0025B6B0 /* GeocodeError.swift */; };
 		D9D5B6802967487D00A196BC /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D5B67F2967487D00A196BC /* ScheduleVC.swift */; };
 		D9DE1876297102A3006C6541 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE1875297102A3006C6541 /* CoreDataManager.swift */; };
 		D9DE187A2971EA71006C6541 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE18792971EA71006C6541 /* NetworkingManager.swift */; };
@@ -106,6 +115,9 @@
 		D96654DE297F615C00442687 /* ConstructorDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorDetailVC.swift; sourceTree = "<group>"; };
 		D96654E0297F617900442687 /* DriverDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverDetailView.swift; sourceTree = "<group>"; };
 		D96654E2297F618800442687 /* ConstructorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorDetailView.swift; sourceTree = "<group>"; };
+		D96654E529804B5200442687 /* RaceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceDetailView.swift; sourceTree = "<group>"; };
+		D96654E729804B6700442687 /* RaceDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceDetailVC.swift; sourceTree = "<group>"; };
+		D96654E92980A3D100442687 /* WeekendScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekendScheduleCell.swift; sourceTree = "<group>"; };
 		D96830482971F45D00060BA3 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D968304A2971F45D00060BA3 /* Circuit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Circuit+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D968304C2971F45D00060BA3 /* WeekendEvent+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeekendEvent+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -133,6 +145,12 @@
 		D9C83CAD297787110030DA09 /* DateChangeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateChangeDelegate.swift; sourceTree = "<group>"; };
 		D9C83CAF297787BA0030DA09 /* HomePageViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewModelDelegate.swift; sourceTree = "<group>"; };
 		D9C83CB1297788900030DA09 /* ScheduleViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModelDelegate.swift; sourceTree = "<group>"; };
+		D9CE2C65298195370025B6B0 /* RaceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceDetailViewModel.swift; sourceTree = "<group>"; };
+		D9CE2C6729819CEA0025B6B0 /* RaceDetailViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceDetailViewModelDelegate.swift; sourceTree = "<group>"; };
+		D9CE2C692981A0910025B6B0 /* TimeSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelection.swift; sourceTree = "<group>"; };
+		D9CE2C6B2981A4710025B6B0 /* WeekendEventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekendEventItem.swift; sourceTree = "<group>"; };
+		D9CE2C6D2981A56E0025B6B0 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		D9CE2C712981B1EE0025B6B0 /* GeocodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeError.swift; sourceTree = "<group>"; };
 		D9D5B67F2967487D00A196BC /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
 		D9DE1875297102A3006C6541 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D9DE18792971EA71006C6541 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
@@ -240,12 +258,17 @@
 			children = (
 				D9DE18802971EBAD006C6541 /* Constants.swift */,
 				D9C83CAD297787110030DA09 /* DateChangeDelegate.swift */,
-				D9C83CAF297787BA0030DA09 /* HomePageViewModelDelegate.swift */,
 				D9A190C5297600E500FEC58E /* DisplayedSchedule.swift */,
 				D9947A672978673A00AC93CC /* DisplayedStandings.swift */,
+				D9CE2C712981B1EE0025B6B0 /* GeocodeError.swift */,
+				D9C83CAF297787BA0030DA09 /* HomePageViewModelDelegate.swift */,
+				D9CE2C6729819CEA0025B6B0 /* RaceDetailViewModelDelegate.swift */,
 				D9C83CB1297788900030DA09 /* ScheduleViewModelDelegate.swift */,
 				D934C7F12973190800A08E13 /* State.swift */,
 				D9947A7B2979DD8200AC93CC /* StandingsViewModelDelegate.swift */,
+				D9CE2C692981A0910025B6B0 /* TimeSelection.swift */,
+				D9CE2C6B2981A4710025B6B0 /* WeekendEventItem.swift */,
+				D9CE2C6D2981A56E0025B6B0 /* Time.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -268,9 +291,10 @@
 				D9A190C32975FE5800FEC58E /* ToggleListView.swift */,
 				D96654DB297F611900442687 /* Constructor Detail */,
 				D96654DA297F610B00442687 /* Driver Detail */,
-				D9A190BF2975F98C00FEC58E /* Standings */,
-				D95F8AE62967B252008DEBA6 /* Schedule */,
 				D95F8AE52967B235008DEBA6 /* HomePage */,
+				D96654E429804B1A00442687 /* Race Detail */,
+				D95F8AE62967B252008DEBA6 /* Schedule */,
+				D9A190BF2975F98C00FEC58E /* Standings */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -281,6 +305,7 @@
 				D9FFACBE296A49BD009B8869 /* HomePageViewModel.swift */,
 				D9A190C929760E2400FEC58E /* ScheduleViewModel.swift */,
 				D9947A792979DCC000AC93CC /* StandingsViewModel.swift */,
+				D9CE2C65298195370025B6B0 /* RaceDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -319,6 +344,16 @@
 				D96654E2297F618800442687 /* ConstructorDetailView.swift */,
 			);
 			path = "Constructor Detail";
+			sourceTree = "<group>";
+		};
+		D96654E429804B1A00442687 /* Race Detail */ = {
+			isa = PBXGroup;
+			children = (
+				D96654E529804B5200442687 /* RaceDetailView.swift */,
+				D96654E729804B6700442687 /* RaceDetailVC.swift */,
+				D96654E92980A3D100442687 /* WeekendScheduleCell.swift */,
+			);
+			path = "Race Detail";
 			sourceTree = "<group>";
 		};
 		D9947A7D2979E0F000AC93CC /* Schedule */ = {
@@ -537,18 +572,24 @@
 				D96830542971F45D00060BA3 /* WeekendEvent+CoreDataClass.swift in Sources */,
 				D9DE18842971EFEA006C6541 /* JSONTopLevelKey.swift in Sources */,
 				D9D5B6802967487D00A196BC /* ScheduleVC.swift in Sources */,
+				D9CE2C6829819CEA0025B6B0 /* RaceDetailViewModelDelegate.swift in Sources */,
+				D96654E829804B6700442687 /* RaceDetailVC.swift in Sources */,
 				D968305C2972331A00060BA3 /* TimeStamp+CoreDataClass.swift in Sources */,
 				D9947A712979C68800AC93CC /* DriverStandings+CoreDataClass.swift in Sources */,
 				D9C83CB2297788900030DA09 /* ScheduleViewModelDelegate.swift in Sources */,
 				D9947A7A2979DCC000AC93CC /* StandingsViewModel.swift in Sources */,
+				D9CE2C722981B1EE0025B6B0 /* GeocodeError.swift in Sources */,
 				D96654DD297F614700442687 /* DriverDetailVC.swift in Sources */,
 				D9DE18812971EBAD006C6541 /* Constants.swift in Sources */,
 				D96654E1297F617900442687 /* DriverDetailView.swift in Sources */,
 				D9DE187D2971EAF3006C6541 /* HttpMethodType.swift in Sources */,
 				D9DE187A2971EA71006C6541 /* NetworkingManager.swift in Sources */,
+				D96654E629804B5200442687 /* RaceDetailView.swift in Sources */,
 				D91EE6D1295FCD1B00AB463F /* Race_Fan.xcdatamodeld in Sources */,
 				D934C7F22973190800A08E13 /* State.swift in Sources */,
+				D96654EA2980A3D100442687 /* WeekendScheduleCell.swift in Sources */,
 				D9947A91297B4C7900AC93CC /* ConstructorStandingsParsing.swift in Sources */,
+				D9CE2C6C2981A4710025B6B0 /* WeekendEventItem.swift in Sources */,
 				D9947A8A297B4A7C00AC93CC /* ConstructorStandingItem+CoreDataClass.swift in Sources */,
 				D91EE6CB295FCD1B00AB463F /* HomePageVC.swift in Sources */,
 				D9947A772979C68800AC93CC /* DriverStandingItem+CoreDataClass.swift in Sources */,
@@ -564,8 +605,10 @@
 				D9DE187F2971EB0C006C6541 /* NetworkingError.swift in Sources */,
 				D9C83CAE297787110030DA09 /* DateChangeDelegate.swift in Sources */,
 				D9C7F2892974F3FC009CE1DE /* CoreDateError.swift in Sources */,
+				D9CE2C6E2981A56E0025B6B0 /* Time.swift in Sources */,
 				D9FFACBF296A49BD009B8869 /* HomePageViewModel.swift in Sources */,
 				D9A190C42975FE5800FEC58E /* ToggleListView.swift in Sources */,
+				D9CE2C6A2981A0910025B6B0 /* TimeSelection.swift in Sources */,
 				D9DE18882971F033006C6541 /* Races.swift in Sources */,
 				D9A190C6297600E500FEC58E /* DisplayedSchedule.swift in Sources */,
 				D9947A8F297B4BD100AC93CC /* DriverStandingsParsing.swift in Sources */,
@@ -580,6 +623,7 @@
 				D9A190C829760CF200FEC58E /* ScheduleCell.swift in Sources */,
 				D96654DF297F615C00442687 /* ConstructorDetailVC.swift in Sources */,
 				D91EE6C9295FCD1B00AB463F /* SceneDelegate.swift in Sources */,
+				D9CE2C66298195370025B6B0 /* RaceDetailViewModel.swift in Sources */,
 				D95F8AEA296901DA008DEBA6 /* ProgressCircle.swift in Sources */,
 				D9947A682978673A00AC93CC /* DisplayedStandings.swift in Sources */,
 				D9947A752979C68800AC93CC /* Driver+CoreDataClass.swift in Sources */,
@@ -766,9 +810,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nealsiegrist.Race-Fan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -792,9 +839,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nealsiegrist.Race-Fan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

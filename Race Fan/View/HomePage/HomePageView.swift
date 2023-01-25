@@ -58,12 +58,12 @@ class HomePageView: UIView {
         return label
     }()
     
-    let raceCountdown: RaceCountdown = {
-        let countown = RaceCountdown(frame: UIScreen.main.bounds)
+    var raceCountdown: RaceCountdown = {
+        let raceCountdown = RaceCountdown(backgroundCircleColor: UIColor.white, progressCircleColor: UIColor.red)
         
-        countown.translatesAutoresizingMaskIntoConstraints = false
+        raceCountdown.translatesAutoresizingMaskIntoConstraints = false
         
-        return countown
+        return raceCountdown
     }()
     
     let locationStack: UIStackView = {

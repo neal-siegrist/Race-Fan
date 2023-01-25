@@ -68,4 +68,13 @@ public class Race: TimeStamp, Codable {
         try container.encode(self.qualifying, forKey: .qualifying)
         try container.encode(self.sprint, forKey: .sprint)
     }
+    
+    func getSecondsUntilNextRace() -> Int {
+        
+        if let raceDate = self.date {
+            return Int(raceDate.timeIntervalSinceNow)
+        }
+    
+        return 0
+    }
 }

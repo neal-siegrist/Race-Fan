@@ -11,6 +11,9 @@ class RaceCountdown: UIStackView {
     
     //MARK: - Variables
     
+    let backgroundCircleColor: UIColor
+    let progressCircleColor: UIColor
+    
     private static let SINGLE_COUNTDOWN_WIDTH = UIScreen.main.bounds.width / 5
     private static let SINGLE_COUNTDOWN_HEIGHT = RaceCountdown.SINGLE_COUNTDOWN_WIDTH + 20
     
@@ -24,7 +27,7 @@ class RaceCountdown: UIStackView {
     private var daysRemaining: Int  = 0 {
         didSet {
                 dayProgress.circleCountdownvalue.text = String(daysRemaining)
-                dayProgress.countdownCircle.setProgressRemaining(progress: CGFloat(Double(daysRemaining) / 120.0))
+            dayProgress.countdownCircle.setProgressRemaining(progress: CGFloat(Double(daysRemaining) / 365.0))
         }
     }
     
@@ -49,43 +52,22 @@ class RaceCountdown: UIStackView {
         }
     }
     
-    var dayProgress: Countdown = {
-        let countdown = Countdown()
-        countdown.unitOfCountdown.text = "Days"
-        
-        countdown.translatesAutoresizingMaskIntoConstraints = false
-        return countdown
-    }()
-    
-    var hourProgress: Countdown = {
-        let countdown = Countdown()
-        countdown.unitOfCountdown.text = "Hours"
-        
-        countdown.translatesAutoresizingMaskIntoConstraints = false
-        return countdown
-    }()
-    
-    var minuteProgress: Countdown = {
-        let countdown = Countdown()
-        countdown.unitOfCountdown.text = "Minutes"
-        
-        countdown.translatesAutoresizingMaskIntoConstraints = false
-        return countdown
-    }()
-    
-    var secondProgress: Countdown = {
-        let countdown = Countdown()
-        countdown.unitOfCountdown.text = "Seconds"
-        
-        countdown.translatesAutoresizingMaskIntoConstraints = false
-        return countdown
-    }()
+    var dayProgress: Countdown!
+    var hourProgress: Countdown!
+    var minuteProgress: Countdown!
+    var secondProgress: Countdown!
 
     
     //MARK: - Initializers
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(backgroundCircleColor: UIColor, progressCircleColor: UIColor) {
+        
+        self.backgroundCircleColor = backgroundCircleColor
+        self.progressCircleColor = progressCircleColor
+        
+        super.init(frame: .zero)
+        
+        setupCountdownViews()
         
         setupStackViewAndConstraints()
         setupDayProgressViewAndConstraints()
@@ -100,6 +82,21 @@ class RaceCountdown: UIStackView {
     
     
     //MARK: - Functions
+    
+    private func setupCountdownViews() {
+        dayProgress = generateCountdown(unitOfCountdown: "Days")
+        hourProgress = generateCountdown(unitOfCountdown: "Hours")
+        minuteProgress = generateCountdown(unitOfCountdown: "Minutes")
+        secondProgress = generateCountdown(unitOfCountdown: "Seconds")
+    }
+    
+    private func generateCountdown(unitOfCountdown: String) -> Countdown {
+        let countdown = Countdown(backgroundCircleColor: self.backgroundCircleColor, progressCircleColor: self.progressCircleColor)
+        countdown.unitOfCountdown.text = unitOfCountdown
+        
+        countdown.translatesAutoresizingMaskIntoConstraints = false
+        return countdown
+    }
     
     private func setupStackViewAndConstraints() {
         self.alignment = .center

@@ -13,6 +13,8 @@ class ProgressCircle: UIView {
     
     private let OUTER_CIRCLE_PADDING = 5.0
     var progress: CGFloat = 0
+    let backgroundCircleColor: UIColor
+    let progressCircleColor: UIColor
     
     private var circleLayer: CAShapeLayer = CAShapeLayer()
     var progressLayer: CAShapeLayer = CAShapeLayer()
@@ -23,7 +25,10 @@ class ProgressCircle: UIView {
 
     //MARK: - Initializers
     
-    init() {
+    init(backgroundCircleColor: UIColor, progressCircleColor: UIColor) {
+        self.backgroundCircleColor = backgroundCircleColor
+        self.progressCircleColor = progressCircleColor
+        
         super.init(frame: .zero)
     }
 
@@ -62,7 +67,7 @@ class ProgressCircle: UIView {
         circleLayer.lineCap = .round
         circleLayer.lineWidth = 10.0
         circleLayer.strokeEnd = 1.0
-        circleLayer.strokeColor = UIColor.white.cgColor
+        circleLayer.strokeColor = self.backgroundCircleColor.cgColor
     }
 
     private func setProgressLayerAttributes() {
@@ -70,7 +75,7 @@ class ProgressCircle: UIView {
         progressLayer.lineCap = .round
         progressLayer.lineWidth = 5.0
         progressLayer.strokeEnd = self.progress
-        progressLayer.strokeColor = UIColor.red.cgColor
+        progressLayer.strokeColor = progressCircleColor.cgColor
     }
     
     func setProgressRemaining(progress: CGFloat) {

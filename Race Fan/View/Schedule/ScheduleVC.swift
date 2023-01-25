@@ -26,6 +26,8 @@ class ScheduleVC: UIViewController {
         
         setupSegmentedControl()
         
+        tableView.register(ScheduleCell.self, forCellReuseIdentifier: ScheduleCell.CELL_ID)
+        
         tableView.dataSource = self
         tableView.delegate = self
         viewModel.delegate = self
@@ -45,7 +47,6 @@ class ScheduleVC: UIViewController {
         super.loadView()
         
         setupNavigationController()
-        //setupSegmentedControl()
         
         self.view = scheduleView
     }
@@ -104,7 +105,10 @@ extension ScheduleVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let scheduleCell = ScheduleCell(style: .default, reuseIdentifier: ScheduleCell.CELL_ID)
+//        let scheduleCell = ScheduleCell(style: .default, reuseIdentifier: ScheduleCell.CELL_ID)
+        
+        guard let scheduleCell = tableView.dequeueReusableCell(withIdentifier: ScheduleCell.CELL_ID) as? ScheduleCell else { fatalError("Cannot deque cell") }
+        
         let race: Race? = currentSchedule == .upcoming ? viewModel.upcomingRaces?[indexPath.section] : viewModel.pastRaces?[indexPath.section]
         
         
@@ -147,9 +151,15 @@ extension ScheduleVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let cell = tableView.cellForRow(at: indexPath)! as! ScheduleCell
         
+        let selectedRow = indexPath.section
         
+        let race = currentSchedule == .upcoming ? viewModel.upcomingRaces?[selectedRow] : viewModel.pastRaces?[selectedRow]
+        
+        if let validRace = race {
+            let raceDetailVC = RaceDetailVC(race: validRace)
+            self.navigationController?.pushViewController(raceDetailVC, animated: true)
+        }
     }
 }
 

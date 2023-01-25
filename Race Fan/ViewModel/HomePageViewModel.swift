@@ -35,11 +35,11 @@ class HomePageViewModel {
     
     func getSecondsUntilNextRace() -> Int {
         
-        if let nextRace = nextRace, let raceDate = nextRace.date {
-            return Int(raceDate.timeIntervalSinceNow)
+        if let nextRace = nextRace {
+            return nextRace.getSecondsUntilNextRace()
         }
     
-        return 3600
+        return 0
     }
     
     func getNextRaceDate() -> String? {
