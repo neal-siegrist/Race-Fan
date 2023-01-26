@@ -131,13 +131,13 @@ extension RaceDetailVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return currentTimeSelection == .deviceLocalTime ? viewModel.myTimeItems.count : viewModel.trackTimeItems.count
+        return currentTimeSelection == .deviceLocalTime ? viewModel.localTimeItems.count : viewModel.trackTimeItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeekendScheduleCell.CELL_IDENTIFIER) as? WeekendScheduleCell else { fatalError("Error created WeekendScheduleCell") }
         
-        let weekendEvent = currentTimeSelection == .deviceLocalTime ? viewModel.myTimeItems[indexPath.section] : viewModel.trackTimeItems[indexPath.section]
+        let weekendEvent = currentTimeSelection == .deviceLocalTime ? viewModel.localTimeItems[indexPath.section] : viewModel.trackTimeItems[indexPath.section]
         
         cell.day.text = weekendEvent.day
         cell.month.text = weekendEvent.month

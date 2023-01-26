@@ -60,7 +60,6 @@
 		D9CE2C6829819CEA0025B6B0 /* RaceDetailViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CE2C6729819CEA0025B6B0 /* RaceDetailViewModelDelegate.swift */; };
 		D9CE2C6A2981A0910025B6B0 /* TimeSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CE2C692981A0910025B6B0 /* TimeSelection.swift */; };
 		D9CE2C6C2981A4710025B6B0 /* WeekendEventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CE2C6B2981A4710025B6B0 /* WeekendEventItem.swift */; };
-		D9CE2C6E2981A56E0025B6B0 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CE2C6D2981A56E0025B6B0 /* Time.swift */; };
 		D9CE2C722981B1EE0025B6B0 /* GeocodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CE2C712981B1EE0025B6B0 /* GeocodeError.swift */; };
 		D9D5B6802967487D00A196BC /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D5B67F2967487D00A196BC /* ScheduleVC.swift */; };
 		D9DE1876297102A3006C6541 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE1875297102A3006C6541 /* CoreDataManager.swift */; };
@@ -147,7 +146,6 @@
 		D9CE2C6729819CEA0025B6B0 /* RaceDetailViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceDetailViewModelDelegate.swift; sourceTree = "<group>"; };
 		D9CE2C692981A0910025B6B0 /* TimeSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelection.swift; sourceTree = "<group>"; };
 		D9CE2C6B2981A4710025B6B0 /* WeekendEventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekendEventItem.swift; sourceTree = "<group>"; };
-		D9CE2C6D2981A56E0025B6B0 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		D9CE2C712981B1EE0025B6B0 /* GeocodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeError.swift; sourceTree = "<group>"; };
 		D9D5B67F2967487D00A196BC /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
 		D9DE1875297102A3006C6541 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 				D934C7F12973190800A08E13 /* State.swift */,
 				D9CE2C692981A0910025B6B0 /* TimeSelection.swift */,
 				D9CE2C6B2981A4710025B6B0 /* WeekendEventItem.swift */,
-				D9CE2C6D2981A56E0025B6B0 /* Time.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -277,9 +274,9 @@
 		D934C7EF29730F1E00A08E13 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D9DE1875297102A3006C6541 /* CoreDataManager.swift */,
 				D934C7F32973408900A08E13 /* DataManager.swift */,
-				D9A190C22975FA6200FEC58E /* Core Data */,
-				D9DE187B2971EADB006C6541 /* Networking */,
+				D9DE18792971EA71006C6541 /* NetworkingManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -288,9 +285,9 @@
 			isa = PBXGroup;
 			children = (
 				D9DE18802971EBAD006C6541 /* Constants.swift */,
-				D90E50BD2982160B00A93769 /* Errors */,
-				D90E50BC2982160500A93769 /* Enums */,
 				D90E50BB298215FE00A93769 /* Delegates */,
+				D90E50BC2982160500A93769 /* Enums */,
+				D90E50BD2982160B00A93769 /* Errors */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -404,14 +401,6 @@
 			path = Standings;
 			sourceTree = "<group>";
 		};
-		D9A190C22975FA6200FEC58E /* Core Data */ = {
-			isa = PBXGroup;
-			children = (
-				D9DE1875297102A3006C6541 /* CoreDataManager.swift */,
-			);
-			path = "Core Data";
-			sourceTree = "<group>";
-		};
 		D9DE1873297101F0006C6541 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,14 +427,6 @@
 				D968304C2971F45D00060BA3 /* WeekendEvent+CoreDataClass.swift */,
 			);
 			path = "Managed Objects";
-			sourceTree = "<group>";
-		};
-		D9DE187B2971EADB006C6541 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				D9DE18792971EA71006C6541 /* NetworkingManager.swift */,
-			);
-			path = Networking;
 			sourceTree = "<group>";
 		};
 		D9DE18822971EECF006C6541 /* JSON Decoding */ = {
@@ -623,7 +604,6 @@
 				D9DE187F2971EB0C006C6541 /* NetworkingError.swift in Sources */,
 				D9C83CAE297787110030DA09 /* DateChangeDelegate.swift in Sources */,
 				D9C7F2892974F3FC009CE1DE /* CoreDateError.swift in Sources */,
-				D9CE2C6E2981A56E0025B6B0 /* Time.swift in Sources */,
 				D9FFACBF296A49BD009B8869 /* HomePageViewModel.swift in Sources */,
 				D9A190C42975FE5800FEC58E /* ToggleListView.swift in Sources */,
 				D9CE2C6A2981A0910025B6B0 /* TimeSelection.swift in Sources */,

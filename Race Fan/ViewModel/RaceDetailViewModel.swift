@@ -12,7 +12,7 @@ import CoreLocation
 
 class RaceDetailViewModel {
     
-    var myTimeItems: [RaceWeekendEvent] = []
+    var localTimeItems: [RaceWeekendEvent] = []
     var trackTimeItems: [RaceWeekendEvent] = []
     var delegate: DataChangeDelegate?
     let race: Race
@@ -21,60 +21,60 @@ class RaceDetailViewModel {
         self.race = race
     }
     
-    private func calculateEventTimes(timezone: TimeZone, forTime: Time) {
+    private func calculateEventTimes(timezone: TimeZone, forTime: TimeSelection) {
         
         if let date = race.date, let weekendEvent = createWeekendEventItem(time: forTime, event: .race, timezone: timezone, date: date) {
-            if forTime == .deviceLocal {
-                myTimeItems.append(weekendEvent)
+            if forTime == .deviceLocalTime {
+                localTimeItems.append(weekendEvent)
             } else {
                 trackTimeItems.append(weekendEvent)
             }
         }
         
         if let date = race.sprint?.date, let weekendEvent = createWeekendEventItem(time: forTime, event: .sprint, timezone: timezone, date: date) {
-            if forTime == .deviceLocal {
-                myTimeItems.append(weekendEvent)
+            if forTime == .deviceLocalTime {
+                localTimeItems.append(weekendEvent)
             } else {
                 trackTimeItems.append(weekendEvent)
             }
         }
         
         if let date = race.qualifying?.date, let weekendEvent = createWeekendEventItem(time: forTime, event: .qualifying, timezone: timezone, date: date) {
-            if forTime == .deviceLocal {
-                myTimeItems.append(weekendEvent)
+            if forTime == .deviceLocalTime {
+                localTimeItems.append(weekendEvent)
             } else {
                 trackTimeItems.append(weekendEvent)
             }
         }
         
         if let date = race.thirdPractice?.date, let weekendEvent = createWeekendEventItem(time: forTime, event: .practice3, timezone: timezone, date: date) {
-            if forTime == .deviceLocal {
-                myTimeItems.append(weekendEvent)
+            if forTime == .deviceLocalTime {
+                localTimeItems.append(weekendEvent)
             } else {
                 trackTimeItems.append(weekendEvent)
             }
         }
         
         if let date = race.secondPractice?.date, let weekendEvent = createWeekendEventItem(time: forTime, event: .practice2, timezone: timezone, date: date) {
-            if forTime == .deviceLocal {
-                myTimeItems.append(weekendEvent)
+            if forTime == .deviceLocalTime {
+                localTimeItems.append(weekendEvent)
             } else {
                 trackTimeItems.append(weekendEvent)
             }
         }
         
         if let date = race.firstPractice?.date, let weekendEvent = createWeekendEventItem(time: forTime, event: .practice1, timezone: timezone, date: date) {
-            if forTime == .deviceLocal {
-                myTimeItems.append(weekendEvent)
+            if forTime == .deviceLocalTime {
+                localTimeItems.append(weekendEvent)
             } else {
                 trackTimeItems.append(weekendEvent)
             }
         }
     }
     
-    private func createWeekendEventItem(time: Time, event: WeekendEventItem, timezone: TimeZone, date: Date) -> RaceWeekendEvent? {
+    private func createWeekendEventItem(time: TimeSelection, event: WeekendEventItem, timezone: TimeZone, date: Date) -> RaceWeekendEvent? {
         
-        let localComponents = time == .deviceLocal ? date.getDeviceLocalTimeDateComponents() : date.getSpecifiedTimezoneDateComponents(timezone: timezone)
+        let localComponents = time == .deviceLocalTime ? date.getDeviceLocalTimeDateComponents() : date.getSpecifiedTimezoneDateComponents(timezone: timezone)
         
         if let day = localComponents.day, let month = localComponents.month {
             
@@ -90,8 +90,6 @@ class RaceDetailViewModel {
         
         return nil
     }
-    
-    
 }
 
 
@@ -100,8 +98,7 @@ class RaceDetailViewModel {
 extension RaceDetailViewModel: RaceDetailViewModelDelegate {
     func calculateLocalAndTrackLocalTimes() {
         
-        calculateEventTimes(timezone: .current, forTime: .deviceLocal)
-        
+        calculateEventTimes(timezone: .current, forTime: .deviceLocalTime)
         
         guard let latitude = race.circuit?.location?.latitude, let longitude = race.circuit?.location?.longitude else {
             self.delegate?.didUpdate(with: .error(GeocodeError.noLocation))
@@ -121,7 +118,7 @@ extension RaceDetailViewModel: RaceDetailViewModelDelegate {
 
             if let timeZone = placemarks?.last?.timeZone {
         
-                self?.calculateEventTimes(timezone: timeZone, forTime: .trackLocal)
+                self?.calculateEventTimes(timezone: timeZone, forTime: .trackLocalTime)
             } else {
                 self?.delegate?.didUpdate(with: .error(GeocodeError.noLocation))
             }
