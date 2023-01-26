@@ -126,17 +126,14 @@ extension RaceDetailViewModel: RaceDetailViewModelDelegate {
                 self?.delegate?.didUpdate(with: .error(GeocodeError.noLocation))
             }
 
-
             self?.delegate?.didUpdate(with: .success)
         }
-
-        
-        
     }
 }
 
 
 //MARK: - RaceWeekendEvent helper class
+
 class RaceWeekendEvent {
     let day: String
     let month: String

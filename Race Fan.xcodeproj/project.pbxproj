@@ -68,9 +68,7 @@
 		D9DE187D2971EAF3006C6541 /* HttpMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE187C2971EAF3006C6541 /* HttpMethodType.swift */; };
 		D9DE187F2971EB0C006C6541 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE187E2971EB0C006C6541 /* NetworkingError.swift */; };
 		D9DE18812971EBAD006C6541 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE18802971EBAD006C6541 /* Constants.swift */; };
-		D9DE18842971EFEA006C6541 /* JSONTopLevelKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE18832971EFEA006C6541 /* JSONTopLevelKey.swift */; };
-		D9DE18862971F01C006C6541 /* RaceTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE18852971F01C006C6541 /* RaceTable.swift */; };
-		D9DE18882971F033006C6541 /* Races.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE18872971F033006C6541 /* Races.swift */; };
+		D9DE18842971EFEA006C6541 /* ScheduleParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE18832971EFEA006C6541 /* ScheduleParsing.swift */; };
 		D9FFACBF296A49BD009B8869 /* HomePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FFACBE296A49BD009B8869 /* HomePageViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -157,9 +155,7 @@
 		D9DE187C2971EAF3006C6541 /* HttpMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethodType.swift; sourceTree = "<group>"; };
 		D9DE187E2971EB0C006C6541 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		D9DE18802971EBAD006C6541 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		D9DE18832971EFEA006C6541 /* JSONTopLevelKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTopLevelKey.swift; sourceTree = "<group>"; };
-		D9DE18852971F01C006C6541 /* RaceTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTable.swift; sourceTree = "<group>"; };
-		D9DE18872971F033006C6541 /* Races.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Races.swift; sourceTree = "<group>"; };
+		D9DE18832971EFEA006C6541 /* ScheduleParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleParsing.swift; sourceTree = "<group>"; };
 		D9FFACBE296A49BD009B8869 /* HomePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,6 +184,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D90E50BB298215FE00A93769 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				D9C83CAD297787110030DA09 /* DateChangeDelegate.swift */,
+				D9C83CAF297787BA0030DA09 /* HomePageViewModelDelegate.swift */,
+				D9CE2C6729819CEA0025B6B0 /* RaceDetailViewModelDelegate.swift */,
+				D9C83CB1297788900030DA09 /* ScheduleViewModelDelegate.swift */,
+				D9947A7B2979DD8200AC93CC /* StandingsViewModelDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		D90E50BC2982160500A93769 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				D9A190C5297600E500FEC58E /* DisplayedSchedule.swift */,
+				D9947A672978673A00AC93CC /* DisplayedStandings.swift */,
+				D9DE187C2971EAF3006C6541 /* HttpMethodType.swift */,
+				D934C7F12973190800A08E13 /* State.swift */,
+				D9CE2C692981A0910025B6B0 /* TimeSelection.swift */,
+				D9CE2C6B2981A4710025B6B0 /* WeekendEventItem.swift */,
+				D9CE2C6D2981A56E0025B6B0 /* Time.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		D90E50BD2982160B00A93769 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				D9CE2C712981B1EE0025B6B0 /* GeocodeError.swift */,
+				D9DE187E2971EB0C006C6541 /* NetworkingError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		D91EE6BA295FCD1B00AB463F = {
 			isa = PBXGroup;
 			children = (
@@ -257,18 +288,9 @@
 			isa = PBXGroup;
 			children = (
 				D9DE18802971EBAD006C6541 /* Constants.swift */,
-				D9C83CAD297787110030DA09 /* DateChangeDelegate.swift */,
-				D9A190C5297600E500FEC58E /* DisplayedSchedule.swift */,
-				D9947A672978673A00AC93CC /* DisplayedStandings.swift */,
-				D9CE2C712981B1EE0025B6B0 /* GeocodeError.swift */,
-				D9C83CAF297787BA0030DA09 /* HomePageViewModelDelegate.swift */,
-				D9CE2C6729819CEA0025B6B0 /* RaceDetailViewModelDelegate.swift */,
-				D9C83CB1297788900030DA09 /* ScheduleViewModelDelegate.swift */,
-				D934C7F12973190800A08E13 /* State.swift */,
-				D9947A7B2979DD8200AC93CC /* StandingsViewModelDelegate.swift */,
-				D9CE2C692981A0910025B6B0 /* TimeSelection.swift */,
-				D9CE2C6B2981A4710025B6B0 /* WeekendEventItem.swift */,
-				D9CE2C6D2981A56E0025B6B0 /* Time.swift */,
+				D90E50BD2982160B00A93769 /* Errors */,
+				D90E50BC2982160500A93769 /* Enums */,
+				D90E50BB298215FE00A93769 /* Delegates */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -359,9 +381,7 @@
 		D9947A7D2979E0F000AC93CC /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				D9DE18832971EFEA006C6541 /* JSONTopLevelKey.swift */,
-				D9DE18852971F01C006C6541 /* RaceTable.swift */,
-				D9DE18872971F033006C6541 /* Races.swift */,
+				D9DE18832971EFEA006C6541 /* ScheduleParsing.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -423,9 +443,7 @@
 		D9DE187B2971EADB006C6541 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				D9DE187C2971EAF3006C6541 /* HttpMethodType.swift */,
 				D9DE18792971EA71006C6541 /* NetworkingManager.swift */,
-				D9DE187E2971EB0C006C6541 /* NetworkingError.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -570,7 +588,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D96830542971F45D00060BA3 /* WeekendEvent+CoreDataClass.swift in Sources */,
-				D9DE18842971EFEA006C6541 /* JSONTopLevelKey.swift in Sources */,
+				D9DE18842971EFEA006C6541 /* ScheduleParsing.swift in Sources */,
 				D9D5B6802967487D00A196BC /* ScheduleVC.swift in Sources */,
 				D9CE2C6829819CEA0025B6B0 /* RaceDetailViewModelDelegate.swift in Sources */,
 				D96654E829804B6700442687 /* RaceDetailVC.swift in Sources */,
@@ -609,7 +627,6 @@
 				D9FFACBF296A49BD009B8869 /* HomePageViewModel.swift in Sources */,
 				D9A190C42975FE5800FEC58E /* ToggleListView.swift in Sources */,
 				D9CE2C6A2981A0910025B6B0 /* TimeSelection.swift in Sources */,
-				D9DE18882971F033006C6541 /* Races.swift in Sources */,
 				D9A190C6297600E500FEC58E /* DisplayedSchedule.swift in Sources */,
 				D9947A8F297B4BD100AC93CC /* DriverStandingsParsing.swift in Sources */,
 				D95F8AE42967B1E8008DEBA6 /* HomePageView.swift in Sources */,
@@ -628,7 +645,6 @@
 				D9947A682978673A00AC93CC /* DisplayedStandings.swift in Sources */,
 				D9947A752979C68800AC93CC /* Driver+CoreDataClass.swift in Sources */,
 				D95F8AE82968C8B9008DEBA6 /* RaceCountdown.swift in Sources */,
-				D9DE18862971F01C006C6541 /* RaceTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

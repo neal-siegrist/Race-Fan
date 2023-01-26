@@ -173,7 +173,7 @@ class DataManager {
         guard let url = URL(string: "\(Constants.ApiEndPoints.baseURL)/\(year).json") else { return }
         guard let urlRequest = NetworkingManager.generateUrlRequest(url: url) else { return }
 
-        NetworkingManager.loadData(request: urlRequest, type: JSONTopLevelKey.self) { [weak self] result in
+        NetworkingManager.loadData(request: urlRequest, type: ScheduleParsing.self) { [weak self] result in
             switch result {
             case .success(_):
                 self?.coreDataManager.saveContext()
