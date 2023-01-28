@@ -210,6 +210,8 @@
 		D90E50BD2982160B00A93769 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
+				D9C7F2882974F3FC009CE1DE /* CoreDateError.swift */,
+				D96830582971F90A00060BA3 /* DecoderConfigurationError.swift */,
 				D9CE2C712981B1EE0025B6B0 /* GeocodeError.swift */,
 				D9DE187E2971EB0C006C6541 /* NetworkingError.swift */,
 			);
@@ -322,9 +324,9 @@
 			isa = PBXGroup;
 			children = (
 				D9FFACBE296A49BD009B8869 /* HomePageViewModel.swift */,
+				D9CE2C65298195370025B6B0 /* RaceDetailViewModel.swift */,
 				D9A190C929760E2400FEC58E /* ScheduleViewModel.swift */,
 				D9947A792979DCC000AC93CC /* StandingsViewModel.swift */,
-				D9CE2C65298195370025B6B0 /* RaceDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -368,8 +370,8 @@
 		D96654E429804B1A00442687 /* Race Detail */ = {
 			isa = PBXGroup;
 			children = (
-				D96654E529804B5200442687 /* RaceDetailView.swift */,
 				D96654E729804B6700442687 /* RaceDetailVC.swift */,
+				D96654E529804B5200442687 /* RaceDetailView.swift */,
 				D96654E92980A3D100442687 /* WeekendScheduleCell.swift */,
 			);
 			path = "Race Detail";
@@ -404,8 +406,6 @@
 		D9DE1873297101F0006C6541 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				D9C7F2882974F3FC009CE1DE /* CoreDateError.swift */,
-				D96830582971F90A00060BA3 /* DecoderConfigurationError.swift */,
 				D9DE18742971024A006C6541 /* Managed Objects */,
 			);
 			path = "Core Data";

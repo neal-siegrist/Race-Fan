@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 class RaceDetailView: UIView {
 
@@ -130,6 +131,15 @@ class RaceDetailView: UIView {
         return label
     }()
     
+    let mapView: MKMapView = {
+        let mapView = MKMapView()
+        
+        mapView.isHidden = true
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return mapView
+    }()
+    
     //MARK: - Initializers
     
     init() {
@@ -152,6 +162,7 @@ class RaceDetailView: UIView {
         setupScheduleAndCircuitDivider()
         
         setupCircuitName()
+        setupMapView()
     }
     
     required init?(coder: NSCoder) {
@@ -179,6 +190,7 @@ class RaceDetailView: UIView {
         scrollView.addSubview(scheduleAndCircuitDivider)
         
         scrollView.addSubview(circuitName)
+        scrollView.addSubview(mapView)
     }
     
     private func setupScrollView() {
@@ -254,9 +266,19 @@ class RaceDetailView: UIView {
     private func setupCircuitName() {
         NSLayoutConstraint.activate([
             circuitName.topAnchor.constraint(equalTo: scheduleAndCircuitDivider.bottomAnchor, constant: 20),
-            circuitName.leftAnchor.constraint(equalTo: scheduleAndCircuitDivider.leftAnchor, constant: 10),
-            circuitName.rightAnchor.constraint(equalTo: scheduleAndCircuitDivider.rightAnchor, constant: -10),
-            circuitName.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor)
+            circuitName.leftAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leftAnchor, constant: 10),
+            circuitName.rightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.rightAnchor, constant: -10)
+        ])
+    }
+    
+    private func setupMapView() {
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: circuitName.bottomAnchor, constant: 20),
+            mapView.leftAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leftAnchor, constant: 10),
+            mapView.rightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.rightAnchor, constant: -10),
+            mapView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -20),
+            mapView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor, constant: -20),
+            mapView.heightAnchor.constraint(equalTo: mapView.widthAnchor, multiplier: 0.50)
         ])
     }
 }

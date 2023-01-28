@@ -43,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.tabBar.tintColor = .red
         tabBarController.tabBar.backgroundColor = .white
         
-        tabBarController.selectedIndex = 1
+        tabBarController.selectedIndex = 0
             
         self.homePageVC = homepageVC
         self.scheduleNC = scheduleNC

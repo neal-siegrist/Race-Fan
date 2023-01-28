@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 class RaceDetailVC: UIViewController {
 
@@ -28,6 +29,7 @@ class RaceDetailVC: UIViewController {
         viewModel.delegate = self
         
         setupSegmentedControl()
+        setupMapView()
     }
     
     required init?(coder: NSCoder) {
@@ -56,6 +58,21 @@ class RaceDetailVC: UIViewController {
     
     
     //MARK: - Functions
+    
+    private func setupMapView() {
+        guard let latitude = viewModel.race.circuit?.location?.latitude else { return }
+        guard let longitude = viewModel.race.circuit?.location?.longitude else { return }
+        
+        let mapView = raceDetailView.mapView
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        
+        mapView.region = MKCoordinateRegion(center: coordinate , span: MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3))
+        mapView.addAnnotation(annotation)
+        
+        mapView.isHidden = false
+    }
     
     private func setupSegmentedControl() {
         raceDetailView.timeSegmentedControl.addTarget(self, action: #selector(segmentedControlDidChange), for: .valueChanged)

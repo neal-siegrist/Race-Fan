@@ -124,6 +124,28 @@ extension RaceDetailViewModel: RaceDetailViewModelDelegate {
             }
 
             self?.delegate?.didUpdate(with: .success)
+            
+            self?.sortEventsInDescendingByDate()
+        }
+    }
+    
+    private func sortEventsInDescendingByDate() {
+        localTimeItems.sort { event1, event2 in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMMM HH:mm"
+            guard let date1 = dateFormatter.date(from: "\(event1.day) \(event1.month) \(event1.time)") else { return false }
+            guard let date2 = dateFormatter.date(from: "\(event2.day) \(event2.month) \(event2.time)") else { return false }
+            
+            return date1 > date2
+        }
+        
+        trackTimeItems.sort { event1, event2 in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMMM HH:mm"
+            guard let date1 = dateFormatter.date(from: "\(event1.day) \(event1.month) \(event1.time)") else { return false }
+            guard let date2 = dateFormatter.date(from: "\(event2.day) \(event2.month) \(event2.time)") else { return false }
+            
+            return date1 > date2
         }
     }
 }
