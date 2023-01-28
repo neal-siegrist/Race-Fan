@@ -20,7 +20,7 @@ class HomePageViewModel {
         }
     }
     
-    private var nextRace: Race?
+    var nextRace: Race?
     
     
     //MARK: - Initializers

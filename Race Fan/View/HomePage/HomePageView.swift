@@ -15,7 +15,7 @@ class HomePageView: UIView {
         let view = UIView()
         
         view.backgroundColor = .red
-        view.layer.cornerRadius = 20.0
+        //view.layer.cornerRadius = 20.0
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         
@@ -107,6 +107,14 @@ class HomePageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let nextRaceBackgroundPath = UIBezierPath(roundedRect: nextRaceBackground.bounds, byRoundingCorners: [.bottomLeft, .bottomRight], cornerRadii: CGSize(width: 20, height: 20))
+        let nextRaceBackgroundMask = CAShapeLayer()
+        nextRaceBackgroundMask.path = nextRaceBackgroundPath.cgPath
+        nextRaceBackground.layer.mask = nextRaceBackgroundMask
+    }
     
     //MARK: - Functions
     

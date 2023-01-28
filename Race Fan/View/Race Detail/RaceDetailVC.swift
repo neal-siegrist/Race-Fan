@@ -50,10 +50,8 @@ class RaceDetailVC: UIViewController {
         setValues()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
     
     

@@ -24,16 +24,12 @@ class HomePageVC: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel.delegate = self
+        
+        addNextRaceAction()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        viewModel.fetchUpcomingRace()
     }
     
     override func loadView() {
@@ -44,15 +40,37 @@ class HomePageVC: UIViewController {
         setupNavigationController()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        viewModel.fetchUpcomingRace()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     //MARK: - Functions
+    
+    private func addNextRaceAction() {
+        homepageView.nextRaceBackground.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nextRaceClicked)))
+    }
     
     private func setupNavigationController() {
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal), style: .plain, target: self, action: #selector(profileClicked))
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.red, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25.0)]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     @objc private func profileClicked() {
         print("profile clicked")
+    }
+    
+    @objc private func nextRaceClicked() {
+        if let validRace = viewModel.nextRace {
+            let raceDetailVC = RaceDetailVC(race: validRace)
+            self.navigationController?.pushViewController(raceDetailVC, animated: true)
+        }
     }
     
     func updateUI() {
