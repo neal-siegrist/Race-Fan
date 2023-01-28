@@ -130,12 +130,12 @@ extension StandingsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        switch currentStandings {
-        case .drivers:
-            return viewModel.driverStandings?.count ?? 0
-        case .constructors:
-            return viewModel.constructorStandings?.count ?? 0
-        }
+        
+        let standingsCount = currentStandings == .drivers ? viewModel.driverStandings?.count ?? 0 : viewModel.constructorStandings?.count ?? 0
+        
+        standingsView.shouldHideTableView(shouldHide: !(standingsCount > 0))
+        
+        return standingsCount
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -192,7 +192,10 @@ extension StandingsVC: DataChangeDelegate {
         case .success:
             print("In success state")
             
-            tableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+            
         case .error(let error):
             print("Error state occured: \(error)")
             

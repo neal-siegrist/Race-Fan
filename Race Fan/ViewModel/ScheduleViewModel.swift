@@ -11,6 +11,8 @@ class ScheduleViewModel {
     
     //MARK: - Variables
     
+    static private let SECONDS_AFTER_RACE_TO_DETERMINE_PAST_RACES: Double = 21600
+    
     var upcomingRaces: [Race]?
     var pastRaces: [Race]?
     
@@ -36,7 +38,7 @@ class ScheduleViewModel {
     //MARK: - Functions
     
     private func extractUpcomingRaces(schedule: [Race]) -> [Race] {
-        let currDate = Date(timeIntervalSinceNow: 8640000.0)
+        let currDate = Date(timeIntervalSinceNow: ScheduleViewModel.SECONDS_AFTER_RACE_TO_DETERMINE_PAST_RACES)
         
         return schedule.filter { race in
             if let date = race.date {
@@ -48,7 +50,7 @@ class ScheduleViewModel {
     }
     
     private func extractPastRaces(schedule: [Race]) -> [Race] {
-        let currDate = Date(timeIntervalSinceNow: 8640000.0)
+        let currDate = Date(timeIntervalSinceNow: ScheduleViewModel.SECONDS_AFTER_RACE_TO_DETERMINE_PAST_RACES)
         
         return schedule.filter { race in
             if let date = race.date {

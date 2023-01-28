@@ -105,8 +105,6 @@ extension ScheduleVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        let scheduleCell = ScheduleCell(style: .default, reuseIdentifier: ScheduleCell.CELL_ID)
-        
         guard let scheduleCell = tableView.dequeueReusableCell(withIdentifier: ScheduleCell.CELL_ID) as? ScheduleCell else { fatalError("Cannot deque cell") }
         
         let race: Race? = currentSchedule == .upcoming ? viewModel.upcomingRaces?[indexPath.section] : viewModel.pastRaces?[indexPath.section]
@@ -132,12 +130,12 @@ extension ScheduleVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        switch currentSchedule {
-        case .upcoming:
-            return viewModel.upcomingRaces?.count ?? 0
-        case .past:
-            return viewModel.pastRaces?.count ?? 0
-        }
+        
+        let raceCount = currentSchedule == .upcoming ? viewModel.upcomingRaces?.count ?? 0 : viewModel.pastRaces?.count ?? 0
+        
+        scheduleView.shouldHideTableView(shouldHide: !(raceCount > 0))
+        
+        return raceCount
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -172,7 +170,9 @@ extension ScheduleVC: DataChangeDelegate {
         case .success:
             print("In success state")
             
-            tableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
             
         case .error(let error):
             print("Error state occured: \(error)")

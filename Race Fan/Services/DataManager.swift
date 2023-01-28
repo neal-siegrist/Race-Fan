@@ -30,8 +30,8 @@ class DataManager {
     //func getConstructorStandings
     
     func getConstructorStandings(completion: @escaping (Result<ConstructorStandings, NetworkingError>) -> Void) {
-        //let year = getCurrentRacingSeasonYear()
-        let year = 2022
+        let year = getCurrentRacingSeasonYear()
+        //let year = 2022
         
         if let coreDataConstructorStanding = getCoreDataConstructorStandings(year: year), let standings = coreDataConstructorStanding.standings?.allObjects as? [ConstructorStandingItem], !standings.isEmpty, !isRefreshNeeded(item: standings.first) {
             print("Successfully retrieved data from core data for driver standings")
@@ -64,8 +64,8 @@ class DataManager {
     }
     
     func getDriverStandings(completion: @escaping (Result<DriverStandings, NetworkingError>) -> Void) {
-        //let year = getCurrentRacingSeasonYear()
-        let year = 2022
+        let year = getCurrentRacingSeasonYear()
+        //let year = 2022
         
         if let coreDataDriverStanding = getCoreDataDriverStandings(year: year), let standings = coreDataDriverStanding.standings?.allObjects as? [DriverStandingItem], !standings.isEmpty, !isRefreshNeeded(item: standings.first) {
             print("Successfully retrieved data from core data for driver standings")
