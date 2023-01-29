@@ -1,31 +1,33 @@
 //
-//  ScheduleView.swift
+//  TopDriverStandingsView.swift
 //  Race Fan
 //
-//  Created by Neal Siegrist on 1/16/23.
+//  Created by Neal Siegrist on 1/28/23.
 //
 
 import UIKit
 
-class ToggleListView: UIView {
-
+class TopStandingsView: UIView {
+    
     //MARK: - Variables
     
-    let segmentedControl: UISegmentedControl = {
-        let control = UISegmentedControl()
+    let titleLabel: UILabel = {
+        let label = UILabel()
         
-        control.selectedSegmentTintColor = .red
-        control.translatesAutoresizingMaskIntoConstraints = false
-         
-        return control
+        label.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        label.textColor = .lightGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
     }()
     
     let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.isHidden = true
-        tableView.sectionHeaderTopPadding = 0.0
+        
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
+        tableView.isUserInteractionEnabled = false
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
@@ -50,19 +52,20 @@ class ToggleListView: UIView {
         stack.addArrangedSubview(imgView)
         stack.addArrangedSubview(message)
         
-        stack.isHidden = true
         stack.translatesAutoresizingMaskIntoConstraints = false
         
         return stack
     }()
     
-    
     //MARK: - Initializers
+    
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = .white
         
-        setupSegmentedControl()
+        self.backgroundColor = .white
+        self.layer.cornerRadius = 10.0
+        
+        setupTitleLabel()
         setupTableView()
         setupNoTableDataView()
     }
@@ -74,13 +77,12 @@ class ToggleListView: UIView {
     
     //MARK: - Functions
     
-    private func setupSegmentedControl() {
-        self.addSubview(segmentedControl)
+    private func setupTitleLabel() {
+        self.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
-            segmentedControl.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            segmentedControl.leftAnchor.constraint(equalTo: self.leftAnchor),
-            segmentedControl.rightAnchor.constraint(equalTo: self.rightAnchor)
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            titleLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 5)
         ])
     }
     
@@ -88,10 +90,10 @@ class ToggleListView: UIView {
         self.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 5),
-            tableView.leftAnchor.constraint(equalTo: self.leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: self.rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -5)
+            tableView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 5),
+            tableView.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 5),
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
+            tableView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -5)
         ])
     }
     
@@ -99,7 +101,7 @@ class ToggleListView: UIView {
         self.addSubview(noTableDataView)
         
         NSLayoutConstraint.activate([
-            noTableDataView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
+            noTableDataView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             noTableDataView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
     }

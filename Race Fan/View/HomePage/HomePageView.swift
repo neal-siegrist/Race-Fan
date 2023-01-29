@@ -87,7 +87,6 @@ class HomePageView: UIView {
         return label
     }()
     
-    
     //MARK: - Initializers
     
     init() {

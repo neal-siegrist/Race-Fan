@@ -18,6 +18,11 @@
 		D91EE6ED295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6EC295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift */; };
 		D934C7F22973190800A08E13 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934C7F12973190800A08E13 /* State.swift */; };
 		D934C7F42973408900A08E13 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934C7F32973408900A08E13 /* DataManager.swift */; };
+		D95926BE2985F53B0055EBEF /* TopStandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95926BD2985F53B0055EBEF /* TopStandingsView.swift */; };
+		D95926C02985F61E0055EBEF /* TopDriverStandingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95926BF2985F61E0055EBEF /* TopDriverStandingsVC.swift */; };
+		D95926C22986023A0055EBEF /* TopDriverStandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95926C12986023A0055EBEF /* TopDriverStandingsViewModel.swift */; };
+		D95926C42986286E0055EBEF /* TopConstructorStandingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95926C32986286E0055EBEF /* TopConstructorStandingsVC.swift */; };
+		D95926C6298629930055EBEF /* TopConstructorStandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95926C5298629930055EBEF /* TopConstructorStandingsViewModel.swift */; };
 		D95F8AE42967B1E8008DEBA6 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AE32967B1E8008DEBA6 /* HomePageView.swift */; };
 		D95F8AE82968C8B9008DEBA6 /* RaceCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AE72968C8B9008DEBA6 /* RaceCountdown.swift */; };
 		D95F8AEA296901DA008DEBA6 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AE9296901DA008DEBA6 /* ProgressCircle.swift */; };
@@ -104,6 +109,11 @@
 		D91EE6EC295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_FanUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D934C7F12973190800A08E13 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		D934C7F32973408900A08E13 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		D95926BD2985F53B0055EBEF /* TopStandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStandingsView.swift; sourceTree = "<group>"; };
+		D95926BF2985F61E0055EBEF /* TopDriverStandingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopDriverStandingsVC.swift; sourceTree = "<group>"; };
+		D95926C12986023A0055EBEF /* TopDriverStandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopDriverStandingsViewModel.swift; sourceTree = "<group>"; };
+		D95926C32986286E0055EBEF /* TopConstructorStandingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopConstructorStandingsVC.swift; sourceTree = "<group>"; };
+		D95926C5298629930055EBEF /* TopConstructorStandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopConstructorStandingsViewModel.swift; sourceTree = "<group>"; };
 		D95F8AE32967B1E8008DEBA6 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		D95F8AE72968C8B9008DEBA6 /* RaceCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceCountdown.swift; sourceTree = "<group>"; };
 		D95F8AE9296901DA008DEBA6 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
@@ -294,6 +304,22 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		D95926BB2985F4DA0055EBEF /* TopDriverStandings */ = {
+			isa = PBXGroup;
+			children = (
+				D95926BF2985F61E0055EBEF /* TopDriverStandingsVC.swift */,
+			);
+			path = TopDriverStandings;
+			sourceTree = "<group>";
+		};
+		D95926BC2985F4FF0055EBEF /* TopConstructorStandings */ = {
+			isa = PBXGroup;
+			children = (
+				D95926C32986286E0055EBEF /* TopConstructorStandingsVC.swift */,
+			);
+			path = TopConstructorStandings;
+			sourceTree = "<group>";
+		};
 		D95F8AE02967B1AE008DEBA6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,12 +336,15 @@
 				D95F8AE9296901DA008DEBA6 /* ProgressCircle.swift */,
 				D95F8AE72968C8B9008DEBA6 /* RaceCountdown.swift */,
 				D9A190C32975FE5800FEC58E /* ToggleListView.swift */,
+				D95926BD2985F53B0055EBEF /* TopStandingsView.swift */,
 				D96654DB297F611900442687 /* Constructor Detail */,
 				D96654DA297F610B00442687 /* Driver Detail */,
 				D95F8AE52967B235008DEBA6 /* HomePage */,
 				D96654E429804B1A00442687 /* Race Detail */,
 				D95F8AE62967B252008DEBA6 /* Schedule */,
 				D9A190BF2975F98C00FEC58E /* Standings */,
+				D95926BC2985F4FF0055EBEF /* TopConstructorStandings */,
+				D95926BB2985F4DA0055EBEF /* TopDriverStandings */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -327,6 +356,8 @@
 				D9CE2C65298195370025B6B0 /* RaceDetailViewModel.swift */,
 				D9A190C929760E2400FEC58E /* ScheduleViewModel.swift */,
 				D9947A792979DCC000AC93CC /* StandingsViewModel.swift */,
+				D95926C12986023A0055EBEF /* TopDriverStandingsViewModel.swift */,
+				D95926C5298629930055EBEF /* TopConstructorStandingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -571,8 +602,10 @@
 				D96830542971F45D00060BA3 /* WeekendEvent+CoreDataClass.swift in Sources */,
 				D9DE18842971EFEA006C6541 /* ScheduleParsing.swift in Sources */,
 				D9D5B6802967487D00A196BC /* ScheduleVC.swift in Sources */,
+				D95926C6298629930055EBEF /* TopConstructorStandingsViewModel.swift in Sources */,
 				D9CE2C6829819CEA0025B6B0 /* RaceDetailViewModelDelegate.swift in Sources */,
 				D96654E829804B6700442687 /* RaceDetailVC.swift in Sources */,
+				D95926C42986286E0055EBEF /* TopConstructorStandingsVC.swift in Sources */,
 				D968305C2972331A00060BA3 /* TimeStamp+CoreDataClass.swift in Sources */,
 				D9947A712979C68800AC93CC /* DriverStandings+CoreDataClass.swift in Sources */,
 				D9C83CB2297788900030DA09 /* ScheduleViewModelDelegate.swift in Sources */,
@@ -584,10 +617,13 @@
 				D9DE187D2971EAF3006C6541 /* HttpMethodType.swift in Sources */,
 				D9DE187A2971EA71006C6541 /* NetworkingManager.swift in Sources */,
 				D96654E629804B5200442687 /* RaceDetailView.swift in Sources */,
+				D95926BE2985F53B0055EBEF /* TopStandingsView.swift in Sources */,
+				D95926C02985F61E0055EBEF /* TopDriverStandingsVC.swift in Sources */,
 				D91EE6D1295FCD1B00AB463F /* Race_Fan.xcdatamodeld in Sources */,
 				D934C7F22973190800A08E13 /* State.swift in Sources */,
 				D96654EA2980A3D100442687 /* WeekendScheduleCell.swift in Sources */,
 				D9947A91297B4C7900AC93CC /* ConstructorStandingsParsing.swift in Sources */,
+				D95926C22986023A0055EBEF /* TopDriverStandingsViewModel.swift in Sources */,
 				D9CE2C6C2981A4710025B6B0 /* WeekendEventItem.swift in Sources */,
 				D9947A8A297B4A7C00AC93CC /* ConstructorStandingItem+CoreDataClass.swift in Sources */,
 				D91EE6CB295FCD1B00AB463F /* HomePageVC.swift in Sources */,

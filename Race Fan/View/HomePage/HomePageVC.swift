@@ -14,13 +14,17 @@ class HomePageVC: UIViewController {
     let homepageView: HomePageView
     let viewModel: HomePageViewModel
     
+    let topDriverStandingsVC: TopDriverStandingsVC
+    let topConstructorStandingsVC: TopConstructorStandingsVC
     
     //MARK: Initializers
     
     init() {
         self.viewModel = HomePageViewModel()
         self.homepageView = HomePageView()
-        
+        self.topDriverStandingsVC = TopDriverStandingsVC()
+        self.topConstructorStandingsVC = TopConstructorStandingsVC()
+
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel.delegate = self
@@ -44,6 +48,9 @@ class HomePageVC: UIViewController {
         super.viewDidLoad()
         
         viewModel.fetchUpcomingRace()
+        
+        self.addTopDriverStandingsVC()
+        self.addTopConstructorStandingsVC()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +58,48 @@ class HomePageVC: UIViewController {
     }
     
     //MARK: - Functions
+    
+    private func addTopDriverStandingsVC() {
+        self.addChild(topDriverStandingsVC)
+        self.view.addSubview(topDriverStandingsVC.view)
+        topDriverStandingsVC.didMove(toParent: self)
+        
+        setTopDriverStandingsConstraints()
+    }
+    
+    private func setTopDriverStandingsConstraints() {
+        guard let driverStandingsView = topDriverStandingsVC.view else { return }
+        
+        driverStandingsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            driverStandingsView.topAnchor.constraint(equalTo: self.homepageView.nextRaceBackground.bottomAnchor, constant: 15),
+            driverStandingsView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 10),
+            driverStandingsView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -10),
+            driverStandingsView.heightAnchor.constraint(equalToConstant: 175)
+        ])
+    }
+    
+    private func addTopConstructorStandingsVC() {
+        self.addChild(topConstructorStandingsVC)
+        self.view.addSubview(topConstructorStandingsVC.view)
+        topConstructorStandingsVC.didMove(toParent: self)
+        
+        setTopConstructorStandingsConstraints()
+    }
+    
+    private func setTopConstructorStandingsConstraints() {
+        guard let constructorStandingsView = topConstructorStandingsVC.view else { return }
+        
+        constructorStandingsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            constructorStandingsView.topAnchor.constraint(equalTo: self.topDriverStandingsVC.view.bottomAnchor, constant: 15),
+            constructorStandingsView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 10),
+            constructorStandingsView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -10),
+            constructorStandingsView.heightAnchor.constraint(equalToConstant: 175)
+        ])
+    }
     
     private func addNextRaceAction() {
         homepageView.nextRaceBackground.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nextRaceClicked)))
@@ -106,7 +155,7 @@ extension HomePageVC: DataChangeDelegate {
     func didUpdate(with state: State) {
         switch state {
         case .success:
-            print("In success state")
+            print("In homevc success state")
             
             DispatchQueue.main.async {
                 self.updateUI()

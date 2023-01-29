@@ -38,6 +38,8 @@ class StandingsVC: UIViewController {
         super.viewDidLoad()
         
         viewModel.fetchStandings()
+        
+        self.standingsView.setErrorMessage("Check back for standings!")
     }
     
     override func loadView() {

@@ -41,6 +41,8 @@ class ScheduleVC: UIViewController {
         super.viewDidLoad()
         
         viewModel.fetchSchedule()
+        
+        self.scheduleView.setErrorMessage("Check back for schedule!")
     }
     
     override func loadView() {

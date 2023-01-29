@@ -22,6 +22,9 @@ class HomePageViewModel {
     
     var nextRace: Race?
     
+    var topDriverStandings: [DriverStandingItem]?
+    var topConstructorStandings: [ConstructorStandingItem]?
+    
     
     //MARK: - Initializers
     
