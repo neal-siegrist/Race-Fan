@@ -61,7 +61,7 @@ class HomePageVC: UIViewController {
     
     private func addTopDriverStandingsVC() {
         self.addChild(topDriverStandingsVC)
-        self.view.addSubview(topDriverStandingsVC.view)
+        self.homepageView.scrollView.addSubview(topDriverStandingsVC.view)
         topDriverStandingsVC.didMove(toParent: self)
         
         setTopDriverStandingsConstraints()
@@ -73,16 +73,16 @@ class HomePageVC: UIViewController {
         driverStandingsView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            driverStandingsView.topAnchor.constraint(equalTo: self.homepageView.nextRaceBackground.bottomAnchor, constant: 15),
-            driverStandingsView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 10),
-            driverStandingsView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -10),
-            driverStandingsView.heightAnchor.constraint(equalToConstant: 175)
+            driverStandingsView.topAnchor.constraint(equalTo: self.homepageView.scrollView.contentLayoutGuide.topAnchor, constant: 15),
+            driverStandingsView.leftAnchor.constraint(equalTo: self.homepageView.scrollView.frameLayoutGuide.leftAnchor, constant: 10),
+            driverStandingsView.rightAnchor.constraint(equalTo: self.homepageView.scrollView.frameLayoutGuide.rightAnchor, constant: -10),
+            driverStandingsView.heightAnchor.constraint(equalToConstant: 175),
         ])
     }
     
     private func addTopConstructorStandingsVC() {
         self.addChild(topConstructorStandingsVC)
-        self.view.addSubview(topConstructorStandingsVC.view)
+        homepageView.scrollView.addSubview(topConstructorStandingsVC.view)
         topConstructorStandingsVC.didMove(toParent: self)
         
         setTopConstructorStandingsConstraints()
@@ -95,9 +95,10 @@ class HomePageVC: UIViewController {
         
         NSLayoutConstraint.activate([
             constructorStandingsView.topAnchor.constraint(equalTo: self.topDriverStandingsVC.view.bottomAnchor, constant: 15),
-            constructorStandingsView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 10),
-            constructorStandingsView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -10),
-            constructorStandingsView.heightAnchor.constraint(equalToConstant: 175)
+            constructorStandingsView.leftAnchor.constraint(equalTo: homepageView.scrollView.frameLayoutGuide.leftAnchor, constant: 10),
+            constructorStandingsView.rightAnchor.constraint(equalTo: homepageView.scrollView.frameLayoutGuide.rightAnchor, constant: -10),
+            constructorStandingsView.heightAnchor.constraint(equalToConstant: 175),
+            constructorStandingsView.bottomAnchor.constraint(equalTo: homepageView.scrollView.contentLayoutGuide.bottomAnchor, constant: -10)
         ])
     }
     

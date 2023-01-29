@@ -11,6 +11,15 @@ class HomePageView: UIView {
 
     //MARK: - Properties
     
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        
+        scrollView.backgroundColor = .clear
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return scrollView
+    }()
+    
     let nextRaceBackground: UIView = {
         let view = UIView()
         
@@ -100,6 +109,8 @@ class HomePageView: UIView {
         setupNextRaceTitle()
         setupCountdownTimer()
         setupLocationStack()
+        
+        setupScrollView()
     }
     
     required init?(coder: NSCoder) {
@@ -177,6 +188,17 @@ class HomePageView: UIView {
             locationStack.topAnchor.constraint(equalTo: raceCountdown.bottomAnchor, constant: 20),
             locationStack.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             locationStack.bottomAnchor.constraint(equalTo: nextRaceBackground.bottomAnchor,constant: -20)
+        ])
+    }
+    
+    private func setupScrollView() {
+        self.addSubview(scrollView)
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: nextRaceBackground.bottomAnchor),
+            scrollView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.rightAnchor.constraint(equalTo: self.rightAnchor)
         ])
     }
 }
