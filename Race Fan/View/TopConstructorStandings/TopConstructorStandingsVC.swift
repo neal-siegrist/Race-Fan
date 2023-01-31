@@ -24,6 +24,7 @@ class TopConstructorStandingsVC: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         
+        self.viewModel.delegate = self
         self.viewModel.fetchStandings()
         setupTableView()
     }

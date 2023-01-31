@@ -84,11 +84,14 @@ class StandingsVC: UIViewController {
     }
     
     func displayErrorAlert() {
-        let alertController = UIAlertController(title: nil, message: "Error retrieving standings data. Please try again.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
         
-        present(alertController, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            let alertController = UIAlertController(title: nil, message: "Error retrieving standings data. Please try again.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(action)
+            
+            self?.present(alertController, animated: true)
+        }
     }
 }
 

@@ -40,6 +40,7 @@ extension TopDriverStandingsViewModel: StandingsViewModelDelegate {
     func fetchStandings() {
         
         dataManager.getDriverStandings { [weak self] result in
+            print("getting driver standings for front page")
             switch result {
             case .success(let driverStanding):
                 print("Success case for driver standings: \(driverStanding.standings!.allObjects.count)")

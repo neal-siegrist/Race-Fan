@@ -11,4 +11,5 @@ enum NetworkingError: Error {
     case parsingError
     case responseError(Error)
     case noData
+    case noUpcomingRace
 }

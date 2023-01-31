@@ -140,12 +140,16 @@ class HomePageVC: UIViewController {
     }
     
     func displayErrorAlert() {
-        homepageView.nextRaceBackground.isHidden = true
-        let alertController = UIAlertController(title: nil, message: "Error retrieving schedule data. Please try again.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
         
-        present(alertController, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            self?.homepageView.nextRaceBackground.isHidden = true
+            
+            let alertController = UIAlertController(title: nil, message: "Error retrieving schedule data. Please try again.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(action)
+            
+            self?.present(alertController, animated: true)
+        }
     }
 }
 
@@ -163,10 +167,17 @@ extension HomePageVC: DataChangeDelegate {
             }
             
         case .error(let error):
-            print("Error state occured: \(error)")
+            print("Error state occured: \(error) in homepagevc")
             
-            //Show error message
-            displayErrorAlert()
+            if let networkingError = error as? NetworkingError {
+                
+                if case .noUpcomingRace = networkingError {
+                    return
+                }
+                
+                //Show error message
+                displayErrorAlert()
+            }
         case .idle:
             print("In idle state")
         case .loading:

@@ -13,7 +13,6 @@
 		D91EE6D1295FCD1B00AB463F /* Race_Fan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6CF295FCD1B00AB463F /* Race_Fan.xcdatamodeld */; };
 		D91EE6D3295FCD1D00AB463F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D91EE6D2295FCD1D00AB463F /* Assets.xcassets */; };
 		D91EE6D6295FCD1D00AB463F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D91EE6D4295FCD1D00AB463F /* LaunchScreen.storyboard */; };
-		D91EE6E1295FCD1D00AB463F /* Race_FanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6E0295FCD1D00AB463F /* Race_FanTests.swift */; };
 		D91EE6EB295FCD1D00AB463F /* Race_FanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6EA295FCD1D00AB463F /* Race_FanUITests.swift */; };
 		D91EE6ED295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6EC295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift */; };
 		D934C7F22973190800A08E13 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934C7F12973190800A08E13 /* State.swift */; };
@@ -103,7 +102,6 @@
 		D91EE6D5295FCD1D00AB463F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D91EE6D7295FCD1D00AB463F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D91EE6DC295FCD1D00AB463F /* Race FanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Race FanTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D91EE6E0295FCD1D00AB463F /* Race_FanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_FanTests.swift; sourceTree = "<group>"; };
 		D91EE6E6295FCD1D00AB463F /* Race FanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Race FanUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D91EE6EA295FCD1D00AB463F /* Race_FanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_FanUITests.swift; sourceTree = "<group>"; };
 		D91EE6EC295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_FanUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -269,7 +267,6 @@
 		D91EE6DF295FCD1D00AB463F /* Race FanTests */ = {
 			isa = PBXGroup;
 			children = (
-				D91EE6E0295FCD1D00AB463F /* Race_FanTests.swift */,
 			);
 			path = "Race FanTests";
 			sourceTree = "<group>";
@@ -668,7 +665,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D91EE6E1295FCD1D00AB463F /* Race_FanTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,6 +831,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -864,6 +861,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

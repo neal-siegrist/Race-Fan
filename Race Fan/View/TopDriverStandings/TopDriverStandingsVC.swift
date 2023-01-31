@@ -24,6 +24,7 @@ class TopDriverStandingsVC: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         
+        self.viewModel.delegate = self
         self.viewModel.fetchStandings()
         setupTableView()
     }
@@ -75,7 +76,7 @@ extension TopDriverStandingsVC: UITableViewDataSource, UITableViewDelegate {
             cell.nameLabel.text = "\(firstName) \(lastName)"
             cell.pointsLabel.text = String(driver.points)
             
-            if let constructor = viewModel.driverStandings?[indexPath.section].constructors?.allObjects as? [Constructor], let id = constructor.first?.id {
+            if let constructor = viewModel.driverStandings?[indexPath.row].constructors?.allObjects as? [Constructor], let id = constructor.first?.id {
                 cell.teamColorView.backgroundColor = Constants.Colors.teamColors[id]
             }
         }

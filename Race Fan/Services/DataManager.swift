@@ -109,6 +109,9 @@ class DataManager {
                 completion(.success(firstUpcomingRace))
                 return
             }
+            
+            completion(.failure(.noUpcomingRace))
+            return
         }
         
         coreDataManager.performDeletion(forYear: year, entityName: DataManager.RACE_ENTITY_NAME)
@@ -121,7 +124,7 @@ class DataManager {
                     return
                 }
                 
-                completion(.failure(.noData))
+                completion(.failure(.noUpcomingRace))
                 
             case .failure(let networkingError):
                 completion(.failure(networkingError))
