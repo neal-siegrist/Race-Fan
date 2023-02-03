@@ -37,7 +37,7 @@ class StandingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.fetchStandings()
+        //viewModel.fetchStandings()
         
         self.standingsView.setErrorMessage("Check back for standings!")
     }
@@ -91,6 +91,24 @@ class StandingsVC: UIViewController {
             alertController.addAction(action)
             
             self?.present(alertController, animated: true)
+        }
+    }
+    
+    private func startLoading() {
+        let loadingWheel = standingsView.loadingWheel
+        
+        DispatchQueue.main.async {
+            loadingWheel.startAnimating()
+            loadingWheel.isHidden = false
+        }
+    }
+    
+    private func stopLoading() {
+        let loadingWheel = standingsView.loadingWheel
+        
+        DispatchQueue.main.async {
+            loadingWheel.stopAnimating()
+            loadingWheel.isHidden = true
         }
     }
 }
@@ -199,18 +217,15 @@ extension StandingsVC: DataChangeDelegate {
             
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
+                self?.stopLoading()
             }
-            
         case .error(let error):
             print("Error state occured: \(error)")
-            
-            //Show error message
+            stopLoading()
             displayErrorAlert()
-        case .idle:
-            print("In idle state")
         case .loading:
             print("In loading state")
-            //Show loading wheel?
+            startLoading()
         }
     }
 }

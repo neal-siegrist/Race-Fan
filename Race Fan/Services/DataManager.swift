@@ -8,258 +8,154 @@
 import Foundation
 
 class DataManager {
-    
+     
     //MARK: - Variables
+    public static let shared = DataManager()
+    
     public static let DAYS_UNTIL_SCHEDULE_REFRESH: Double = 21
-    public static let RACE_ENTITY_NAME: String = "Race"
+    
     public static let DRIVER_STANDINGS_ENTITY_NAME: String = "DriverStandings"
     public static let CONSTRUCTOR_STANDINGS_ENTITY_NAME: String = "ConstructorStandings"
+    public static let SCHEDULE_ENTITY_NAME: String = "Race"
     
-    let coreDataManager: CoreDataManager
+    private let coreDataService = CoreDataService.shared
     
+    private var scheduleListeners: [DataListener] = []
+    private var driverStandingsListeners: [DataListener] = []
+    private var constructorStandingsListeners: [DataListener] = []
     
     //MARK: - Initializers
     
-    init() {
-        self.coreDataManager = CoreDataManager.shared
-    }
+    private init() {}
     
     
     //MARK: - Functions
     
-    //func getConstructorStandings
-    
-    func getConstructorStandings(completion: @escaping (Result<ConstructorStandings, NetworkingError>) -> Void) {
-        let year = getCurrentRacingSeasonYear()
-        //let year = 2022
-        
-        if let coreDataConstructorStanding = getCoreDataConstructorStandings(year: year), let standings = coreDataConstructorStanding.standings?.allObjects as? [ConstructorStandingItem], !standings.isEmpty, !isRefreshNeeded(item: standings.first) {
-            print("Successfully retrieved data from core data for driver standings")
-            
-            completion(.success(coreDataConstructorStanding))
-            
-            return
-        }
-        
-        coreDataManager.performDeletion(forYear: year, entityName: DataManager.CONSTRUCTOR_STANDINGS_ENTITY_NAME)
-        
-        self.getApiConstructorStandings(year: year) { result in
-            switch result {
-            case .success(let constructorStandings):
-                
-                if constructorStandings.standings != nil {
-                    print("constructorStandingsArray is not nil and calling with success")
-                    completion(.success(constructorStandings))
-                    return
-                }
-
-                print("constructorStandingsArray is nil and calling with failure and .noData error")
-                completion(.failure(.noData))
-
-            case .failure(let networkingError):
-                print("In failure of getConstructorStandings with error:\(networkingError)")
-                completion(.failure(networkingError))
+    func addListener(forType: [ListenerType], listener: DataListener) {
+        for type in forType {
+            switch type {
+                case .schedule:
+                    scheduleListeners.append(listener)
+                case .driver:
+                    driverStandingsListeners.append(listener)
+                case .constructor:
+                    constructorStandingsListeners.append(listener)
             }
         }
     }
     
-    func getDriverStandings(completion: @escaping (Result<DriverStandings, NetworkingError>) -> Void) {
-        let year = getCurrentRacingSeasonYear()
-        //let year = 2022
-        
-        if let coreDataDriverStanding = getCoreDataDriverStandings(year: year), let standings = coreDataDriverStanding.standings?.allObjects as? [DriverStandingItem], !standings.isEmpty, !isRefreshNeeded(item: standings.first) {
-            print("Successfully retrieved data from core data for driver standings")
-            
-            completion(.success(coreDataDriverStanding))
-            
-            return
-        }
-        
-        coreDataManager.performDeletion(forYear: year, entityName: DataManager.DRIVER_STANDINGS_ENTITY_NAME)
-        
-        self.getApiDriverStandings(year: year) { result in
-            switch result {
-            case .success(let driverStandings):
-                
-                if driverStandings.standings != nil {
-                    print("standingsArray is not nil and calling with success")
-                    completion(.success(driverStandings))
-                    return
-                }
-
-                print("standingsArray is nil and calling with failure and .noData error")
-                completion(.failure(.noData))
-
-            case .failure(let networkingError):
-                print("In failure of getDriverStandings with error:\(networkingError)")
-                completion(.failure(networkingError))
-            }
-        }
+    func fetchAllData() {
+        fetchSchedule()
+        fetchDriverStandings()
+        fetchConstructorStandings()
     }
     
-    
-    
-    func getUpcomingRace(completion: @escaping (Result<Race, NetworkingError>) -> Void) {
-        
+    func fetchSchedule() {
         let year = getCurrentRacingSeasonYear()
         
-        if let coreDataSchedule = getCoreDataRaceSchedule(year: year), !coreDataSchedule.isEmpty, !isRefreshNeeded(item: coreDataSchedule.first) {
+        if let schedule = coreDataService.getSchedule(forYear: year), !schedule.isEmpty, !isRefreshNeeded(item: schedule.first, type: .schedule) {
+            notifyListenersOfSuccess(forType: .schedule)
+        } else {
+            coreDataService.performDeletion(forYear: year, entityName: DataManager.SCHEDULE_ENTITY_NAME)
             
-            if let firstUpcomingRace = extractFirstUpcomingRaceFromSchedule(schedule: coreDataSchedule) {
-                completion(.success(firstUpcomingRace))
-                return
-            }
+            guard let url = URL(string: "\(Constants.ApiEndPoints.baseURL)/\(year).json") else { return }
+            guard let urlRequest = NetworkingManager.generateUrlRequest(url: url) else { return }
             
-            completion(.failure(.noUpcomingRace))
-            return
-        }
-        
-        coreDataManager.performDeletion(forYear: year, entityName: DataManager.RACE_ENTITY_NAME)
-        
-        self.getApiRaceSchedule(year: year) { [weak self] result in
-            switch result {
-            case .success(let schedule):
-                if let firstUpcomingRace = self?.extractFirstUpcomingRaceFromSchedule(schedule: schedule) {
-                    completion(.success(firstUpcomingRace))
-                    return
-                }
-                
-                completion(.failure(.noUpcomingRace))
-                
-            case .failure(let networkingError):
-                completion(.failure(networkingError))
-            }
+            performNetworkRequest(request: urlRequest, parsingType: ScheduleParsing.self, listenerType: .schedule)
         }
     }
     
-    func getSchedule(completion: @escaping (Result<[Race], NetworkingError>) -> Void) {
-        
+    func fetchDriverStandings() {
         let year = getCurrentRacingSeasonYear()
         
-        if let coreDataSchedule = getCoreDataRaceSchedule(year: year), !coreDataSchedule.isEmpty, !isRefreshNeeded(item: coreDataSchedule.first) {
+        if let driverStandings = coreDataService.getDriverStandings(forYear: year), !driverStandings.isEmpty, !isRefreshNeeded(item: driverStandings.first, type: .driver) {
+            notifyListenersOfSuccess(forType: .driver)
+        } else {
+            coreDataService.performDeletion(forYear: year, entityName: DataManager.DRIVER_STANDINGS_ENTITY_NAME)
             
-            completion(.success(coreDataSchedule))
-            return
-        }
-        
-        coreDataManager.performDeletion(forYear: year, entityName: DataManager.RACE_ENTITY_NAME)
-        
-        self.getApiRaceSchedule(year: year) { result in
-            switch result {
-            case .success(let schedule):
-                if !schedule.isEmpty {
-                    completion(.success(schedule))
-                } else {
-                    completion(.failure(.noData))
-                }
-                
-            case .failure(let networkingError):
-                completion(.failure(networkingError))
-            }
+            guard let url = URL(string: "\(Constants.ApiEndPoints.baseURL)/\(year)\(Constants.ApiEndPoints.driverStandingsURL)") else { return }
+            guard let urlRequest = NetworkingManager.generateUrlRequest(url: url) else { return }
+            
+            performNetworkRequest(request: urlRequest, parsingType: DriverStandingsParsing.self, listenerType: .driver)
         }
     }
     
-    private func getCoreDataConstructorStandings(year: Int) -> ConstructorStandings? {
-        return coreDataManager.getConstructorStandings(forYear: year)
-    }
-    
-    private func getCoreDataDriverStandings(year: Int) -> DriverStandings? {
-        return coreDataManager.getDriverStandings(forYear: year)
-    }
-    
-    private func getCoreDataRaceSchedule(year: Int) -> [Race]? {
-        return coreDataManager.getSchedule(forYear: year)
-    }
-    
-    private func getApiRaceSchedule(year: Int, completion: @escaping (Result<[Race], NetworkingError>) -> Void ) {
+    func fetchConstructorStandings() {
+        let year = getCurrentRacingSeasonYear()
         
-        guard let url = URL(string: "\(Constants.ApiEndPoints.baseURL)/\(year).json") else { return }
-        guard let urlRequest = NetworkingManager.generateUrlRequest(url: url) else { return }
-
-        NetworkingManager.loadData(request: urlRequest, type: ScheduleParsing.self) { [weak self] result in
+        if let constructorStandings = coreDataService.getConstructorStandings(forYear: year), !constructorStandings.isEmpty, !isRefreshNeeded(item: constructorStandings.first, type: .constructor) {
+            notifyListenersOfSuccess(forType: .constructor)
+        } else {
+            coreDataService.performDeletion(forYear: year, entityName: DataManager.CONSTRUCTOR_STANDINGS_ENTITY_NAME)
+            
+            guard let url = URL(string: "\(Constants.ApiEndPoints.baseURL)/\(year)\(Constants.ApiEndPoints.constructorStandingsURL)") else { return }
+            guard let urlRequest = NetworkingManager.generateUrlRequest(url: url) else { return }
+            
+            performNetworkRequest(request: urlRequest, parsingType: ConstructorStandingsParsing.self, listenerType: .constructor)
+        }
+    }
+    
+    private func performNetworkRequest<T: Decodable>(request: URLRequest, parsingType: T.Type, listenerType: ListenerType) {
+        NetworkingManager.loadData(request: request, type: T.self) { [weak self] result in
             switch result {
             case .success(_):
-                self?.coreDataManager.saveContext()
-                
-                if let coreDataSchedule = self?.getCoreDataRaceSchedule(year: year), !coreDataSchedule.isEmpty {
-                    completion(.success(coreDataSchedule))
-                } else {
-                    completion(.failure(.noData))
-                }
+                CoreDataStack.shared.saveContext()
+                self?.notifyListenersOfSuccess(forType: listenerType)
             case .failure(let networkingError):
-                completion(.failure(networkingError))
+                self?.notifyListenersOfFailure(forType: listenerType, error: networkingError)
             }
         }
     }
     
-    private func getApiDriverStandings(year: Int, completion: @escaping (Result<DriverStandings, NetworkingError>) -> Void) {
-        
-        guard let url = URL(string: "\(Constants.ApiEndPoints.baseURL)/\(year)\(Constants.ApiEndPoints.driverStandingsURL)") else { return }
-        guard let urlRequest = NetworkingManager.generateUrlRequest(url: url) else { return }
-
-        NetworkingManager.loadData(request: urlRequest, type: DriverStandingsParsing.self) { [weak self] result in
-            switch result {
-            case .success(_):
-                self?.coreDataManager.saveContext()
-                
-                if let coreDataSchedule = self?.getCoreDataDriverStandings(year: year) {
-                    completion(.success(coreDataSchedule))
-                } else {
-                    print("In getApiDriverStandings error occured: saved context but error fetching fresh data from core data")
-                    completion(.failure(.noData))
-                }
-            case .failure(let networkingError):
-                print("In getApiDriverStandings error occured: \(networkingError)")
-                completion(.failure(networkingError))
-            }
-        }
-    }
-    
-    private func getApiConstructorStandings(year: Int, completion: @escaping (Result<ConstructorStandings, NetworkingError>) -> Void) {
-        
-        guard let url = URL(string: "\(Constants.ApiEndPoints.baseURL)/\(year)\(Constants.ApiEndPoints.constructorStandingsURL)") else { return }
-        guard let urlRequest = NetworkingManager.generateUrlRequest(url: url) else { return }
-
-        NetworkingManager.loadData(request: urlRequest, type: ConstructorStandingsParsing.self) { [weak self] result in
-            switch result {
-            case .success(_):
-                self?.coreDataManager.saveContext()
-                
-                if let coreDataSchedule = self?.getCoreDataConstructorStandings(year: year) {
-                    completion(.success(coreDataSchedule))
-                } else {
-                    print("In getApiConstructorStandings error occured: saved context but error fetching fresh data from core data")
-                    completion(.failure(.noData))
-                }
-            case .failure(let networkingError):
-                print("In getApiConstructorStandings error occured: \(networkingError)")
-                completion(.failure(networkingError))
-            }
-        }
-    }
-    
-    private func getCurrentRacingSeasonYear() -> Int {
+    func getCurrentRacingSeasonYear() -> Int {
         return Calendar.current.component(.year, from: Date())
     }
     
-    private func isRefreshNeeded(item: TimeStamp?) -> Bool {
-        
+    private func isRefreshNeeded(item: TimeStamp?, type: ListenerType) -> Bool {
         if let item = item, let creationData = item.dateCreated {
-            return Date(timeIntervalSinceNow: -(86400 * DataManager.DAYS_UNTIL_SCHEDULE_REFRESH)) > creationData
+            switch type {
+            case .schedule:
+                return Date(timeIntervalSinceNow: -(86400 * DataManager.DAYS_UNTIL_SCHEDULE_REFRESH)) > creationData
+            case .driver, .constructor:
+                //TODO: Update to calculate standings refresh
+                return Date(timeIntervalSinceNow: -(86400 * DataManager.DAYS_UNTIL_SCHEDULE_REFRESH)) > creationData
+            }
         }
         
         return false
     }
     
-    private func extractFirstUpcomingRaceFromSchedule(schedule: [Race]) -> Race? {
-        let currentDate = Date()
-        
-        for race in schedule {
-            if let raceDate = race.date {
-                if currentDate < raceDate { return race }
-            }
+    private func notifyListenersOfSuccess(forType: ListenerType) {
+        switch forType {
+            case .constructor:
+                for constructorStandingsListener in constructorStandingsListeners {
+                    constructorStandingsListener.dataIsUpdated(type: .constructor)
+                }
+            case .driver:
+                for driverStandingsListener in driverStandingsListeners {
+                    driverStandingsListener.dataIsUpdated(type: .driver)
+                }
+            case .schedule:
+                for scheduleListener in scheduleListeners {
+                    scheduleListener.dataIsUpdated(type: .schedule)
+                }
         }
-        
-        return nil
+    }
+    
+    private func notifyListenersOfFailure(forType: ListenerType, error: Error) {
+        switch forType {
+            case .constructor:
+                for constructorStandingsListener in constructorStandingsListeners {
+                    constructorStandingsListener.errorOccured(error: error)
+                }
+            case .driver:
+                for driverStandingsListener in driverStandingsListeners {
+                    driverStandingsListener.errorOccured(error: error)
+                }
+            case .schedule:
+                for scheduleListener in scheduleListeners {
+                    scheduleListener.errorOccured(error: error)
+                }
+        }
     }
 }

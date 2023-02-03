@@ -13,7 +13,11 @@ class TopDriverStandingsViewModel {
     
     var driverStandings: [DriverStandingItem]?
     
-    var delegate: DataChangeDelegate?
+    var delegate: DataChangeDelegate? {
+        didSet {
+            self.delegate?.didUpdate(with: self.state)
+        }
+    }
     
     private var state: State {
         didSet {
@@ -27,8 +31,10 @@ class TopDriverStandingsViewModel {
     //MARK: - Initializers
     
     init() {
-        self.state = .idle
-        self.dataManager = DataManager()
+        self.state = .loading
+        self.dataManager = DataManager.shared
+        
+        dataManager.addListener(forType: [.driver], listener: self)
     }
     
     
@@ -36,31 +42,26 @@ class TopDriverStandingsViewModel {
     
 }
 
-extension TopDriverStandingsViewModel: StandingsViewModelDelegate {
-    func fetchStandings() {
-        
-        dataManager.getDriverStandings { [weak self] result in
-            print("getting driver standings for front page")
-            switch result {
-            case .success(let driverStanding):
-                print("Success case for driver standings: \(driverStanding.standings!.allObjects.count)")
-                
-                if let standings = driverStanding.standings?.allObjects as? [DriverStandingItem], !standings.isEmpty, standings.count >= 3 {
-                    let sortedStandings = standings.sorted(by: { driver1, driver2 in
-                        return driver1.position < driver2.position
-                    })
-                    
-                    self?.driverStandings = Array(sortedStandings[0...2])
-                
-                    self?.state = .success
-                    
-                    return
-                }
-                
-                self?.state = .error(NetworkingError.noData)
-            case .failure(let networkingError):
-                print("Error occured in driver standings: \(networkingError)")
-            }
+
+//MARK: - DataListener delegate
+
+extension TopDriverStandingsViewModel: DataListener {
+    func dataIsUpdated(type: ListenerType) {
+        if let standings = CoreDataService.shared.getDriverStandings(forYear: dataManager.getCurrentRacingSeasonYear()), !standings.isEmpty, standings.count >= 3 {
+            let sortedStandings = standings.sorted(by: { driver1, driver2 in
+                return driver1.position < driver2.position
+            })
+            
+            self.driverStandings = Array(sortedStandings[0...2])
+            
+            self.state = .success
+            
+            return
         }
+    }
+    
+    func errorOccured(error: Error) {
+        print("Error called on top driver standings listenter. Error: \(error)")
+        self.state = .error(error)
     }
 }

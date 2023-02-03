@@ -40,8 +40,6 @@ class ScheduleVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.fetchSchedule()
-        
         self.scheduleView.setErrorMessage("Check back for schedule!")
     }
     
@@ -95,6 +93,24 @@ class ScheduleVC: UIViewController {
             alertController.addAction(action)
             
             self?.present(alertController, animated: true)
+        }
+    }
+    
+    private func startLoading() {
+        let loadingWheel = scheduleView.loadingWheel
+        
+        DispatchQueue.main.async {
+            loadingWheel.startAnimating()
+            loadingWheel.isHidden = false
+        }
+    }
+    
+    private func stopLoading() {
+        let loadingWheel = scheduleView.loadingWheel
+        
+        DispatchQueue.main.async {
+            loadingWheel.stopAnimating()
+            loadingWheel.isHidden = true
         }
     }
 }
@@ -173,22 +189,17 @@ extension ScheduleVC: DataChangeDelegate {
     func didUpdate(with state: State) {
         switch state {
         case .success:
-            print("In success state")
-            
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
+                self?.stopLoading()
             }
-            
         case .error(let error):
             print("Error state occured: \(error)")
-            
-            //Show error message
+            stopLoading()
             displayErrorAlert()
-        case .idle:
-            print("In idle state")
         case .loading:
             print("In loading state")
-            //Show loading wheel?
+            startLoading()
         }
     }
 }

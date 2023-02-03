@@ -38,6 +38,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         standingsNC.tabBarItem.image = UIImage(systemName: "list.number")?.imageWithoutBaseline()
         standingsNC.tabBarItem.imageInsets = UIEdgeInsets(top: 5.0, left: 0, bottom: -5.0, right: 0)
         
+        DataManager.shared.fetchAllData()
+        
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [homepageNC, scheduleNC, standingsNC]
         tabBarController.tabBar.tintColor = .red

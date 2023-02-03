@@ -30,6 +30,8 @@ class HomePageVC: UIViewController {
         self.viewModel.delegate = self
         
         addNextRaceAction()
+        self.addTopDriverStandingsVC()
+        self.addTopConstructorStandingsVC()
     }
     
     required init?(coder: NSCoder) {
@@ -42,15 +44,6 @@ class HomePageVC: UIViewController {
         self.view = homepageView
         
         setupNavigationController()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        viewModel.fetchUpcomingRace()
-        
-        self.addTopDriverStandingsVC()
-        self.addTopConstructorStandingsVC()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,10 +105,6 @@ class HomePageVC: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
-    @objc private func profileClicked() {
-        print("profile clicked")
-    }
-    
     @objc private func nextRaceClicked() {
         if let validRace = viewModel.nextRace {
             let raceDetailVC = RaceDetailVC(race: validRace)
@@ -160,12 +149,9 @@ extension HomePageVC: DataChangeDelegate {
     func didUpdate(with state: State) {
         switch state {
         case .success:
-            print("In homevc success state")
-            
             DispatchQueue.main.async {
                 self.updateUI()
             }
-            
         case .error(let error):
             print("Error state occured: \(error) in homepagevc")
             
@@ -178,8 +164,6 @@ extension HomePageVC: DataChangeDelegate {
                 //Show error message
                 displayErrorAlert()
             }
-        case .idle:
-            print("In idle state")
         case .loading:
             print("In loading state")
             //Show loading wheel

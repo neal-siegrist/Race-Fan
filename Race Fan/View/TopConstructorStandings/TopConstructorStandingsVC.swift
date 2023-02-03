@@ -25,7 +25,6 @@ class TopConstructorStandingsVC: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel.delegate = self
-        self.viewModel.fetchStandings()
         setupTableView()
     }
     
@@ -50,6 +49,24 @@ class TopConstructorStandingsVC: UIViewController {
         topConstructorStandingsView.tableView.delegate = self
         
         tableView.register(StandingsCell.self, forCellReuseIdentifier: StandingsCell.CELL_ID)
+    }
+    
+    private func startLoading() {
+        let loadingWheel = topConstructorStandingsView.loadingWheel
+        
+        DispatchQueue.main.async {
+            loadingWheel.startAnimating()
+            loadingWheel.isHidden = false
+        }
+    }
+    
+    private func stopLoading() {
+        let loadingWheel = topConstructorStandingsView.loadingWheel
+        
+        DispatchQueue.main.async {
+            loadingWheel.stopAnimating()
+            loadingWheel.isHidden = true
+        }
     }
 }
 
@@ -97,22 +114,16 @@ extension TopConstructorStandingsVC: DataChangeDelegate {
     func didUpdate(with state: State) {
         switch state {
         case .success:
-            print("In success state")
-            
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
+                self?.stopLoading()
             }
-            
         case .error(let error):
-            print("Error state occured: \(error)")
-            
-            //Show error message
-            //displayErrorAlert()
-        case .idle:
-            print("In idle state")
+            print("Error state occured on TopConstructorStandingsVC: \(error)")
+            stopLoading()
         case .loading:
-            print("In loading state")
-            //Show loading wheel?
+            print("In constructor vc loading state")
+            startLoading()
         }
     }
 }

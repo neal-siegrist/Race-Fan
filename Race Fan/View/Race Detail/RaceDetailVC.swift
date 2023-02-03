@@ -183,8 +183,6 @@ extension RaceDetailVC: DataChangeDelegate {
                 self.updateUI()
             case .loading:
                 print("Loading")
-            case .idle:
-                print("Idle")
             case .error(let error):
                 print("Error: \(error)")
                 self.updateUI()

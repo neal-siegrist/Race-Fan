@@ -57,6 +57,14 @@ class TopStandingsView: UIView {
         return stack
     }()
     
+    let loadingWheel: UIActivityIndicatorView = {
+        let loadingWheel = UIActivityIndicatorView()
+        loadingWheel.color = .red
+        loadingWheel.isHidden = true
+        loadingWheel.translatesAutoresizingMaskIntoConstraints = false
+        return loadingWheel
+    }()
+    
     //MARK: - Initializers
     
     init() {
@@ -68,6 +76,7 @@ class TopStandingsView: UIView {
         setupTitleLabel()
         setupTableView()
         setupNoTableDataView()
+        setupLoadingWheel()
     }
     
     required init?(coder: NSCoder) {
@@ -103,6 +112,15 @@ class TopStandingsView: UIView {
         NSLayoutConstraint.activate([
             noTableDataView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             noTableDataView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        ])
+    }
+    
+    private func setupLoadingWheel() {
+        self.addSubview(loadingWheel)
+        
+        NSLayoutConstraint.activate([
+            loadingWheel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            loadingWheel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
     }
     

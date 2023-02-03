@@ -8,7 +8,6 @@
 import Foundation
 
 enum State {
-    case idle
     case loading
     case success
     case error(Error)

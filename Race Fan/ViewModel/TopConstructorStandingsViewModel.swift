@@ -12,8 +12,11 @@ class TopConstructorStandingsViewModel {
     //MARK: - Variables
     
     var constructorStandings: [ConstructorStandingItem]?
-    
-    var delegate: DataChangeDelegate?
+    var delegate: DataChangeDelegate? {
+        didSet {
+            self.delegate?.didUpdate(with: self.state)
+        }
+    }
     
     private var state: State {
         didSet {
@@ -27,39 +30,43 @@ class TopConstructorStandingsViewModel {
     //MARK: - Initializers
     
     init() {
-        self.state = .idle
-        self.dataManager = DataManager()
+        self.state = .loading
+        self.dataManager = DataManager.shared
+        
+        dataManager.addListener(forType: [.constructor], listener: self)
     }
     
-    
     //MARK: - Functions
-    
 }
 
-extension TopConstructorStandingsViewModel: StandingsViewModelDelegate {
-    func fetchStandings() {
-        
-        dataManager.getConstructorStandings { [weak self] result in
-            switch result {
-            case .success(let constructorStanding):
-                print("Success case for constructor standings: \(constructorStanding.standings!.allObjects.count)")
+
+//MARK: - DataListener extension
+
+extension TopConstructorStandingsViewModel: DataListener {
+    func dataIsUpdated(type: ListenerType) {
+        switch type {
+        case .constructor:
+            if let standings = CoreDataService.shared.getConstructorStandings(forYear: dataManager.getCurrentRacingSeasonYear()), !standings.isEmpty, standings.count >= 3 {
                 
-                if let standings = constructorStanding.standings?.allObjects as? [ConstructorStandingItem], !standings.isEmpty, standings.count >= 3 {
-                    let sortedStandings = standings.sorted(by: { constructor1, constructor2 in
-                        return constructor1.position < constructor2.position
-                    })
-                    
-                    self?.constructorStandings = Array(sortedStandings[0...2])
-                    
-                    self?.state = .success
-                    
-                    return
-                }
+                let sortedStandings = standings.sorted(by: { constructor1, constructor2 in
+                    return constructor1.position < constructor2.position
+                })
                 
-                self?.state = .error(NetworkingError.noData)
-            case .failure(let networkingError):
-                print("Error occured in contructor standings: \(networkingError)")
+                self.constructorStandings = Array(sortedStandings[0...2])
+                self.state = .success
+    
+                return
             }
+        default:
+            print("default")
         }
+        
+        
+        self.state = .error(NetworkingError.noData)
+    }
+    
+    func errorOccured(error: Error) {
+        print("Error called on top constructor listenter. Error: \(error)")
+        self.state = .error(error)
     }
 }

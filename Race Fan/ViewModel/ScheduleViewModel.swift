@@ -16,7 +16,11 @@ class ScheduleViewModel {
     var upcomingRaces: [Race]?
     var pastRaces: [Race]?
     
-    var delegate: DataChangeDelegate?
+    var delegate: DataChangeDelegate? {
+        didSet {
+            self.delegate?.didUpdate(with: self.state)
+        }
+    }
     
     private var state: State {
         didSet {
@@ -30,8 +34,10 @@ class ScheduleViewModel {
     //MARK: - Initializers
     
     init() {
-        self.state = .idle
-        self.dataManager = DataManager()
+        self.state = .loading
+        self.dataManager = DataManager.shared
+        
+        dataManager.addListener(forType: [.schedule], listener: self)
     }
     
     
@@ -68,23 +74,20 @@ class ScheduleViewModel {
     }
 }
 
-extension ScheduleViewModel: ScheduleViewModelDelegate {
-    func fetchSchedule() {
-        
-        dataManager.getSchedule { [weak self] result in
-            switch result {
-            case .success(let schedule):
-                print("in get schedule view model success")
-                self?.upcomingRaces = self?.extractUpcomingRaces(schedule: schedule)
-                self?.pastRaces = self?.extractPastRaces(schedule: schedule)
-                self?.state = .success
-            case .failure(let networkingError):
-                print(networkingError)
-                self?.state = .error(networkingError)
-            }
-            
-            
+
+//MARK: - DataListener delegate
+
+extension ScheduleViewModel: DataListener {
+    func dataIsUpdated(type: ListenerType) {
+        if let schedule = CoreDataService.shared.getSchedule(forYear: dataManager.getCurrentRacingSeasonYear()), !schedule.isEmpty {
+            self.upcomingRaces = self.extractUpcomingRaces(schedule: schedule)
+            self.pastRaces = self.extractPastRaces(schedule: schedule)
+            self.state = .success
         }
-        
+    }
+    
+    func errorOccured(error: Error) {
+        print("Error called on schedule listenter. Error: \(error)")
+        self.state = .error(error)
     }
 }

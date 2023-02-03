@@ -11,7 +11,11 @@ class HomePageViewModel {
     
     //MARK: - Variables
     
-    var delegate: DataChangeDelegate?
+    var delegate: DataChangeDelegate? {
+        didSet {
+            self.delegate?.didUpdate(with: self.state)
+        }
+    }
     private let dataManager: DataManager
     
     private var state: State {
@@ -22,15 +26,14 @@ class HomePageViewModel {
     
     var nextRace: Race?
     
-    var topDriverStandings: [DriverStandingItem]?
-    var topConstructorStandings: [ConstructorStandingItem]?
-    
     
     //MARK: - Initializers
     
     init() {
-        self.state = .idle
-        dataManager = DataManager()
+        self.state = .loading
+        dataManager = DataManager.shared
+        
+        dataManager.addListener(forType: [.schedule, .driver, .constructor], listener: self)
     }
     
     
@@ -72,20 +75,33 @@ class HomePageViewModel {
         
         return nil
     }
-}
-
-extension HomePageViewModel: HomePageViewModelDelegate {
-    func fetchUpcomingRace() {
-        dataManager.getUpcomingRace() { [weak self] result in
-            
-            switch result {
-            case .success(let race):
-                self?.nextRace = race
-                self?.state = .success
-            
-            case .failure(let networkingError):
-                self?.state = .error(networkingError)
+    
+    private func extractFirstUpcomingRaceFromSchedule(schedule: [Race]) -> Race? {
+        let currentDate = Date()
+        
+        for race in schedule {
+            if let raceDate = race.date {
+                if currentDate < raceDate { return race }
             }
         }
+        
+        return nil
+    }
+}
+
+
+//MARK: - DataListener extension
+extension HomePageViewModel: DataListener {
+    func dataIsUpdated(type: ListenerType) {
+        if case .schedule = type {
+            if let schedule = CoreDataService.shared.getSchedule(forYear: dataManager.getCurrentRacingSeasonYear()) {
+                self.nextRace = extractFirstUpcomingRaceFromSchedule(schedule: schedule)
+                self.state = .success
+            }
+        }
+    }
+    
+    func errorOccured(error: Error) {
+        print("Error called on home page listenter. Error: \(error)")
     }
 }

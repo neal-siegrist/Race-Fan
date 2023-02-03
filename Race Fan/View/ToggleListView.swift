@@ -56,6 +56,13 @@ class ToggleListView: UIView {
         return stack
     }()
     
+    let loadingWheel: UIActivityIndicatorView = {
+        let loadingWheel = UIActivityIndicatorView()
+        loadingWheel.color = .red
+        loadingWheel.isHidden = true
+        loadingWheel.translatesAutoresizingMaskIntoConstraints = false
+        return loadingWheel
+    }()
     
     //MARK: - Initializers
     init() {
@@ -65,6 +72,7 @@ class ToggleListView: UIView {
         setupSegmentedControl()
         setupTableView()
         setupNoTableDataView()
+        setupLoadingWheel()
     }
     
     required init?(coder: NSCoder) {
@@ -101,6 +109,15 @@ class ToggleListView: UIView {
         NSLayoutConstraint.activate([
             noTableDataView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
             noTableDataView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        ])
+    }
+    
+    private func setupLoadingWheel() {
+        self.addSubview(loadingWheel)
+        
+        NSLayoutConstraint.activate([
+            loadingWheel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            loadingWheel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
     }
     

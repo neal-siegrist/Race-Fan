@@ -23,37 +23,69 @@ class NetworkingManager {
 
     static func loadData<T: Decodable>(request: URLRequest, type: T.Type, completion: @escaping (Result<T, NetworkingError>) -> Void) {
 
-//        if  request.url!.absoluteString.contains("driver") {
-//            let decoder = JSONDecoder()
-//            let context = CoreDataManager.shared.getContext()
-//            decoder.userInfo[CodingUserInfoKey.managedObjectContext] = context
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            if  request.url!.absoluteString.contains("driver") {
+                let decoder = JSONDecoder()
+                let context = CoreDataStack.shared.mainContext
+                decoder.userInfo[CodingUserInfoKey.managedObjectContext] = context
+
+                do {
+                    let result: Result<T, NetworkingError> = try .success(decoder.decode(T.self, from: driverStandingsResponse.data(using: .utf8)!))
+
+                    completion(result)
+                } catch {
+                    completion(.failure(.parsingError))
+                }
+            } else if request.url!.absoluteString.contains("constructor") {
+                let decoder = JSONDecoder()
+                let context = CoreDataStack.shared.mainContext
+                decoder.userInfo[CodingUserInfoKey.managedObjectContext] = context
+
+                do {
+                    let result: Result<T, NetworkingError> = try .success(decoder.decode(T.self, from: constructorStandingsResponse.data(using: .utf8)!))
+
+                    completion(result)
+                } catch {
+                    completion(.failure(.parsingError))
+                }
+            } else {
+                let decoder = JSONDecoder()
+                let context = CoreDataStack.shared.mainContext
+                decoder.userInfo[CodingUserInfoKey.managedObjectContext] = context
+
+                do {
+                    let result: Result<T, NetworkingError> = try .success(decoder.decode(T.self, from: scheduleJsonResponse.data(using: .utf8)!))
+
+                    completion(result)
+                } catch {
+                    completion(.failure(.parsingError))
+                }
+            }
+
+            print(request.url?.absoluteURL)
+        }
+        
+        
+//        ------
+//        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
 //
-//            do {
-//                let result: Result<T, NetworkingError> = try .success(decoder.decode(T.self, from: driverStandingsResponse.data(using: .utf8)!))
-//
-//                completion(result)
-//            } catch {
-//                completion(.failure(.parsingError))
+//            if let receivedError = error {
+//                completion(.failure(.responseError(receivedError)))
 //            }
-//        } else if request.url!.absoluteString.contains("constructor") {
-//            let decoder = JSONDecoder()
-//            let context = CoreDataManager.shared.getContext()
-//            decoder.userInfo[CodingUserInfoKey.managedObjectContext] = context
 //
-//            do {
-//                let result: Result<T, NetworkingError> = try .success(decoder.decode(T.self, from: constructorStandingsResponse.data(using: .utf8)!))
-//
-//                completion(result)
-//            } catch {
-//                completion(.failure(.parsingError))
+//            guard let validData = data else {
+//                completion(.failure(.noData))
+//                return
 //            }
-//        } else {
+//
 //            let decoder = JSONDecoder()
-//            let context = CoreDataManager.shared.getContext()
+//
+//            //set context in decoder
+//            let context = CoreDataStack.shared.mainContext
 //            decoder.userInfo[CodingUserInfoKey.managedObjectContext] = context
 //
 //            do {
-//                let result: Result<T, NetworkingError> = try .success(decoder.decode(T.self, from: scheduleJsonResponse.data(using: .utf8)!))
+//                let result: Result<T, NetworkingError> = try .success(decoder.decode(T.self, from: validData))
 //
 //                completion(result)
 //            } catch {
@@ -61,36 +93,7 @@ class NetworkingManager {
 //            }
 //        }
 //
-//        print(request.url?.absoluteURL)
-        
-//        ------
-        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
-
-            if let receivedError = error {
-                completion(.failure(.responseError(receivedError)))
-            }
-
-            guard let validData = data else {
-                completion(.failure(.noData))
-                return
-            }
-
-            let decoder = JSONDecoder()
-
-            //set context in decoder
-            let context = CoreDataManager.shared.getContext()
-            decoder.userInfo[CodingUserInfoKey.managedObjectContext] = context
-
-            do {
-                let result: Result<T, NetworkingError> = try .success(decoder.decode(T.self, from: validData))
-
-                completion(result)
-            } catch {
-                completion(.failure(.parsingError))
-            }
-        }
-
-        dataTask.resume()
+//        dataTask.resume()
     }
     
     public static let constructorStandingsResponse = """

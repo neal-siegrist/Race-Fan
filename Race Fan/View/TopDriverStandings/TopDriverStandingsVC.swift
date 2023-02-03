@@ -25,7 +25,6 @@ class TopDriverStandingsVC: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel.delegate = self
-        self.viewModel.fetchStandings()
         setupTableView()
     }
     
@@ -39,7 +38,7 @@ class TopDriverStandingsVC: UIViewController {
         self.view = self.topDriverStandingsView
     }
 
-
+    
     //MARK: - Functions
     
     private func setupTableView() {
@@ -50,6 +49,24 @@ class TopDriverStandingsVC: UIViewController {
         topDriverStandingsView.tableView.delegate = self
         
         tableView.register(StandingsCell.self, forCellReuseIdentifier: StandingsCell.CELL_ID)
+    }
+    
+    private func startLoading() {
+        let loadingWheel = topDriverStandingsView.loadingWheel
+        
+        DispatchQueue.main.async {
+            loadingWheel.startAnimating()
+            loadingWheel.isHidden = false
+        }
+    }
+    
+    private func stopLoading() {
+        let loadingWheel = topDriverStandingsView.loadingWheel
+        
+        DispatchQueue.main.async {
+            loadingWheel.stopAnimating()
+            loadingWheel.isHidden = true
+        }
     }
 }
 
@@ -101,18 +118,14 @@ extension TopDriverStandingsVC: DataChangeDelegate {
             
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
+                self?.stopLoading()
             }
-            
         case .error(let error):
             print("Error state occured: \(error)")
-            
-            //Show error message
-            //displayErrorAlert()
-        case .idle:
-            print("In idle state")
+            stopLoading()
         case .loading:
             print("In loading state")
-            //Show loading wheel?
+            startLoading()
         }
     }
 }

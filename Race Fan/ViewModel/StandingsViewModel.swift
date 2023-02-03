@@ -14,7 +14,11 @@ class StandingsViewModel {
     var driverStandings: [DriverStandingItem]?
     var constructorStandings: [ConstructorStandingItem]?
     
-    var delegate: DataChangeDelegate?
+    var delegate: DataChangeDelegate? {
+        didSet {
+            self.delegate?.didUpdate(with: self.state)
+        }
+    }
     
     private var state: State {
         didSet {
@@ -28,8 +32,10 @@ class StandingsViewModel {
     //MARK: - Initializers
     
     init() {
-        self.state = .idle
-        self.dataManager = DataManager()
+        self.state = .loading
+        self.dataManager = DataManager.shared
+        
+        dataManager.addListener(forType: [.driver, .constructor], listener: self)
     }
     
     
@@ -37,47 +43,36 @@ class StandingsViewModel {
     
 }
 
-extension StandingsViewModel: StandingsViewModelDelegate {
-    func fetchStandings() {
+
+//MARK: - DataListener delegate
+
+extension StandingsViewModel: DataListener {
+    func dataIsUpdated(type: ListenerType) {
+        var bothStandingsEmpty = true
         
-        dataManager.getDriverStandings { [weak self] result in
-            switch result {
-            case .success(let driverStanding):
-                print("Success case for driver standings: \(driverStanding.standings!.allObjects.count)")
-                
-                if let standings = driverStanding.standings?.allObjects as? [DriverStandingItem], !standings.isEmpty {
-                    self?.driverStandings = standings.sorted(by: { driver1, driver2 in
-                        return driver1.position < driver2.position
-                    })
-                    self?.state = .success
-                    
-                    return
-                }
-                
-                self?.state = .error(NetworkingError.noData)
-            case .failure(let networkingError):
-                print("Error occured in driver standings: \(networkingError)")
-            }
+        if let driverStandings = CoreDataService.shared.getDriverStandings(forYear: dataManager.getCurrentRacingSeasonYear()), !driverStandings.isEmpty {
+            self.driverStandings = driverStandings.sorted(by: { driver1, driver2 in
+                return driver1.position < driver2.position
+            })
+            self.state = .success
+            bothStandingsEmpty = false
         }
         
-        dataManager.getConstructorStandings { [weak self] result in
-            switch result {
-            case .success(let constructorStanding):
-                print("Success case for constructor standings: \(constructorStanding.standings!.allObjects.count)")
-                
-                if let standings = constructorStanding.standings?.allObjects as? [ConstructorStandingItem], !standings.isEmpty {
-                    self?.constructorStandings = standings.sorted(by: { constructor1, constructor2 in
-                        return constructor1.position < constructor2.position
-                    })
-                    self?.state = .success
-                    
-                    return
-                }
-                
-                self?.state = .error(NetworkingError.noData)
-            case .failure(let networkingError):
-                print("Error occured in contructor standings: \(networkingError)")
-            }
+        if let constructorStandings = CoreDataService.shared.getConstructorStandings(forYear: dataManager.getCurrentRacingSeasonYear()), !constructorStandings.isEmpty {
+            self.constructorStandings = constructorStandings.sorted(by: { constructor1, constructor2 in
+                return constructor1.position < constructor2.position
+            })
+            self.state = .success
+            bothStandingsEmpty = false
         }
+        
+        if bothStandingsEmpty {
+            self.state = .error(NetworkingError.noData)
+        }
+    }
+    
+    func errorOccured(error: Error) {
+        print("Error called on schedule listenter. Error: \(error)")
+        self.state = .error(error)
     }
 }
