@@ -46,6 +46,7 @@ class DataManager {
     }
     
     func fetchAllData() {
+        print("fetchAllData called")
         fetchSchedule()
         fetchDriverStandings()
         fetchConstructorStandings()

@@ -12,6 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var tabBarController: UITabBarController?
+    var isDataRefreshNeeded = true
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -20,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = setupControllersAndNavigation()
         self.tabBarController = tabBarController
         
+        self.isDataRefreshNeeded = false
         DataManager.shared.fetchAllData()
         
         window.rootViewController = tabBarController
@@ -29,6 +31,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         reactivateCountdownTimers()
+        
+        if self.isDataRefreshNeeded {
+            self.isDataRefreshNeeded = false
+            DataManager.shared.fetchAllData()
+        }
+    }
+    
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        self.isDataRefreshNeeded = true
     }
     
     private func reactivateCountdownTimers() {
