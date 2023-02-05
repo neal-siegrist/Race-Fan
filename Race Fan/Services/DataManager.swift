@@ -13,6 +13,7 @@ class DataManager {
     public static let shared = DataManager()
     
     public static let DAYS_UNTIL_SCHEDULE_REFRESH: Double = 21
+    public static let SECONDS_AFTER_RACE_TO_UPDATE_STANDINGS: Double = 86400
     
     public static let DRIVER_STANDINGS_ENTITY_NAME: String = "DriverStandings"
     public static let CONSTRUCTOR_STANDINGS_ENTITY_NAME: String = "ConstructorStandings"
@@ -117,12 +118,50 @@ class DataManager {
             case .schedule:
                 return Date(timeIntervalSinceNow: -(86400 * DataManager.DAYS_UNTIL_SCHEDULE_REFRESH)) > creationData
             case .driver, .constructor:
-                //TODO: Update to calculate standings refresh
-                return Date(timeIntervalSinceNow: -(86400 * DataManager.DAYS_UNTIL_SCHEDULE_REFRESH)) > creationData
+                print("Is standings refresh needed: \(isStandingsRefreshNeeded(item: item))")
+                return isStandingsRefreshNeeded(item: item)
             }
         }
         
         return false
+    }
+    
+    private func isStandingsRefreshNeeded(item: TimeStamp?) -> Bool {
+        guard let lastUpdated = item?.dateCreated else { return false }
+        
+        let mostRecentCompletedRace = getMostRecentCompletedRace()
+        
+        if let recentRace = mostRecentCompletedRace, let recentRaceDate = recentRace.date {
+            let dateTimeToRefresh = recentRaceDate.addingTimeInterval(DataManager.SECONDS_AFTER_RACE_TO_UPDATE_STANDINGS)
+            
+            return lastUpdated < dateTimeToRefresh && Date.now > dateTimeToRefresh
+        } else {
+            return Date(timeIntervalSinceNow: -(86400 * DataManager.DAYS_UNTIL_SCHEDULE_REFRESH)) > lastUpdated
+        }
+    }
+    
+    private func getMostRecentCompletedRace() -> Race? {
+        guard let schedule = coreDataService.getSchedule(forYear: self.getCurrentRacingSeasonYear()) else { return nil }
+        let now = Date.now
+        
+        let sortedSchedule = schedule.sorted { race1, race2 in
+            if let race1Date = race1.date, let race2Date = race2.date {
+                return race1Date < race2Date
+            }
+            return false
+        }
+        
+        var mostRecentRace: Race?
+        
+        for race in sortedSchedule {
+            if let raceDate = race.date, raceDate < now {
+                mostRecentRace = race
+            } else {
+                break
+            }
+        }
+        
+        return mostRecentRace
     }
     
     private func notifyListenersOfSuccess(forType: ListenerType) {

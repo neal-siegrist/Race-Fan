@@ -114,8 +114,6 @@ extension TopDriverStandingsVC: DataChangeDelegate {
     func didUpdate(with state: State) {
         switch state {
         case .success:
-            print("In success state")
-            
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
                 self?.stopLoading()
@@ -124,7 +122,6 @@ extension TopDriverStandingsVC: DataChangeDelegate {
             print("Error state occured: \(error)")
             stopLoading()
         case .loading:
-            print("In loading state")
             startLoading()
         }
     }

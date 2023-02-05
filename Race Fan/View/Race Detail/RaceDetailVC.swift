@@ -179,7 +179,6 @@ extension RaceDetailVC: DataChangeDelegate {
     func didUpdate(with state: State) {
         switch state {
             case .success:
-                print("Success")
                 self.updateUI()
             case .loading:
                 print("Loading")

@@ -198,7 +198,6 @@ extension ScheduleVC: DataChangeDelegate {
             stopLoading()
             displayErrorAlert()
         case .loading:
-            print("In loading state")
             startLoading()
         }
     }

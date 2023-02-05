@@ -122,7 +122,6 @@ extension TopConstructorStandingsVC: DataChangeDelegate {
             print("Error state occured on TopConstructorStandingsVC: \(error)")
             stopLoading()
         case .loading:
-            print("In constructor vc loading state")
             startLoading()
         }
     }

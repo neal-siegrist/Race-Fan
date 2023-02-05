@@ -12,7 +12,7 @@ class CoreDataStack {
     
     //MARK: - Variables
     public static let shared = CoreDataStack()
-    public static let MODEL_NAME = "Race_Fan"
+    public static let MODEL_NAME = "Race_Fan_Model"
     
     var container: NSPersistentContainer = {
         let container = NSPersistentContainer(name: CoreDataStack.MODEL_NAME)
@@ -25,17 +25,17 @@ class CoreDataStack {
         return container
     }()
     
-//    lazy var mainContext: NSManagedObjectContext = {
-//        return container.viewContext
-//    }()
+    var mainContext: NSManagedObjectContext {
+        get {
+            return container.viewContext
+        }
+    }
     
-    let mainContext: NSManagedObjectContext
     
     //MARK: - Initializers
     
-    private init() {
-        mainContext = container.viewContext
-    }
+    private init() {}
+    
     
     //MARK: - Functions
     

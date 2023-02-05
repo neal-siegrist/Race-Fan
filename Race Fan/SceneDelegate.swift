@@ -11,90 +11,65 @@ import CoreData
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-    var homePageVC: HomePageVC!
-    var scheduleNC: UINavigationController!
+    var tabBarController: UITabBarController?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let homepageVC = HomePageVC()
-        let homepageNC = UINavigationController(rootViewController: homepageVC)
-        homepageNC.tabBarItem.image = UIImage(systemName: "house")?.imageWithoutBaseline()
-        homepageNC.tabBarItem.imageInsets = UIEdgeInsets(top: 5.0, left: 0, bottom: -5.0, right: 0)
-        
-        let scheduleVC = ScheduleVC()
-        let scheduleNC = UINavigationController(rootViewController: scheduleVC)
-        scheduleNC.tabBarItem.image = UIImage(systemName: "calendar")?.imageWithoutBaseline()
-        scheduleNC.tabBarItem.imageInsets = UIEdgeInsets(top: 5.0, left: 0, bottom: -5.0, right: 0)
-        
-        let standingsVC = StandingsVC()
-        let standingsNC = UINavigationController(rootViewController: standingsVC)
-        standingsNC.tabBarItem.image = UIImage(systemName: "list.number")?.imageWithoutBaseline()
-        standingsNC.tabBarItem.imageInsets = UIEdgeInsets(top: 5.0, left: 0, bottom: -5.0, right: 0)
+        let tabBarController = setupControllersAndNavigation()
+        self.tabBarController = tabBarController
         
         DataManager.shared.fetchAllData()
-        
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [homepageNC, scheduleNC, standingsNC]
-        tabBarController.tabBar.tintColor = .red
-        tabBarController.tabBar.backgroundColor = .white
-        
-        tabBarController.selectedIndex = 0
-            
-        self.homePageVC = homepageVC
-        self.scheduleNC = scheduleNC
         
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         self.window = window
     }
 
-    func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
-    }
-
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-    }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
-    }
-
     func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
-        print("scene will enter foreground")
+        reactivateCountdownTimers()
+    }
+    
+    private func reactivateCountdownTimers() {
+        guard let homePageNC = self.tabBarController?.viewControllers?[0] as? UINavigationController else { return }
+        guard let scheduleNC  = self.tabBarController?.viewControllers?[1] as? UINavigationController else { return }
         
-        self.homePageVC.updateUI()
+        for controller in homePageNC.viewControllers {
+            if let raceDetailVC = controller as? RaceDetailVC {
+                raceDetailVC.startCountdownTimer()
+            }
+            
+            if let homePageVC = controller as? HomePageVC {
+                homePageVC.updateUI()
+            }
+        }
         
-        if let raceDetailVC = self.scheduleNC.topViewController as? RaceDetailVC {
-            print("resetting race detail timer")
-            raceDetailVC.startCountdownTimer()
+        if let raceDetailCountdown = scheduleNC.topViewController as? RaceDetailVC {
+            raceDetailCountdown.startCountdownTimer()
         }
     }
-
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
-
-        // Save changes in the application's managed object context when the application transitions to the background.
-        //(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-        print("scene did enter background")
+    
+    private func setupControllersAndNavigation() -> UITabBarController {
+        let homePageNC = createNavigationController(viewController: HomePageVC(), systemImageName: "house")
+        let scheduleNC = createNavigationController(viewController: ScheduleVC(), systemImageName: "calendar")
+        let standingsNC = createNavigationController(viewController: StandingsVC(), systemImageName: "list.number")
+        
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [homePageNC, scheduleNC, standingsNC]
+        tabBarController.tabBar.tintColor = .red
+        tabBarController.tabBar.backgroundColor = .white
+        tabBarController.selectedIndex = 0
+        
+        return tabBarController
     }
-
-
+    
+    private func createNavigationController(viewController vc: UIViewController, systemImageName imgName: String) -> UINavigationController {
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.tabBarItem.image = UIImage(systemName: imgName)?.imageWithoutBaseline()
+        navigationController.tabBarItem.imageInsets = UIEdgeInsets(top: 5.0, left: 0, bottom: -5.0, right: 0)
+        
+        return navigationController
+    }
 }
 

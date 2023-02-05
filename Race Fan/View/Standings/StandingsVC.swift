@@ -213,9 +213,7 @@ extension StandingsVC: DataChangeDelegate {
     func didUpdate(with state: State) {
         switch state {
         case .success:
-            print("In success state")
-            
-            DispatchQueue.main.async { [weak self] in
+           DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
                 self?.stopLoading()
             }
@@ -224,7 +222,6 @@ extension StandingsVC: DataChangeDelegate {
             stopLoading()
             displayErrorAlert()
         case .loading:
-            print("In loading state")
             startLoading()
         }
     }

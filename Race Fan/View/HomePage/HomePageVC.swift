@@ -166,7 +166,7 @@ extension HomePageVC: DataChangeDelegate {
             }
         case .loading:
             print("In loading state")
-            //Show loading wheel
+            
         }
     }
 }

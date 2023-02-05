@@ -10,11 +10,9 @@
 		D91EE6C7295FCD1B00AB463F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6C6295FCD1B00AB463F /* AppDelegate.swift */; };
 		D91EE6C9295FCD1B00AB463F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6C8295FCD1B00AB463F /* SceneDelegate.swift */; };
 		D91EE6CB295FCD1B00AB463F /* HomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6CA295FCD1B00AB463F /* HomePageVC.swift */; };
-		D91EE6D1295FCD1B00AB463F /* Race_Fan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6CF295FCD1B00AB463F /* Race_Fan.xcdatamodeld */; };
+		D91EE6D1295FCD1B00AB463F /* Race_Fan_Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6CF295FCD1B00AB463F /* Race_Fan_Model.xcdatamodeld */; };
 		D91EE6D3295FCD1D00AB463F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D91EE6D2295FCD1D00AB463F /* Assets.xcassets */; };
 		D91EE6D6295FCD1D00AB463F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D91EE6D4295FCD1D00AB463F /* LaunchScreen.storyboard */; };
-		D91EE6EB295FCD1D00AB463F /* Race_FanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6EA295FCD1D00AB463F /* Race_FanUITests.swift */; };
-		D91EE6ED295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91EE6EC295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift */; };
 		D934C7F22973190800A08E13 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934C7F12973190800A08E13 /* State.swift */; };
 		D934C7F42973408900A08E13 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934C7F32973408900A08E13 /* DataManager.swift */; };
 		D95926BE2985F53B0055EBEF /* TopStandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95926BD2985F53B0055EBEF /* TopStandingsView.swift */; };
@@ -80,14 +78,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D91EE6DD295FCD1D00AB463F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D91EE6BB295FCD1B00AB463F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D91EE6C2295FCD1B00AB463F;
-			remoteInfo = "Race Fan";
-		};
-		D91EE6E7295FCD1D00AB463F /* PBXContainerItemProxy */ = {
+		D93230A3298EDA090021C84B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D91EE6BB295FCD1B00AB463F /* Project object */;
 			proxyType = 1;
@@ -105,10 +96,7 @@
 		D91EE6D2295FCD1D00AB463F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D91EE6D5295FCD1D00AB463F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D91EE6D7295FCD1D00AB463F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D91EE6DC295FCD1D00AB463F /* Race FanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Race FanTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D91EE6E6295FCD1D00AB463F /* Race FanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Race FanUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D91EE6EA295FCD1D00AB463F /* Race_FanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_FanUITests.swift; sourceTree = "<group>"; };
-		D91EE6EC295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_FanUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D932309F298EDA090021C84B /* RaceFanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RaceFanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D934C7F12973190800A08E13 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		D934C7F32973408900A08E13 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		D95926BD2985F53B0055EBEF /* TopStandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStandingsView.swift; sourceTree = "<group>"; };
@@ -181,14 +169,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D91EE6D9295FCD1D00AB463F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D91EE6E3295FCD1D00AB463F /* Frameworks */ = {
+		D932309C298EDA090021C84B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -240,8 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				D91EE6C5295FCD1B00AB463F /* Race Fan */,
-				D91EE6DF295FCD1D00AB463F /* Race FanTests */,
-				D91EE6E9295FCD1D00AB463F /* Race FanUITests */,
 				D91EE6C4295FCD1B00AB463F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -250,8 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				D91EE6C3295FCD1B00AB463F /* Race Fan.app */,
-				D91EE6DC295FCD1D00AB463F /* Race FanTests.xctest */,
-				D91EE6E6295FCD1D00AB463F /* Race FanUITests.xctest */,
+				D932309F298EDA090021C84B /* RaceFanTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,25 +247,9 @@
 				D91EE6D2295FCD1D00AB463F /* Assets.xcassets */,
 				D91EE6D4295FCD1D00AB463F /* LaunchScreen.storyboard */,
 				D91EE6D7295FCD1D00AB463F /* Info.plist */,
-				D91EE6CF295FCD1B00AB463F /* Race_Fan.xcdatamodeld */,
+				D91EE6CF295FCD1B00AB463F /* Race_Fan_Model.xcdatamodeld */,
 			);
 			path = "Race Fan";
-			sourceTree = "<group>";
-		};
-		D91EE6DF295FCD1D00AB463F /* Race FanTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Race FanTests";
-			sourceTree = "<group>";
-		};
-		D91EE6E9295FCD1D00AB463F /* Race FanUITests */ = {
-			isa = PBXGroup;
-			children = (
-				D91EE6EA295FCD1D00AB463F /* Race_FanUITests.swift */,
-				D91EE6EC295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift */,
-			);
-			path = "Race FanUITests";
 			sourceTree = "<group>";
 		};
 		D934C7EF29730F1E00A08E13 /* Services */ = {
@@ -498,41 +460,23 @@
 			productReference = D91EE6C3295FCD1B00AB463F /* Race Fan.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D91EE6DB295FCD1D00AB463F /* Race FanTests */ = {
+		D932309E298EDA090021C84B /* RaceFanTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D91EE6F3295FCD1D00AB463F /* Build configuration list for PBXNativeTarget "Race FanTests" */;
+			buildConfigurationList = D93230A5298EDA090021C84B /* Build configuration list for PBXNativeTarget "RaceFanTests" */;
 			buildPhases = (
-				D91EE6D8295FCD1D00AB463F /* Sources */,
-				D91EE6D9295FCD1D00AB463F /* Frameworks */,
-				D91EE6DA295FCD1D00AB463F /* Resources */,
+				D932309B298EDA090021C84B /* Sources */,
+				D932309C298EDA090021C84B /* Frameworks */,
+				D932309D298EDA090021C84B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D91EE6DE295FCD1D00AB463F /* PBXTargetDependency */,
+				D93230A4298EDA090021C84B /* PBXTargetDependency */,
 			);
-			name = "Race FanTests";
-			productName = "Race FanTests";
-			productReference = D91EE6DC295FCD1D00AB463F /* Race FanTests.xctest */;
+			name = RaceFanTests;
+			productName = RaceFanTests;
+			productReference = D932309F298EDA090021C84B /* RaceFanTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		D91EE6E5295FCD1D00AB463F /* Race FanUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D91EE6F6295FCD1D00AB463F /* Build configuration list for PBXNativeTarget "Race FanUITests" */;
-			buildPhases = (
-				D91EE6E2295FCD1D00AB463F /* Sources */,
-				D91EE6E3295FCD1D00AB463F /* Frameworks */,
-				D91EE6E4295FCD1D00AB463F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D91EE6E8295FCD1D00AB463F /* PBXTargetDependency */,
-			);
-			name = "Race FanUITests";
-			productName = "Race FanUITests";
-			productReference = D91EE6E6295FCD1D00AB463F /* Race FanUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -547,11 +491,7 @@
 					D91EE6C2295FCD1B00AB463F = {
 						CreatedOnToolsVersion = 14.0;
 					};
-					D91EE6DB295FCD1D00AB463F = {
-						CreatedOnToolsVersion = 14.0;
-						TestTargetID = D91EE6C2295FCD1B00AB463F;
-					};
-					D91EE6E5295FCD1D00AB463F = {
+					D932309E298EDA090021C84B = {
 						CreatedOnToolsVersion = 14.0;
 						TestTargetID = D91EE6C2295FCD1B00AB463F;
 					};
@@ -571,8 +511,7 @@
 			projectRoot = "";
 			targets = (
 				D91EE6C2295FCD1B00AB463F /* Race Fan */,
-				D91EE6DB295FCD1D00AB463F /* Race FanTests */,
-				D91EE6E5295FCD1D00AB463F /* Race FanUITests */,
+				D932309E298EDA090021C84B /* RaceFanTests */,
 			);
 		};
 /* End PBXProject section */
@@ -587,14 +526,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D91EE6DA295FCD1D00AB463F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D91EE6E4295FCD1D00AB463F /* Resources */ = {
+		D932309D298EDA090021C84B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -629,7 +561,7 @@
 				D96654E629804B5200442687 /* RaceDetailView.swift in Sources */,
 				D95926BE2985F53B0055EBEF /* TopStandingsView.swift in Sources */,
 				D95926C02985F61E0055EBEF /* TopDriverStandingsVC.swift in Sources */,
-				D91EE6D1295FCD1B00AB463F /* Race_Fan.xcdatamodeld in Sources */,
+				D91EE6D1295FCD1B00AB463F /* Race_Fan_Model.xcdatamodeld in Sources */,
 				D95E9163298C217800E6CD71 /* CoreDataStack.swift in Sources */,
 				D934C7F22973190800A08E13 /* State.swift in Sources */,
 				D96654EA2980A3D100442687 /* WeekendScheduleCell.swift in Sources */,
@@ -677,34 +609,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D91EE6D8295FCD1D00AB463F /* Sources */ = {
+		D932309B298EDA090021C84B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D91EE6E2295FCD1D00AB463F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D91EE6ED295FCD1D00AB463F /* Race_FanUITestsLaunchTests.swift in Sources */,
-				D91EE6EB295FCD1D00AB463F /* Race_FanUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D91EE6DE295FCD1D00AB463F /* PBXTargetDependency */ = {
+		D93230A4298EDA090021C84B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D91EE6C2295FCD1B00AB463F /* Race Fan */;
-			targetProxy = D91EE6DD295FCD1D00AB463F /* PBXContainerItemProxy */;
-		};
-		D91EE6E8295FCD1D00AB463F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D91EE6C2295FCD1B00AB463F /* Race Fan */;
-			targetProxy = D91EE6E7295FCD1D00AB463F /* PBXContainerItemProxy */;
+			targetProxy = D93230A3298EDA090021C84B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -770,7 +688,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -824,7 +742,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -894,17 +812,17 @@
 			};
 			name = Release;
 		};
-		D91EE6F4295FCD1D00AB463F /* Debug */ = {
+		D93230A6298EDA090021C84B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JM53A4WWCH;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nealsiegrist.Race-FanTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nealsiegrist.RaceFanTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -913,56 +831,22 @@
 			};
 			name = Debug;
 		};
-		D91EE6F5295FCD1D00AB463F /* Release */ = {
+		D93230A7298EDA090021C84B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JM53A4WWCH;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nealsiegrist.Race-FanTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nealsiegrist.RaceFanTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Race Fan.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Race Fan";
-			};
-			name = Release;
-		};
-		D91EE6F7295FCD1D00AB463F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nealsiegrist.Race-FanUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Race Fan";
-			};
-			name = Debug;
-		};
-		D91EE6F8295FCD1D00AB463F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nealsiegrist.Race-FanUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Race Fan";
 			};
 			name = Release;
 		};
@@ -987,20 +871,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D91EE6F3295FCD1D00AB463F /* Build configuration list for PBXNativeTarget "Race FanTests" */ = {
+		D93230A5298EDA090021C84B /* Build configuration list for PBXNativeTarget "RaceFanTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D91EE6F4295FCD1D00AB463F /* Debug */,
-				D91EE6F5295FCD1D00AB463F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D91EE6F6295FCD1D00AB463F /* Build configuration list for PBXNativeTarget "Race FanUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D91EE6F7295FCD1D00AB463F /* Debug */,
-				D91EE6F8295FCD1D00AB463F /* Release */,
+				D93230A6298EDA090021C84B /* Debug */,
+				D93230A7298EDA090021C84B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1008,13 +883,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		D91EE6CF295FCD1B00AB463F /* Race_Fan.xcdatamodeld */ = {
+		D91EE6CF295FCD1B00AB463F /* Race_Fan_Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				D91EE6D0295FCD1B00AB463F /* Race_Fan.xcdatamodel */,
 			);
 			currentVersion = D91EE6D0295FCD1B00AB463F /* Race_Fan.xcdatamodel */;
-			path = Race_Fan.xcdatamodeld;
+			path = Race_Fan_Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
