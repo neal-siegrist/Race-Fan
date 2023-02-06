@@ -46,7 +46,6 @@ class DataManager {
     }
     
     func fetchAllData() {
-        print("fetchAllData called")
         fetchSchedule()
         fetchDriverStandings()
         fetchConstructorStandings()
@@ -119,7 +118,6 @@ class DataManager {
             case .schedule:
                 return Date(timeIntervalSinceNow: -(86400 * DataManager.DAYS_UNTIL_SCHEDULE_REFRESH)) > creationData
             case .driver, .constructor:
-                print("Is standings refresh needed: \(isStandingsRefreshNeeded(item: item))")
                 return isStandingsRefreshNeeded(item: item)
             }
         }

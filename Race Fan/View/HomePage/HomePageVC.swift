@@ -165,7 +165,7 @@ extension HomePageVC: DataChangeDelegate {
                 displayErrorAlert()
             }
         case .loading:
-            print("In loading state")
+            break
             
         }
     }

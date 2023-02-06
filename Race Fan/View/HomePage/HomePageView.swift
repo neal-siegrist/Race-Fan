@@ -180,6 +180,7 @@ class HomePageView: UIView {
         nextRaceBackground.addSubview(locationStack)
         
         let locationPin = UIImageView(image: UIImage(systemName: "mappin.and.ellipse"))
+        locationPin.tintColor = .black
         
         locationStack.addArrangedSubview(locationPin)
         locationStack.addArrangedSubview(locationLabel)
