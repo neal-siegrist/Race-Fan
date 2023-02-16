@@ -13,8 +13,8 @@ class CoreDataService {
     //MARK: - Variables
     
     public static let shared = CoreDataService()
-    
     var coreDataStack = CoreDataStack.shared
+    
     
     //MARK: - Initializers
     
@@ -32,11 +32,10 @@ class CoreDataService {
         do {
             let races = try coreDataStack.mainContext.fetch(fetchRequest)
             return races
-        } catch let error {
-            print("Failed to fetch races: \(error)")
+        } catch {
+            //print(error)
+            return nil
         }
-        
-        return nil
     }
     
     func getDriverStandings(forYear: Int) -> [DriverStandingItem]? {
@@ -47,10 +46,9 @@ class CoreDataService {
             let driverStandings = try coreDataStack.mainContext.fetch(fetchRequest)
             return driverStandings.first?.standings?.allObjects as? [DriverStandingItem]
         } catch {
-            print("Failed to fetch standings: \(error)")
+            //print(error)
+            return nil
         }
-        
-        return nil
     }
     
     func getConstructorStandings(forYear: Int) -> [ConstructorStandingItem]? {
@@ -61,10 +59,9 @@ class CoreDataService {
             let constructorStandings = try coreDataStack.mainContext.fetch(fetchRequest)
             return constructorStandings.first?.standings?.allObjects as? [ConstructorStandingItem]
         } catch {
-            print("Failed to fetch standings: \(error)")
+            //print(error)
+            return nil
         }
-        
-        return nil
     }
     
     func performDeletion(forYear: Int, entityName: String) {
@@ -77,7 +74,7 @@ class CoreDataService {
         do {
             try coreDataStack.mainContext.execute(deleteRequest)
         } catch {
-            print("Error deleting entity for given year: \(error)")
+            //print(error)
         }
     }
 }

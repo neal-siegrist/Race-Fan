@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 public class TimeStamp: NSManagedObject {
 
     func sign() {
@@ -27,17 +26,13 @@ public class TimeStamp: NSManagedObject {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         
-        let date = dateFormatter.date(from: dateString)
-        print(date)
-        return date
+        return dateFormatter.date(from: dateString)
     }
     
     func structureDateWithNoTime(dateString: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        let date = dateFormatter.date(from: dateString)
-        print(date)
-        return date
+        return dateFormatter.date(from: dateString)
     }
 }

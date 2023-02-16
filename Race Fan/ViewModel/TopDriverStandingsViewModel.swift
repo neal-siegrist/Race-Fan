@@ -36,10 +36,6 @@ class TopDriverStandingsViewModel {
         
         dataManager.addListener(forType: [.driver], listener: self)
     }
-    
-    
-    //MARK: - Functions
-    
 }
 
 
@@ -61,7 +57,6 @@ extension TopDriverStandingsViewModel: DataListener {
     }
     
     func errorOccured(error: Error) {
-        print("Error called on top driver standings listenter. Error: \(error)")
         self.state = .error(error)
     }
 }

@@ -16,6 +16,7 @@ class StandingsVC: UIViewController {
     let viewModel: StandingsViewModel
     var currentStandings: DisplayedStandings = .drivers
     
+    
     //MARK: - Initializers
     
     init() {
@@ -36,8 +37,6 @@ class StandingsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //viewModel.fetchStandings()
         
         self.standingsView.setErrorMessage("Check back for standings!")
     }
@@ -177,8 +176,6 @@ extension StandingsVC: UITableViewDelegate, UITableViewDataSource {
         
         switch currentStandings {
             case .drivers:
-                
-                //TODO: Maybe handle with error message
                 guard let driverStandingItem = viewModel.driverStandings?[selectedRow] else { return }
                 
                 let driverDetailVC = DriverDetailVC(withDriver: driverStandingItem)
@@ -191,7 +188,6 @@ extension StandingsVC: UITableViewDelegate, UITableViewDataSource {
                 present(driverDetailVC, animated: true, completion: nil)
             
             case .constructors:
-                //TODO: Maybe handle with error message
                 guard let constructorStandingItem = viewModel.constructorStandings?[selectedRow] else { return }
                 
             let constructorDetailVC = ConstructorDetailVC(withConstructor: constructorStandingItem)
@@ -217,8 +213,8 @@ extension StandingsVC: DataChangeDelegate {
                 self?.tableView.reloadData()
                 self?.stopLoading()
             }
-        case .error(let error):
-            print("Error state occured: \(error)")
+        case .error(_):
+            //print("Error state occured: \(error)")
             stopLoading()
             displayErrorAlert()
         case .loading:

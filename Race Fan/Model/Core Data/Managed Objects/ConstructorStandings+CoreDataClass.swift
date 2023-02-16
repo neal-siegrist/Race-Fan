@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 public class ConstructorStandings: TimeStamp, Codable {
 
     enum CodingKeys: String, CodingKey {
@@ -41,5 +40,4 @@ public class ConstructorStandings: TimeStamp, Codable {
         
         try container.encode(self.standings as! Set<ConstructorStandingItem>, forKey: .standings)
     }
-    
 }

@@ -65,6 +65,7 @@ class TopStandingsView: UIView {
         return loadingWheel
     }()
     
+    
     //MARK: - Initializers
     
     init() {

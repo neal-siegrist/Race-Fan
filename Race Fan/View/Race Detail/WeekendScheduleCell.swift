@@ -85,6 +85,7 @@ class WeekendScheduleCell: UITableViewCell {
         return label
     }()
     
+    
     //MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -113,6 +114,7 @@ class WeekendScheduleCell: UITableViewCell {
         
         setupCellShadow()
     }
+    
     
     //MARK: - Functions
     

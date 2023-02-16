@@ -17,6 +17,7 @@ class HomePageVC: UIViewController {
     let topDriverStandingsVC: TopDriverStandingsVC
     let topConstructorStandingsVC: TopConstructorStandingsVC
     
+    
     //MARK: Initializers
     
     init() {
@@ -49,6 +50,7 @@ class HomePageVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
+    
     
     //MARK: - Functions
     
@@ -153,7 +155,7 @@ extension HomePageVC: DataChangeDelegate {
                 self.updateUI()
             }
         case .error(let error):
-            print("Error state occured: \(error) in homepagevc")
+            //print("Error state occured: \(error) in homepagevc")
             
             if let networkingError = error as? NetworkingError {
                 
@@ -161,12 +163,10 @@ extension HomePageVC: DataChangeDelegate {
                     return
                 }
                 
-                //Show error message
                 displayErrorAlert()
             }
         case .loading:
             break
-            
         }
     }
 }

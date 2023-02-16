@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 public class ConstructorStandingItem: TimeStamp, Codable {
 
     enum CodingKeys: String, CodingKey {

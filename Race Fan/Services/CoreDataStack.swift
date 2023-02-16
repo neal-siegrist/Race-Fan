@@ -46,7 +46,7 @@ class CoreDataStack {
             do {
                 try mainContext.save()
             } catch {
-                fatalError("Error saving core data context. Error: \(error)")
+                //print("Error saving main context")
             }
         }
     }

@@ -140,6 +140,7 @@ class RaceDetailView: UIView {
         return mapView
     }()
     
+    
     //MARK: - Initializers
     
     init() {

@@ -15,6 +15,7 @@ class TopConstructorStandingsVC: UIViewController {
     let tableView: UITableView
     let viewModel: TopConstructorStandingsViewModel
     
+    
     //MARK: - Initializers
     
     init() {
@@ -118,8 +119,8 @@ extension TopConstructorStandingsVC: DataChangeDelegate {
                 self?.tableView.reloadData()
                 self?.stopLoading()
             }
-        case .error(let error):
-            print("Error state occured on TopConstructorStandingsVC: \(error)")
+        case .error(_):
+            //print("Error state occured on TopConstructorStandingsVC: \(error)")
             stopLoading()
         case .loading:
             startLoading()

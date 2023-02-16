@@ -35,8 +35,6 @@ class TopConstructorStandingsViewModel {
         
         dataManager.addListener(forType: [.constructor], listener: self)
     }
-    
-    //MARK: - Functions
 }
 
 
@@ -58,7 +56,7 @@ extension TopConstructorStandingsViewModel: DataListener {
                 return
             }
         default:
-            print("default")
+            break
         }
         
         
@@ -66,7 +64,6 @@ extension TopConstructorStandingsViewModel: DataListener {
     }
     
     func errorOccured(error: Error) {
-        print("Error called on top constructor listenter. Error: \(error)")
         self.state = .error(error)
     }
 }

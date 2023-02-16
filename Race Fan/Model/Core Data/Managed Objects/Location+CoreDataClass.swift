@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 public class Location: TimeStamp, Codable {
+    
     enum CodingKeys: String, CodingKey {
         case country
         case latitude = "lat"

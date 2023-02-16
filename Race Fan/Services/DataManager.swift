@@ -25,6 +25,7 @@ class DataManager {
     private var driverStandingsListeners: [DataListener] = []
     private var constructorStandingsListeners: [DataListener] = []
     
+    
     //MARK: - Initializers
     
     private init() {}

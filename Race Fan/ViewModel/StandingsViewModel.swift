@@ -72,7 +72,6 @@ extension StandingsViewModel: DataListener {
     }
     
     func errorOccured(error: Error) {
-        print("Error called on schedule listenter. Error: \(error)")
         self.state = .error(error)
     }
 }

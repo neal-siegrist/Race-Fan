@@ -24,7 +24,6 @@
 		D95E9165298C25D600E6CD71 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95E9164298C25D600E6CD71 /* CoreDataService.swift */; };
 		D95E9167298C2B7F00E6CD71 /* DataListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95E9166298C2B7F00E6CD71 /* DataListener.swift */; };
 		D95E9169298C2CBD00E6CD71 /* ListenerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95E9168298C2CBD00E6CD71 /* ListenerType.swift */; };
-		D95E916B298D5C1000E6CD71 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95E916A298D5C1000E6CD71 /* Extensions.swift */; };
 		D95F8AE42967B1E8008DEBA6 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AE32967B1E8008DEBA6 /* HomePageView.swift */; };
 		D95F8AE82968C8B9008DEBA6 /* RaceCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AE72968C8B9008DEBA6 /* RaceCountdown.swift */; };
 		D95F8AEA296901DA008DEBA6 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F8AE9296901DA008DEBA6 /* ProgressCircle.swift */; };
@@ -108,7 +107,6 @@
 		D95E9164298C25D600E6CD71 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		D95E9166298C2B7F00E6CD71 /* DataListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataListener.swift; sourceTree = "<group>"; };
 		D95E9168298C2CBD00E6CD71 /* ListenerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerType.swift; sourceTree = "<group>"; };
-		D95E916A298D5C1000E6CD71 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D95F8AE32967B1E8008DEBA6 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		D95F8AE72968C8B9008DEBA6 /* RaceCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceCountdown.swift; sourceTree = "<group>"; };
 		D95F8AE9296901DA008DEBA6 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
@@ -270,7 +268,6 @@
 				D90E50BB298215FE00A93769 /* Delegates */,
 				D90E50BC2982160500A93769 /* Enums */,
 				D90E50BD2982160B00A93769 /* Errors */,
-				D95E916A298D5C1000E6CD71 /* Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -577,7 +574,6 @@
 				D934C7F42973408900A08E13 /* DataManager.swift in Sources */,
 				D96830502971F45D00060BA3 /* Location+CoreDataClass.swift in Sources */,
 				D96654E3297F618800442687 /* ConstructorDetailView.swift in Sources */,
-				D95E916B298D5C1000E6CD71 /* Extensions.swift in Sources */,
 				D91EE6C7295FCD1B00AB463F /* AppDelegate.swift in Sources */,
 				D9947A83297A2B9D00AC93CC /* StandingsCell.swift in Sources */,
 				D9DE187F2971EB0C006C6541 /* NetworkingError.swift in Sources */,

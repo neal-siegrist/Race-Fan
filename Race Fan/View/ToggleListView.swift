@@ -64,7 +64,9 @@ class ToggleListView: UIView {
         return loadingWheel
     }()
     
+    
     //MARK: - Initializers
+    
     init() {
         super.init(frame: .zero)
         self.backgroundColor = .white

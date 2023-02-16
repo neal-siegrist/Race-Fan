@@ -11,15 +11,14 @@ import CoreData
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var tabBarController: UITabBarController?
-    var isDataRefreshNeeded = true
+    private var tabBarController: UITabBarController?
+    private var isDataRefreshNeeded = true
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let tabBarController = setupControllersAndNavigation()
-        self.tabBarController = tabBarController
+        self.tabBarController = setupControllersAndNavigation()
         
         self.isDataRefreshNeeded = false
         DataManager.shared.fetchAllData()
@@ -83,4 +82,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return navigationController
     }
 }
-

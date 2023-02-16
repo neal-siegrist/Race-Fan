@@ -81,6 +81,7 @@ class ScheduleCell: UITableViewCell {
         return raceDateLabel
     }()
     
+    
     //MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

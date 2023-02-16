@@ -229,6 +229,7 @@ class ConstructorDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     //MARK: - Functions
     
     private func setupSubviews() {

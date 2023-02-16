@@ -14,6 +14,7 @@ class ConstructorDetailVC: UIViewController {
     let constructorDetailView: ConstructorDetailView
     let constructor: ConstructorStandingItem
     
+    
     //MARK: - Initializers
     
     init(withConstructor constructor: ConstructorStandingItem) {

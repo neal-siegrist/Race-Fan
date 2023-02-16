@@ -9,5 +9,4 @@ import Foundation
 
 enum HttpMethodType: String {
     case GET
-    case POST
 }

@@ -9,8 +9,8 @@
 import Foundation
 import CoreData
 
-
 public class DriverStandingItem: TimeStamp, Codable {
+    
     enum CodingKeys: String, CodingKey {
         case points
         case position

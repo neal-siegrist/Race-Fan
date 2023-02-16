@@ -16,6 +16,7 @@ class RaceDetailVC: UIViewController {
     let raceDetailView: RaceDetailView
     var currentTimeSelection: TimeSelection = .deviceLocalTime
     
+    
     //MARK: - Initializers
     
     init(race: Race) {
@@ -175,18 +176,17 @@ extension RaceDetailVC: UITableViewDelegate, UITableViewDataSource {
 
 
 //MARK: - Data change delegate
+
 extension RaceDetailVC: DataChangeDelegate {
     func didUpdate(with state: State) {
         switch state {
             case .success:
                 self.updateUI()
             case .loading:
-                print("Loading")
+                break
             case .error(let error):
-                print("Error: \(error)")
+                //print("Error: \(error)")
                 self.updateUI()
         }
     }
-    
-    
 }

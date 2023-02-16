@@ -15,6 +15,7 @@ class TopDriverStandingsVC: UIViewController {
     let tableView: UITableView
     let viewModel: TopDriverStandingsViewModel
     
+    
     //MARK: - Initializers
     
     init() {
@@ -118,8 +119,8 @@ extension TopDriverStandingsVC: DataChangeDelegate {
                 self?.tableView.reloadData()
                 self?.stopLoading()
             }
-        case .error(let error):
-            print("Error state occured: \(error)")
+        case .error(_):
+            //print("Error state occured: \(error)")
             stopLoading()
         case .loading:
             startLoading()

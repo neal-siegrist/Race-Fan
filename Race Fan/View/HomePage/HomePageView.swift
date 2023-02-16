@@ -96,6 +96,7 @@ class HomePageView: UIView {
         return label
     }()
     
+    
     //MARK: - Initializers
     
     init() {
@@ -125,6 +126,7 @@ class HomePageView: UIView {
         nextRaceBackgroundMask.path = nextRaceBackgroundPath.cgPath
         nextRaceBackground.layer.mask = nextRaceBackgroundMask
     }
+    
     
     //MARK: - Functions
     

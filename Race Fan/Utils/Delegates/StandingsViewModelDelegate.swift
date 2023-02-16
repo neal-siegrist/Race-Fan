@@ -8,6 +8,5 @@
 import Foundation
 
 protocol StandingsViewModelDelegate {
-    
     func fetchStandings()
 }

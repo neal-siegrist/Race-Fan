@@ -10,10 +10,12 @@ import UIKit
 class ScheduleVC: UIViewController {
 
     //MARK: - Variables
+    
     let scheduleView: ToggleListView
     let tableView: UITableView
     let viewModel: ScheduleViewModel
     var currentSchedule: DisplayedSchedule = .upcoming
+    
     
     //MARK: - Initializers
     
@@ -50,8 +52,6 @@ class ScheduleVC: UIViewController {
         
         self.view = scheduleView
     }
-    
-    
     
     
     //MARK: - Functions
@@ -193,8 +193,8 @@ extension ScheduleVC: DataChangeDelegate {
                 self?.tableView.reloadData()
                 self?.stopLoading()
             }
-        case .error(let error):
-            print("Error state occured: \(error)")
+        case .error(_):
+            //print("Error state occured: \(error)")
             stopLoading()
             displayErrorAlert()
         case .loading:

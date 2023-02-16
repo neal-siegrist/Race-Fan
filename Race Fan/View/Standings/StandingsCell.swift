@@ -38,8 +38,6 @@ class StandingsCell: UITableViewCell {
     let positionLabel: UILabel = {
         let label = UILabel()
         
-        //Dummy data
-        label.text = "1"
         label.font = UIFont.systemFont(ofSize: 12, weight: .light)
         label.textAlignment = .center
         
@@ -50,9 +48,7 @@ class StandingsCell: UITableViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        
-        //Dummy data
-        label.text = "Red Bull"
+    
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         label.textAlignment = .left
@@ -65,8 +61,6 @@ class StandingsCell: UITableViewCell {
     let pointsLabel: UILabel = {
         let label = UILabel()
         
-        //Dummy data
-        label.text = "479.5"
         label.font = UIFont.systemFont(ofSize: 14, weight: .light)
         label.textAlignment = .right
         

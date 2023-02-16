@@ -29,5 +29,4 @@ struct Constants {
             "williams": UIColor(red: 0, green: 90.0/255.0, blue: 1, alpha: 1),
         ]
     }
-    
 }

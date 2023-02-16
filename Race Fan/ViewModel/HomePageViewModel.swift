@@ -91,6 +91,7 @@ class HomePageViewModel {
 
 
 //MARK: - DataListener extension
+
 extension HomePageViewModel: DataListener {
     func dataIsUpdated(type: ListenerType) {
         if case .schedule = type {
@@ -102,6 +103,6 @@ extension HomePageViewModel: DataListener {
     }
     
     func errorOccured(error: Error) {
-        print("Error called on home page listenter. Error: \(error)")
+        self.state = .error(error)
     }
 }
