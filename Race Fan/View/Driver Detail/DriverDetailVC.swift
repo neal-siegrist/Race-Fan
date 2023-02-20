@@ -48,6 +48,11 @@ class DriverDetailVC: UIViewController {
             
             setTeamColor(constructorId: id)
             setDriverConstructor(constructor: name)
+        } else {
+            if let driverID = driver.driver?.id, let teamName = Constants.Colors.driverTeams[driverID], let printableConstructorName = Constants.Colors.driverPrintableTeams[driverID] {
+                driverDetailView.teamColor.backgroundColor = Constants.Colors.teamColors[teamName]
+                setDriverConstructor(constructor: printableConstructorName)
+            }
         }
         
         if let firstName = driverInfo.givenName, let lastName = driverInfo.familyName {

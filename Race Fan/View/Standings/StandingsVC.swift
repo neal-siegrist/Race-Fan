@@ -134,6 +134,10 @@ extension StandingsVC: UITableViewDelegate, UITableViewDataSource {
                     
                     if let constructor = viewModel.driverStandings?[indexPath.section].constructors?.allObjects as? [Constructor], let id = constructor.first?.id {
                         standingsCell.teamColorView.backgroundColor = Constants.Colors.teamColors[id]
+                    } else {
+                        if let driverID = driver.driver?.id, let teamName = Constants.Colors.driverTeams[driverID] {
+                            standingsCell.teamColorView.backgroundColor = Constants.Colors.teamColors[teamName]
+                        }
                     }
                 }
             case .constructors:

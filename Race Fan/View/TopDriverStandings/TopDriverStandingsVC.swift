@@ -96,6 +96,10 @@ extension TopDriverStandingsVC: UITableViewDataSource, UITableViewDelegate {
             
             if let constructor = viewModel.driverStandings?[indexPath.row].constructors?.allObjects as? [Constructor], let id = constructor.first?.id {
                 cell.teamColorView.backgroundColor = Constants.Colors.teamColors[id]
+            } else {
+                if let driverID = driver.driver?.id, let teamName = Constants.Colors.driverTeams[driverID] {
+                    cell.teamColorView.backgroundColor = Constants.Colors.teamColors[teamName]
+                }
             }
         }
         return cell

@@ -16,6 +16,52 @@ struct Constants {
     }
     
     struct Colors {
+        public static let driverTeams: [String: String] = [
+            "albon": "williams",
+            "alonso": "aston_martin",
+            "bottas": "alfa",
+            "gasly": "alpine",
+            "hamilton": "mercedes",
+            "hulkenberg": "haas",
+            "leclerc": "ferrari",
+            "kevin_magnussen": "haas",
+            "norris": "mclaren",
+            "ocon": "alpine",
+            "perez": "red_bull",
+            "piastri": "mclaren",
+            "russell": "mercedes",
+            "sainz": "ferrari",
+            "sargeant": "williams",
+            "stroll": "aston_martin",
+            "tsunoda": "alphatauri",
+            "max_verstappen": "red_bull",
+            "de_vries": "alphatauri",
+            "zhou": "alfa"
+        ]
+        
+        public static let driverPrintableTeams: [String: String] = [
+            "albon": "Williams",
+            "alonso": "Aston Martin",
+            "bottas": "Alfa Romeo",
+            "gasly": "Alpine",
+            "hamilton": "Mercedes",
+            "hulkenberg": "Haas",
+            "leclerc": "Ferrari",
+            "kevin_magnussen": "Haas",
+            "norris": "McLaren",
+            "ocon": "Alpine",
+            "perez": "Red Bull",
+            "piastri": "McLaren",
+            "russell": "Mercedes",
+            "sainz": "Ferrari",
+            "sargeant": "Williams",
+            "stroll": "Aston Martin",
+            "tsunoda": "Alpha Tauri",
+            "max_verstappen": "Red Bull",
+            "de_vries": "Alpha Tauri",
+            "zhou": "Alfa Romeo"
+        ]
+        
         public static let teamColors: [String: UIColor] = [
             "red_bull": UIColor(red: 6.0/255.0, green: 0, blue: 239.0/255.0, alpha: 1),
             "ferrari": UIColor(red: 220.0/255.0, green: 0, blue: 0, alpha: 1),
